@@ -1,0 +1,11 @@
+﻿method,true_label,ai cho,bực mình,ghen tị,không cần,xin lỗi,__REJECT__
+tcn,ai cho,2,0,0,0,0,1
+tcn,bực mình,0,0,0,0,0,0
+tcn,ghen tị,0,0,0,0,0,0
+tcn,không cần,0,0,0,1,0,1
+tcn,xin lỗi,0,0,0,0,0,0
+tcn_reject,ai cho,1,0,0,0,0,2
+tcn_reject,bực mình,0,0,0,0,0,0
+tcn_reject,ghen tị,0,0,0,0,0,0
+tcn_reject,không cần,0,0,0,0,0,2
+tcn_reject,xin lỗi,0,0,0,0,0,0

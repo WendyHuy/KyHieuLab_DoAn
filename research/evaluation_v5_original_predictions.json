@@ -1,0 +1,878 @@
+{
+  "kind": "frozen_outputs_from_actual_normalized_video_extraction_run",
+  "frozen_at_utc": "2026-11-04T04:26:45.138395+00:00",
+  "protocol_sha256": "74a215d6003d92e8045bfea1b24b7714373403913ed4db3aa33c7465999e81a5",
+  "unique_source_videos": 29,
+  "records": [
+    {
+      "id": "c3b59369",
+      "model": "mlp",
+      "provided_label": "bối rối",
+      "signer": "giahuy",
+      "predicted": "không cần",
+      "accepted": true,
+      "top_score": 0.9841151237487793,
+      "hand_fraction": 0.84375
+    },
+    {
+      "id": "c3b59369",
+      "model": "tcn",
+      "provided_label": "bối rối",
+      "signer": "giahuy",
+      "predicted": "không cần",
+      "accepted": false,
+      "top_score": 0.6261587738990784,
+      "hand_fraction": 0.84375
+    },
+    {
+      "id": "c3b59369",
+      "model": "tcn_augmented",
+      "provided_label": "bối rối",
+      "signer": "giahuy",
+      "predicted": "ghen tị",
+      "accepted": false,
+      "top_score": 0.3679845333099365,
+      "hand_fraction": 0.84375
+    },
+    {
+      "id": "52628dc4",
+      "model": "mlp",
+      "provided_label": "không cho",
+      "signer": "giahuy",
+      "predicted": "không cần",
+      "accepted": true,
+      "top_score": 0.8183728456497192,
+      "hand_fraction": 0.9375
+    },
+    {
+      "id": "52628dc4",
+      "model": "tcn",
+      "provided_label": "không cho",
+      "signer": "giahuy",
+      "predicted": "bực mình",
+      "accepted": false,
+      "top_score": 0.37762945890426636,
+      "hand_fraction": 0.9375
+    },
+    {
+      "id": "52628dc4",
+      "model": "tcn_augmented",
+      "provided_label": "không cho",
+      "signer": "giahuy",
+      "predicted": "không cần",
+      "accepted": true,
+      "top_score": 0.9729368686676025,
+      "hand_fraction": 0.9375
+    },
+    {
+      "id": "b93f88f2",
+      "model": "mlp",
+      "provided_label": "không nên",
+      "signer": "giahuy",
+      "predicted": "không cần",
+      "accepted": false,
+      "top_score": 0.6097414493560791,
+      "hand_fraction": 1.0
+    },
+    {
+      "id": "b93f88f2",
+      "model": "tcn",
+      "provided_label": "không nên",
+      "signer": "giahuy",
+      "predicted": "không cần",
+      "accepted": true,
+      "top_score": 0.9089918732643127,
+      "hand_fraction": 1.0
+    },
+    {
+      "id": "b93f88f2",
+      "model": "tcn_augmented",
+      "provided_label": "không nên",
+      "signer": "giahuy",
+      "predicted": "xin lỗi",
+      "accepted": true,
+      "top_score": 0.7824310660362244,
+      "hand_fraction": 1.0
+    },
+    {
+      "id": "9ac3d669",
+      "model": "mlp",
+      "provided_label": "không nghe lời",
+      "signer": "giahuy",
+      "predicted": "không cần",
+      "accepted": true,
+      "top_score": 0.9062504768371582,
+      "hand_fraction": 0.71875
+    },
+    {
+      "id": "9ac3d669",
+      "model": "tcn",
+      "provided_label": "không nghe lời",
+      "signer": "giahuy",
+      "predicted": "bực mình",
+      "accepted": false,
+      "top_score": 0.6232302188873291,
+      "hand_fraction": 0.71875
+    },
+    {
+      "id": "9ac3d669",
+      "model": "tcn_augmented",
+      "provided_label": "không nghe lời",
+      "signer": "giahuy",
+      "predicted": "bực mình",
+      "accepted": true,
+      "top_score": 0.7401276230812073,
+      "hand_fraction": 0.71875
+    },
+    {
+      "id": "c9b9c446",
+      "model": "mlp",
+      "provided_label": "khuyến khích",
+      "signer": "giahuy",
+      "predicted": "không cần",
+      "accepted": false,
+      "top_score": 0.4449002742767334,
+      "hand_fraction": 0.875
+    },
+    {
+      "id": "c9b9c446",
+      "model": "tcn",
+      "provided_label": "khuyến khích",
+      "signer": "giahuy",
+      "predicted": "không cần",
+      "accepted": true,
+      "top_score": 0.9586811661720276,
+      "hand_fraction": 0.875
+    },
+    {
+      "id": "c9b9c446",
+      "model": "tcn_augmented",
+      "provided_label": "khuyến khích",
+      "signer": "giahuy",
+      "predicted": "ai cho",
+      "accepted": true,
+      "top_score": 0.8744326233863831,
+      "hand_fraction": 0.875
+    },
+    {
+      "id": "5d94d723",
+      "model": "mlp",
+      "provided_label": "kịp thời",
+      "signer": "giahuy",
+      "predicted": "không cần",
+      "accepted": true,
+      "top_score": 0.841297447681427,
+      "hand_fraction": 0.96875
+    },
+    {
+      "id": "5d94d723",
+      "model": "tcn",
+      "provided_label": "kịp thời",
+      "signer": "giahuy",
+      "predicted": "không cần",
+      "accepted": true,
+      "top_score": 0.9784149527549744,
+      "hand_fraction": 0.96875
+    },
+    {
+      "id": "5d94d723",
+      "model": "tcn_augmented",
+      "provided_label": "kịp thời",
+      "signer": "giahuy",
+      "predicted": "xin lỗi",
+      "accepted": true,
+      "top_score": 0.8247583508491516,
+      "hand_fraction": 0.96875
+    },
+    {
+      "id": "568eb7a7",
+      "model": "mlp",
+      "provided_label": "lung tung",
+      "signer": "giahuy",
+      "predicted": "không cần",
+      "accepted": false,
+      "top_score": 0.5885378122329712,
+      "hand_fraction": 0.46875
+    },
+    {
+      "id": "568eb7a7",
+      "model": "tcn",
+      "provided_label": "lung tung",
+      "signer": "giahuy",
+      "predicted": "không cần",
+      "accepted": false,
+      "top_score": 0.4861827492713928,
+      "hand_fraction": 0.46875
+    },
+    {
+      "id": "568eb7a7",
+      "model": "tcn_augmented",
+      "provided_label": "lung tung",
+      "signer": "giahuy",
+      "predicted": "ghen tị",
+      "accepted": false,
+      "top_score": 0.5996127724647522,
+      "hand_fraction": 0.46875
+    },
+    {
+      "id": "ef10a62f",
+      "model": "mlp",
+      "provided_label": "nhầm",
+      "signer": "giahuy",
+      "predicted": "không cần",
+      "accepted": false,
+      "top_score": 0.6081246137619019,
+      "hand_fraction": 0.78125
+    },
+    {
+      "id": "ef10a62f",
+      "model": "tcn",
+      "provided_label": "nhầm",
+      "signer": "giahuy",
+      "predicted": "bực mình",
+      "accepted": true,
+      "top_score": 0.7113028168678284,
+      "hand_fraction": 0.78125
+    },
+    {
+      "id": "ef10a62f",
+      "model": "tcn_augmented",
+      "provided_label": "nhầm",
+      "signer": "giahuy",
+      "predicted": "bực mình",
+      "accepted": true,
+      "top_score": 0.935797929763794,
+      "hand_fraction": 0.78125
+    },
+    {
+      "id": "199aa941",
+      "model": "mlp",
+      "provided_label": "nhân viên",
+      "signer": "giahuy",
+      "predicted": "bực mình",
+      "accepted": false,
+      "top_score": 0.539476752281189,
+      "hand_fraction": 0.75
+    },
+    {
+      "id": "199aa941",
+      "model": "tcn",
+      "provided_label": "nhân viên",
+      "signer": "giahuy",
+      "predicted": "bực mình",
+      "accepted": true,
+      "top_score": 0.6784958243370056,
+      "hand_fraction": 0.75
+    },
+    {
+      "id": "199aa941",
+      "model": "tcn_augmented",
+      "provided_label": "nhân viên",
+      "signer": "giahuy",
+      "predicted": "ghen tị",
+      "accepted": false,
+      "top_score": 0.45079582929611206,
+      "hand_fraction": 0.75
+    },
+    {
+      "id": "83010ff2",
+      "model": "mlp",
+      "provided_label": "suỵt",
+      "signer": "giahuy",
+      "predicted": "ai cho",
+      "accepted": false,
+      "top_score": 0.6086417436599731,
+      "hand_fraction": 0.625
+    },
+    {
+      "id": "83010ff2",
+      "model": "tcn",
+      "provided_label": "suỵt",
+      "signer": "giahuy",
+      "predicted": "bực mình",
+      "accepted": false,
+      "top_score": 0.46602222323417664,
+      "hand_fraction": 0.625
+    },
+    {
+      "id": "83010ff2",
+      "model": "tcn_augmented",
+      "provided_label": "suỵt",
+      "signer": "giahuy",
+      "predicted": "bực mình",
+      "accepted": false,
+      "top_score": 0.48658356070518494,
+      "hand_fraction": 0.625
+    },
+    {
+      "id": "4e86a031",
+      "model": "mlp",
+      "provided_label": "tham ăn",
+      "signer": "giahuy",
+      "predicted": "ai cho",
+      "accepted": true,
+      "top_score": 0.6991549730300903,
+      "hand_fraction": 0.375
+    },
+    {
+      "id": "4e86a031",
+      "model": "tcn",
+      "provided_label": "tham ăn",
+      "signer": "giahuy",
+      "predicted": "bực mình",
+      "accepted": false,
+      "top_score": 0.45811760425567627,
+      "hand_fraction": 0.375
+    },
+    {
+      "id": "4e86a031",
+      "model": "tcn_augmented",
+      "provided_label": "tham ăn",
+      "signer": "giahuy",
+      "predicted": "xin lỗi",
+      "accepted": false,
+      "top_score": 0.5384032726287842,
+      "hand_fraction": 0.375
+    },
+    {
+      "id": "698cd9dd",
+      "model": "mlp",
+      "provided_label": "thèm",
+      "signer": "giahuy",
+      "predicted": "ai cho",
+      "accepted": false,
+      "top_score": 0.32207855582237244,
+      "hand_fraction": 0.8125
+    },
+    {
+      "id": "698cd9dd",
+      "model": "tcn",
+      "provided_label": "thèm",
+      "signer": "giahuy",
+      "predicted": "bực mình",
+      "accepted": true,
+      "top_score": 0.6554753184318542,
+      "hand_fraction": 0.8125
+    },
+    {
+      "id": "698cd9dd",
+      "model": "tcn_augmented",
+      "provided_label": "thèm",
+      "signer": "giahuy",
+      "predicted": "ai cho",
+      "accepted": false,
+      "top_score": 0.48998919129371643,
+      "hand_fraction": 0.8125
+    },
+    {
+      "id": "39ff9eb8",
+      "model": "mlp",
+      "provided_label": "thói quen",
+      "signer": "giahuy",
+      "predicted": "xin lỗi",
+      "accepted": false,
+      "top_score": 0.40302324295043945,
+      "hand_fraction": 0.65625
+    },
+    {
+      "id": "39ff9eb8",
+      "model": "tcn",
+      "provided_label": "thói quen",
+      "signer": "giahuy",
+      "predicted": "bực mình",
+      "accepted": false,
+      "top_score": 0.5532422065734863,
+      "hand_fraction": 0.65625
+    },
+    {
+      "id": "39ff9eb8",
+      "model": "tcn_augmented",
+      "provided_label": "thói quen",
+      "signer": "giahuy",
+      "predicted": "ai cho",
+      "accepted": false,
+      "top_score": 0.4324743151664734,
+      "hand_fraction": 0.65625
+    },
+    {
+      "id": "61445cbf",
+      "model": "mlp",
+      "provided_label": "tự giác",
+      "signer": "giahuy",
+      "predicted": "không cần",
+      "accepted": true,
+      "top_score": 0.9246994256973267,
+      "hand_fraction": 0.90625
+    },
+    {
+      "id": "61445cbf",
+      "model": "tcn",
+      "provided_label": "tự giác",
+      "signer": "giahuy",
+      "predicted": "bực mình",
+      "accepted": true,
+      "top_score": 0.8899379968643188,
+      "hand_fraction": 0.90625
+    },
+    {
+      "id": "61445cbf",
+      "model": "tcn_augmented",
+      "provided_label": "tự giác",
+      "signer": "giahuy",
+      "predicted": "bực mình",
+      "accepted": true,
+      "top_score": 0.9306209683418274,
+      "hand_fraction": 0.90625
+    },
+    {
+      "id": "939eb38f",
+      "model": "mlp",
+      "provided_label": "vô duyên",
+      "signer": "giahuy",
+      "predicted": "không cần",
+      "accepted": true,
+      "top_score": 0.7226189374923706,
+      "hand_fraction": 0.84375
+    },
+    {
+      "id": "939eb38f",
+      "model": "tcn",
+      "provided_label": "vô duyên",
+      "signer": "giahuy",
+      "predicted": "bực mình",
+      "accepted": true,
+      "top_score": 0.6706118583679199,
+      "hand_fraction": 0.84375
+    },
+    {
+      "id": "939eb38f",
+      "model": "tcn_augmented",
+      "provided_label": "vô duyên",
+      "signer": "giahuy",
+      "predicted": "bực mình",
+      "accepted": false,
+      "top_score": 0.4472339153289795,
+      "hand_fraction": 0.84375
+    },
+    {
+      "id": "eb07c74d",
+      "model": "mlp",
+      "provided_label": "vô tình",
+      "signer": "giahuy",
+      "predicted": "không cần",
+      "accepted": false,
+      "top_score": 0.6439236402511597,
+      "hand_fraction": 0.75
+    },
+    {
+      "id": "eb07c74d",
+      "model": "tcn",
+      "provided_label": "vô tình",
+      "signer": "giahuy",
+      "predicted": "bực mình",
+      "accepted": true,
+      "top_score": 0.8120003938674927,
+      "hand_fraction": 0.75
+    },
+    {
+      "id": "eb07c74d",
+      "model": "tcn_augmented",
+      "provided_label": "vô tình",
+      "signer": "giahuy",
+      "predicted": "bực mình",
+      "accepted": false,
+      "top_score": 0.41312527656555176,
+      "hand_fraction": 0.75
+    },
+    {
+      "id": "5d51bfa5",
+      "model": "mlp",
+      "provided_label": "xinh",
+      "signer": "giahuy",
+      "predicted": "bực mình",
+      "accepted": false,
+      "top_score": 0.3661797344684601,
+      "hand_fraction": 0.75
+    },
+    {
+      "id": "5d51bfa5",
+      "model": "tcn",
+      "provided_label": "xinh",
+      "signer": "giahuy",
+      "predicted": "bực mình",
+      "accepted": true,
+      "top_score": 0.7059096097946167,
+      "hand_fraction": 0.75
+    },
+    {
+      "id": "5d51bfa5",
+      "model": "tcn_augmented",
+      "provided_label": "xinh",
+      "signer": "giahuy",
+      "predicted": "ai cho",
+      "accepted": false,
+      "top_score": 0.4004223048686981,
+      "hand_fraction": 0.75
+    },
+    {
+      "id": "d2fed4eb",
+      "model": "mlp",
+      "provided_label": "Cực khổ(nói khái quát)",
+      "signer": "tp",
+      "predicted": "không cần",
+      "accepted": false,
+      "top_score": 0.3908716142177582,
+      "hand_fraction": 0.90625
+    },
+    {
+      "id": "d2fed4eb",
+      "model": "tcn",
+      "provided_label": "Cực khổ(nói khái quát)",
+      "signer": "tp",
+      "predicted": "ghen tị",
+      "accepted": false,
+      "top_score": 0.3912721872329712,
+      "hand_fraction": 0.90625
+    },
+    {
+      "id": "d2fed4eb",
+      "model": "tcn_augmented",
+      "provided_label": "Cực khổ(nói khái quát)",
+      "signer": "tp",
+      "predicted": "ai cho",
+      "accepted": false,
+      "top_score": 0.6015244722366333,
+      "hand_fraction": 0.90625
+    },
+    {
+      "id": "7033a8e3",
+      "model": "mlp",
+      "provided_label": "kỹ năng",
+      "signer": "tp",
+      "predicted": "ghen tị",
+      "accepted": false,
+      "top_score": 0.5617635250091553,
+      "hand_fraction": 0.6875
+    },
+    {
+      "id": "7033a8e3",
+      "model": "tcn",
+      "provided_label": "kỹ năng",
+      "signer": "tp",
+      "predicted": "ghen tị",
+      "accepted": false,
+      "top_score": 0.3947640359401703,
+      "hand_fraction": 0.6875
+    },
+    {
+      "id": "7033a8e3",
+      "model": "tcn_augmented",
+      "provided_label": "kỹ năng",
+      "signer": "tp",
+      "predicted": "ghen tị",
+      "accepted": true,
+      "top_score": 0.675489604473114,
+      "hand_fraction": 0.6875
+    },
+    {
+      "id": "ab5af903",
+      "model": "mlp",
+      "provided_label": "nấu nướng",
+      "signer": "tp",
+      "predicted": "xin lỗi",
+      "accepted": false,
+      "top_score": 0.6367927193641663,
+      "hand_fraction": 0.78125
+    },
+    {
+      "id": "ab5af903",
+      "model": "tcn",
+      "provided_label": "nấu nướng",
+      "signer": "tp",
+      "predicted": "không cần",
+      "accepted": true,
+      "top_score": 0.848219633102417,
+      "hand_fraction": 0.78125
+    },
+    {
+      "id": "ab5af903",
+      "model": "tcn_augmented",
+      "provided_label": "nấu nướng",
+      "signer": "tp",
+      "predicted": "ai cho",
+      "accepted": false,
+      "top_score": 0.4761359989643097,
+      "hand_fraction": 0.78125
+    },
+    {
+      "id": "f17b73f6",
+      "model": "mlp",
+      "provided_label": "Từ chối cách 1",
+      "signer": "tp",
+      "predicted": "không cần",
+      "accepted": true,
+      "top_score": 0.7267720699310303,
+      "hand_fraction": 0.5625
+    },
+    {
+      "id": "f17b73f6",
+      "model": "tcn",
+      "provided_label": "Từ chối cách 1",
+      "signer": "tp",
+      "predicted": "ghen tị",
+      "accepted": false,
+      "top_score": 0.5861256718635559,
+      "hand_fraction": 0.5625
+    },
+    {
+      "id": "f17b73f6",
+      "model": "tcn_augmented",
+      "provided_label": "Từ chối cách 1",
+      "signer": "tp",
+      "predicted": "ai cho",
+      "accepted": false,
+      "top_score": 0.6160355806350708,
+      "hand_fraction": 0.5625
+    },
+    {
+      "id": "5be762eb",
+      "model": "mlp",
+      "provided_label": "kia kìa",
+      "signer": "tp",
+      "predicted": "ghen tị",
+      "accepted": true,
+      "top_score": 0.7280858755111694,
+      "hand_fraction": 0.53125
+    },
+    {
+      "id": "5be762eb",
+      "model": "tcn",
+      "provided_label": "kia kìa",
+      "signer": "tp",
+      "predicted": "ghen tị",
+      "accepted": false,
+      "top_score": 0.5867192149162292,
+      "hand_fraction": 0.53125
+    },
+    {
+      "id": "5be762eb",
+      "model": "tcn_augmented",
+      "provided_label": "kia kìa",
+      "signer": "tp",
+      "predicted": "ghen tị",
+      "accepted": false,
+      "top_score": 0.5248542428016663,
+      "hand_fraction": 0.53125
+    },
+    {
+      "id": "3bc4425c",
+      "model": "mlp",
+      "provided_label": "may mắn",
+      "signer": "tp",
+      "predicted": "ghen tị",
+      "accepted": false,
+      "top_score": 0.4912358820438385,
+      "hand_fraction": 0.6875
+    },
+    {
+      "id": "3bc4425c",
+      "model": "tcn",
+      "provided_label": "may mắn",
+      "signer": "tp",
+      "predicted": "không cần",
+      "accepted": true,
+      "top_score": 0.9747090339660645,
+      "hand_fraction": 0.6875
+    },
+    {
+      "id": "3bc4425c",
+      "model": "tcn_augmented",
+      "provided_label": "may mắn",
+      "signer": "tp",
+      "predicted": "xin lỗi",
+      "accepted": false,
+      "top_score": 0.49691230058670044,
+      "hand_fraction": 0.6875
+    },
+    {
+      "id": "ca4031d4",
+      "model": "mlp",
+      "provided_label": "ruộng đất",
+      "signer": "tp",
+      "predicted": "bực mình",
+      "accepted": false,
+      "top_score": 0.37027838826179504,
+      "hand_fraction": 0.78125
+    },
+    {
+      "id": "ca4031d4",
+      "model": "tcn",
+      "provided_label": "ruộng đất",
+      "signer": "tp",
+      "predicted": "ghen tị",
+      "accepted": true,
+      "top_score": 0.973894476890564,
+      "hand_fraction": 0.78125
+    },
+    {
+      "id": "ca4031d4",
+      "model": "tcn_augmented",
+      "provided_label": "ruộng đất",
+      "signer": "tp",
+      "predicted": "ghen tị",
+      "accepted": true,
+      "top_score": 0.9393789768218994,
+      "hand_fraction": 0.78125
+    },
+    {
+      "id": "0d914240",
+      "model": "mlp",
+      "provided_label": "tinh mắt cách 1",
+      "signer": "tp",
+      "predicted": "ai cho",
+      "accepted": true,
+      "top_score": 0.8195257186889648,
+      "hand_fraction": 0.40625
+    },
+    {
+      "id": "0d914240",
+      "model": "tcn",
+      "provided_label": "tinh mắt cách 1",
+      "signer": "tp",
+      "predicted": "không cần",
+      "accepted": false,
+      "top_score": 0.5996289849281311,
+      "hand_fraction": 0.40625
+    },
+    {
+      "id": "0d914240",
+      "model": "tcn_augmented",
+      "provided_label": "tinh mắt cách 1",
+      "signer": "tp",
+      "predicted": "ai cho",
+      "accepted": false,
+      "top_score": 0.523645281791687,
+      "hand_fraction": 0.40625
+    },
+    {
+      "id": "a2e97748",
+      "model": "mlp",
+      "provided_label": "tinh mắt cách 2",
+      "signer": "tp",
+      "predicted": "ai cho",
+      "accepted": false,
+      "top_score": 0.5450623631477356,
+      "hand_fraction": 0.71875
+    },
+    {
+      "id": "a2e97748",
+      "model": "tcn",
+      "provided_label": "tinh mắt cách 2",
+      "signer": "tp",
+      "predicted": "không cần",
+      "accepted": false,
+      "top_score": 0.5905807018280029,
+      "hand_fraction": 0.71875
+    },
+    {
+      "id": "a2e97748",
+      "model": "tcn_augmented",
+      "provided_label": "tinh mắt cách 2",
+      "signer": "tp",
+      "predicted": "ai cho",
+      "accepted": false,
+      "top_score": 0.5314229130744934,
+      "hand_fraction": 0.71875
+    },
+    {
+      "id": "dd0d0645",
+      "model": "mlp",
+      "provided_label": "Từ chối cách 2",
+      "signer": "tp",
+      "predicted": "không cần",
+      "accepted": true,
+      "top_score": 0.7695537805557251,
+      "hand_fraction": 0.5625
+    },
+    {
+      "id": "dd0d0645",
+      "model": "tcn",
+      "provided_label": "Từ chối cách 2",
+      "signer": "tp",
+      "predicted": "không cần",
+      "accepted": false,
+      "top_score": 0.5958815813064575,
+      "hand_fraction": 0.5625
+    },
+    {
+      "id": "dd0d0645",
+      "model": "tcn_augmented",
+      "provided_label": "Từ chối cách 2",
+      "signer": "tp",
+      "predicted": "ai cho",
+      "accepted": true,
+      "top_score": 0.6513183116912842,
+      "hand_fraction": 0.5625
+    },
+    {
+      "id": "3542f6ce",
+      "model": "mlp",
+      "provided_label": "đẹp không cách 1",
+      "signer": "tp",
+      "predicted": "ai cho",
+      "accepted": true,
+      "top_score": 0.8888940811157227,
+      "hand_fraction": 0.3125
+    },
+    {
+      "id": "3542f6ce",
+      "model": "tcn",
+      "provided_label": "đẹp không cách 1",
+      "signer": "tp",
+      "predicted": "ghen tị",
+      "accepted": true,
+      "top_score": 0.7985677719116211,
+      "hand_fraction": 0.3125
+    },
+    {
+      "id": "3542f6ce",
+      "model": "tcn_augmented",
+      "provided_label": "đẹp không cách 1",
+      "signer": "tp",
+      "predicted": "ghen tị",
+      "accepted": false,
+      "top_score": 0.5108679533004761,
+      "hand_fraction": 0.3125
+    },
+    {
+      "id": "9db6974b",
+      "model": "mlp",
+      "provided_label": "đẹp không cách 2",
+      "signer": "tp",
+      "predicted": "ai cho",
+      "accepted": false,
+      "top_score": 0.4376348853111267,
+      "hand_fraction": 0.5625
+    },
+    {
+      "id": "9db6974b",
+      "model": "tcn",
+      "provided_label": "đẹp không cách 2",
+      "signer": "tp",
+      "predicted": "ghen tị",
+      "accepted": false,
+      "top_score": 0.6420163512229919,
+      "hand_fraction": 0.5625
+    },
+    {
+      "id": "9db6974b",
+      "model": "tcn_augmented",
+      "provided_label": "đẹp không cách 2",
+      "signer": "tp",
+      "predicted": "ai cho",
+      "accepted": false,
+      "top_score": 0.43204355239868164,
+      "hand_fraction": 0.5625
+    }
+  ]
+}

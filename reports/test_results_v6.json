@@ -1,0 +1,17 @@
+{
+  "tests_run": 40,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "candidate_required": true,
+  "isolated_output_directory": true,
+  "baseline_regressions": 28,
+  "v6_decision_provenance_tests": 12,
+  "physical_webcam_tested": false,
+  "notes": [
+    "Forced OTHER fixtures validate software decisions and annotations, not model quality.",
+    "Legacy OOF source data and three-model baselines are unchanged.",
+    "No QA annotations or raw uploads remain in user outputs."
+  ]
+}

@@ -1,0 +1,383 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-07",
+  "study_kind": "retrospective_development_cv",
+  "primary_seed": 20261103,
+  "recommended_default": "tcn",
+  "promotion_passed": false,
+  "promotion_rule_checks": {
+    "primary_known_top1_nondecreasing": true,
+    "primary_known_correct_accepts_nondecreasing": false,
+    "primary_known_wrong_accepts_not_increasing": true,
+    "primary_outside_false_accepts_reduced": true,
+    "mean_known_top1_nondecreasing": false,
+    "mean_known_correct_accepts_nondecreasing": false,
+    "mean_known_wrong_accepts_not_increasing": true,
+    "mean_outside_false_accepts_reduced": true
+  },
+  "scope": {
+    "supported_labels": [
+      "ai cho",
+      "bực mình",
+      "ghen tị",
+      "không cần",
+      "xin lỗi"
+    ],
+    "known_originals": 8,
+    "negative_originals": 29,
+    "total_originals": 37,
+    "new_real_videos": 0,
+    "known_holdout_unique_clips": 5,
+    "outside_holdout_unique_clips": 29,
+    "known_tested_labels": [
+      "ai cho",
+      "không cần"
+    ],
+    "unmeasured_labels": [
+      "bực mình",
+      "ghen tị",
+      "xin lỗi"
+    ],
+    "seeds": [
+      20261103,
+      20261104,
+      20261105
+    ],
+    "folds": 5
+  },
+  "units": {
+    "n_top1_accepted_false_rejects_false_accepts": "counts of unique held-out source videos per seed",
+    "rates_and_scores": "proportions from0to1; softmax is not calibrated confidence",
+    "means": "arithmetic mean of three seed metrics on the same sources; not additional independent videos"
+  },
+  "threshold": 0.65,
+  "threshold_calibrated": false,
+  "reject_label": "__OTHER__",
+  "methods": [
+    {
+      "id": "tcn",
+      "name": "TCN gốc 5 lớp",
+      "primary": {
+        "seed": 20261103,
+        "known": {
+          "n": 5,
+          "top1_correct": 4,
+          "top1_accuracy": 0.8,
+          "accepted": 3,
+          "accepted_correct": 3,
+          "accepted_wrong": 0,
+          "false_rejects": 2,
+          "coverage": 0.6,
+          "correct_accept_rate": 0.6,
+          "accepted_accuracy": 1.0,
+          "macro_f1_two_tested_labels": 0.9
+        },
+        "outside": {
+          "n": 29,
+          "false_accepts": 10,
+          "rejected": 19,
+          "false_accept_rate": 0.3448275862068966,
+          "outside_class_rejections": 0,
+          "low_score_rejections": 19,
+          "missing_hands_rejections": 0
+        }
+      },
+      "by_seed": [
+        {
+          "seed": 20261103,
+          "known": {
+            "n": 5,
+            "top1_correct": 4,
+            "top1_accuracy": 0.8,
+            "accepted": 3,
+            "accepted_correct": 3,
+            "accepted_wrong": 0,
+            "false_rejects": 2,
+            "coverage": 0.6,
+            "correct_accept_rate": 0.6,
+            "accepted_accuracy": 1.0,
+            "macro_f1_two_tested_labels": 0.9
+          },
+          "outside": {
+            "n": 29,
+            "false_accepts": 10,
+            "rejected": 19,
+            "false_accept_rate": 0.3448275862068966,
+            "outside_class_rejections": 0,
+            "low_score_rejections": 19,
+            "missing_hands_rejections": 0
+          }
+        },
+        {
+          "seed": 20261104,
+          "known": {
+            "n": 5,
+            "top1_correct": 5,
+            "top1_accuracy": 1.0,
+            "accepted": 3,
+            "accepted_correct": 3,
+            "accepted_wrong": 0,
+            "false_rejects": 2,
+            "coverage": 0.6,
+            "correct_accept_rate": 0.6,
+            "accepted_accuracy": 1.0,
+            "macro_f1_two_tested_labels": 1.0
+          },
+          "outside": {
+            "n": 29,
+            "false_accepts": 9,
+            "rejected": 20,
+            "false_accept_rate": 0.3103448275862069,
+            "outside_class_rejections": 0,
+            "low_score_rejections": 20,
+            "missing_hands_rejections": 0
+          }
+        },
+        {
+          "seed": 20261105,
+          "known": {
+            "n": 5,
+            "top1_correct": 4,
+            "top1_accuracy": 0.8,
+            "accepted": 4,
+            "accepted_correct": 3,
+            "accepted_wrong": 1,
+            "false_rejects": 1,
+            "coverage": 0.8,
+            "correct_accept_rate": 0.6,
+            "accepted_accuracy": 0.75,
+            "macro_f1_two_tested_labels": 0.8
+          },
+          "outside": {
+            "n": 29,
+            "false_accepts": 13,
+            "rejected": 16,
+            "false_accept_rate": 0.4482758620689655,
+            "outside_class_rejections": 0,
+            "low_score_rejections": 16,
+            "missing_hands_rejections": 0
+          }
+        }
+      ],
+      "mean": {
+        "known": {
+          "n": 5.0,
+          "top1_correct": 4.333333333333333,
+          "top1_accuracy": 0.8666666666666667,
+          "accepted": 3.3333333333333335,
+          "accepted_correct": 3.0,
+          "accepted_wrong": 0.3333333333333333,
+          "false_rejects": 1.6666666666666667,
+          "coverage": 0.6666666666666666,
+          "correct_accept_rate": 0.6,
+          "accepted_accuracy": 0.9166666666666666,
+          "macro_f1_two_tested_labels": 0.9
+        },
+        "outside": {
+          "n": 29.0,
+          "false_accepts": 10.666666666666666,
+          "rejected": 18.333333333333332,
+          "false_accept_rate": 0.367816091954023,
+          "outside_class_rejections": 0.0,
+          "low_score_rejections": 18.333333333333332,
+          "missing_hands_rejections": 0.0
+        }
+      }
+    },
+    {
+      "id": "tcn_reject",
+      "name": "TCN có lớp ngoài bộ từ",
+      "primary": {
+        "seed": 20261103,
+        "known": {
+          "n": 5,
+          "top1_correct": 4,
+          "top1_accuracy": 0.8,
+          "accepted": 1,
+          "accepted_correct": 1,
+          "accepted_wrong": 0,
+          "false_rejects": 4,
+          "coverage": 0.2,
+          "correct_accept_rate": 0.2,
+          "accepted_accuracy": 1.0,
+          "macro_f1_two_tested_labels": 0.8333333333333333
+        },
+        "outside": {
+          "n": 29,
+          "false_accepts": 3,
+          "rejected": 26,
+          "false_accept_rate": 0.10344827586206896,
+          "outside_class_rejections": 21,
+          "low_score_rejections": 5,
+          "missing_hands_rejections": 0
+        }
+      },
+      "by_seed": [
+        {
+          "seed": 20261103,
+          "known": {
+            "n": 5,
+            "top1_correct": 4,
+            "top1_accuracy": 0.8,
+            "accepted": 1,
+            "accepted_correct": 1,
+            "accepted_wrong": 0,
+            "false_rejects": 4,
+            "coverage": 0.2,
+            "correct_accept_rate": 0.2,
+            "accepted_accuracy": 1.0,
+            "macro_f1_two_tested_labels": 0.8333333333333333
+          },
+          "outside": {
+            "n": 29,
+            "false_accepts": 3,
+            "rejected": 26,
+            "false_accept_rate": 0.10344827586206896,
+            "outside_class_rejections": 21,
+            "low_score_rejections": 5,
+            "missing_hands_rejections": 0
+          }
+        },
+        {
+          "seed": 20261104,
+          "known": {
+            "n": 5,
+            "top1_correct": 1,
+            "top1_accuracy": 0.2,
+            "accepted": 2,
+            "accepted_correct": 1,
+            "accepted_wrong": 1,
+            "false_rejects": 3,
+            "coverage": 0.4,
+            "correct_accept_rate": 0.2,
+            "accepted_accuracy": 0.5,
+            "macro_f1_two_tested_labels": 0.25
+          },
+          "outside": {
+            "n": 29,
+            "false_accepts": 1,
+            "rejected": 28,
+            "false_accept_rate": 0.034482758620689655,
+            "outside_class_rejections": 27,
+            "low_score_rejections": 1,
+            "missing_hands_rejections": 0
+          }
+        },
+        {
+          "seed": 20261105,
+          "known": {
+            "n": 5,
+            "top1_correct": 2,
+            "top1_accuracy": 0.4,
+            "accepted": 2,
+            "accepted_correct": 2,
+            "accepted_wrong": 0,
+            "false_rejects": 3,
+            "coverage": 0.4,
+            "correct_accept_rate": 0.4,
+            "accepted_accuracy": 1.0,
+            "macro_f1_two_tested_labels": 0.4
+          },
+          "outside": {
+            "n": 29,
+            "false_accepts": 3,
+            "rejected": 26,
+            "false_accept_rate": 0.10344827586206896,
+            "outside_class_rejections": 24,
+            "low_score_rejections": 2,
+            "missing_hands_rejections": 0
+          }
+        }
+      ],
+      "mean": {
+        "known": {
+          "n": 5.0,
+          "top1_correct": 2.3333333333333335,
+          "top1_accuracy": 0.4666666666666666,
+          "accepted": 1.6666666666666667,
+          "accepted_correct": 1.3333333333333333,
+          "accepted_wrong": 0.3333333333333333,
+          "false_rejects": 3.3333333333333335,
+          "coverage": 0.3333333333333333,
+          "correct_accept_rate": 0.26666666666666666,
+          "accepted_accuracy": 0.8333333333333334,
+          "macro_f1_two_tested_labels": 0.49444444444444446
+        },
+        "outside": {
+          "n": 29.0,
+          "false_accepts": 2.3333333333333335,
+          "rejected": 26.666666666666668,
+          "false_accept_rate": 0.08045977011494253,
+          "outside_class_rejections": 24.0,
+          "low_score_rejections": 2.6666666666666665,
+          "missing_hands_rejections": 0.0
+        }
+      }
+    }
+  ],
+  "provenance": {
+    "protocol_sha256": "07b2a0698070f02d7446a023106b73d3dfc261a0e061c95e62944c55e03055dd",
+    "implementation_sha256": "be9547558edd721cda4336345434c4acd226f34797f83bd202d9bd3f285a9150",
+    "run_fingerprint": "8e32e98c3a0357ecbd50750bcd206ed28d1507561f782748fad618bf2c858f7d",
+    "matched_folds": 5,
+    "fits": 30,
+    "checkpoints": 30,
+    "all_sources_disjoint_within_fold": true,
+    "normalizer_max_abs_error": 0.0,
+    "jax_numpy_max_logit_difference": 5.766749382019043e-06,
+    "outside_group_sizes": [
+      6,
+      6,
+      6,
+      6,
+      5
+    ],
+    "fullfit_candidate_training_originals": 37,
+    "source_metadata_preserved": true,
+    "fullfit_weights_sha256": "a421e0f9fe35ab61efaf2154e470ccb4d3900bb1c716d4247053e851f8833310",
+    "fullfit_config_sha256": "c06017c2ea0f69f22cd888fec69040f30e9ea8b195833438e441d38a3ae91fae"
+  },
+  "limitations": [
+    "Not blind; designed after earlier OOV outcomes",
+    "Known-source holdout covers only two repeated labels and one signer",
+    "Three singleton supported labels have no held-out test",
+    "Outside class groups 29 heterogeneous submitted labels",
+    "Same source clips reused across three seeds; no sample-count inflation",
+    "Source-based split is not signer-disjoint",
+    "No threshold sweep or probability calibration",
+    "No universal outside-vocabulary or public-use guarantee"
+  ],
+  "ablation_limit": "The candidate changes both explicit outside class and class-balanced sampling; it is not an isolated outside-class-only ablation.",
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Linux",
+    "numpy": "1.26.4",
+    "jax": "0.7.1"
+  },
+  "full_model": {
+    "id": "tcn_reject",
+    "sha256": "a421e0f9fe35ab61efaf2154e470ccb4d3900bb1c716d4247053e851f8833310",
+    "config_sha256": "c06017c2ea0f69f22cd888fec69040f30e9ea8b195833438e441d38a3ae91fae",
+    "supported_labels": [
+      "ai cho",
+      "bực mình",
+      "ghen tị",
+      "không cần",
+      "xin lỗi"
+    ],
+    "labels": [
+      "ai cho",
+      "bực mình",
+      "ghen tị",
+      "không cần",
+      "xin lỗi",
+      "__OTHER__"
+    ],
+    "reject_label": "__OTHER__",
+    "training_originals": 37,
+    "known_training_originals": 8,
+    "outside_training_originals": 29,
+    "seed": 20261103,
+    "raw_softmax_outputs": 6
+  }
+}

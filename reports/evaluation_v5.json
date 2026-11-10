@@ -1,0 +1,603 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-04",
+  "default_model": "tcn",
+  "scope": {
+    "labels": [
+      "ai cho",
+      "bực mình",
+      "ghen tị",
+      "không cần",
+      "xin lỗi"
+    ],
+    "training_originals": 8,
+    "training_signers": 1,
+    "heldout_unique_clips": 5,
+    "heldout_labels": 2,
+    "unmeasured_labels": [
+      "bực mình",
+      "ghen tị",
+      "xin lỗi"
+    ],
+    "new_real_videos": 0
+  },
+  "provenance": {
+    "audit_passed": true,
+    "source_exclusion_checked": true,
+    "normalization_train_only_checked": true,
+    "normalizer_arrays_checked": 45,
+    "normalizer_max_abs_error": 0.0,
+    "checkpoints_checked": 45,
+    "fit_fingerprint": "2a6b2731f4690cb9151b5f6a116c3d06f55590fdd67e67d00228bb771745822d"
+  },
+  "execution_mode": "replay_bundled_derived_features",
+  "reproduction_checks": {
+    "bundled_feature_files": 29,
+    "bundle_bytes": 493089,
+    "video_extraction_vs_bundled_replay_predictions": 87,
+    "max_numeric_difference": 0.0,
+    "numeric_tolerance": 1e-05,
+    "threshold_and_weights_unchanged": true,
+    "markdown_tables_validated": true
+  },
+  "oof": {
+    "primary_seed": 20261103,
+    "n_unique_clips": 5,
+    "tested_label_names": [
+      "ai cho",
+      "không cần"
+    ],
+    "models": [
+      {
+        "id": "mlp",
+        "name": "MLP",
+        "primary": {
+          "seed": 20261103,
+          "n_unique_clips": 5,
+          "top1_correct": 4,
+          "top1_accuracy": 0.8,
+          "macro_f1_two_tested_labels": 0.8,
+          "top3_correct": 5,
+          "accepted": 2,
+          "accepted_correct": 2,
+          "accepted_wrong": 0,
+          "coverage": 0.4,
+          "accepted_accuracy": 1.0
+        },
+        "per_seed": [
+          {
+            "seed": 20261103,
+            "n_unique_clips": 5,
+            "top1_correct": 4,
+            "top1_accuracy": 0.8,
+            "macro_f1_two_tested_labels": 0.8,
+            "top3_correct": 5,
+            "accepted": 2,
+            "accepted_correct": 2,
+            "accepted_wrong": 0,
+            "coverage": 0.4,
+            "accepted_accuracy": 1.0
+          },
+          {
+            "seed": 20261104,
+            "n_unique_clips": 5,
+            "top1_correct": 5,
+            "top1_accuracy": 1.0,
+            "macro_f1_two_tested_labels": 1.0,
+            "top3_correct": 5,
+            "accepted": 3,
+            "accepted_correct": 3,
+            "accepted_wrong": 0,
+            "coverage": 0.6,
+            "accepted_accuracy": 1.0
+          },
+          {
+            "seed": 20261105,
+            "n_unique_clips": 5,
+            "top1_correct": 3,
+            "top1_accuracy": 0.6,
+            "macro_f1_two_tested_labels": 0.65,
+            "top3_correct": 5,
+            "accepted": 4,
+            "accepted_correct": 2,
+            "accepted_wrong": 2,
+            "coverage": 0.8,
+            "accepted_accuracy": 0.5
+          }
+        ],
+        "mean_top1_accuracy_over_seeds": 0.7999999999999999,
+        "std_top1_accuracy_over_seeds_population": 0.16329931618554522,
+        "note": "Variability over three seeds on the same five clips; not independent samples or a confidence interval.",
+        "per_clip_stability": [
+          {
+            "id": "0330663f",
+            "provided": "ai cho",
+            "n_seeds": 3,
+            "predictions": [
+              "ai cho",
+              "ai cho",
+              "ai cho"
+            ],
+            "same_prediction_all_seeds": true,
+            "correct_seed_count": 3,
+            "accepted_seed_count": 2,
+            "accepted_correct_seed_count": 2,
+            "accepted_wrong_seed_count": 0,
+            "top_score_min": 0.4975123107433319,
+            "top_score_max": 0.9387303590774536
+          },
+          {
+            "id": "3d328846",
+            "provided": "không cần",
+            "n_seeds": 3,
+            "predictions": [
+              "không cần",
+              "không cần",
+              "không cần"
+            ],
+            "same_prediction_all_seeds": true,
+            "correct_seed_count": 3,
+            "accepted_seed_count": 1,
+            "accepted_correct_seed_count": 1,
+            "accepted_wrong_seed_count": 0,
+            "top_score_min": 0.37787166237831116,
+            "top_score_max": 0.8030672669410706
+          },
+          {
+            "id": "48f69b84",
+            "provided": "ai cho",
+            "n_seeds": 3,
+            "predictions": [
+              "không cần",
+              "ai cho",
+              "không cần"
+            ],
+            "same_prediction_all_seeds": false,
+            "correct_seed_count": 1,
+            "accepted_seed_count": 2,
+            "accepted_correct_seed_count": 1,
+            "accepted_wrong_seed_count": 1,
+            "top_score_min": 0.5934491753578186,
+            "top_score_max": 0.9969933032989502
+          },
+          {
+            "id": "4c5f6aa4",
+            "provided": "không cần",
+            "n_seeds": 3,
+            "predictions": [
+              "không cần",
+              "không cần",
+              "không cần"
+            ],
+            "same_prediction_all_seeds": true,
+            "correct_seed_count": 3,
+            "accepted_seed_count": 1,
+            "accepted_correct_seed_count": 1,
+            "accepted_wrong_seed_count": 0,
+            "top_score_min": 0.5831072926521301,
+            "top_score_max": 0.8674193620681763
+          },
+          {
+            "id": "95907815",
+            "provided": "ai cho",
+            "n_seeds": 3,
+            "predictions": [
+              "ai cho",
+              "ai cho",
+              "xin lỗi"
+            ],
+            "same_prediction_all_seeds": false,
+            "correct_seed_count": 2,
+            "accepted_seed_count": 3,
+            "accepted_correct_seed_count": 2,
+            "accepted_wrong_seed_count": 1,
+            "top_score_min": 0.767683207988739,
+            "top_score_max": 0.9585849046707153
+          }
+        ],
+        "correct_all_seeds_clips": 3,
+        "any_accepted_wrong_clips": 2
+      },
+      {
+        "id": "tcn",
+        "name": "TCN gốc",
+        "primary": {
+          "seed": 20261103,
+          "n_unique_clips": 5,
+          "top1_correct": 4,
+          "top1_accuracy": 0.8,
+          "macro_f1_two_tested_labels": 0.9,
+          "top3_correct": 5,
+          "accepted": 3,
+          "accepted_correct": 3,
+          "accepted_wrong": 0,
+          "coverage": 0.6,
+          "accepted_accuracy": 1.0
+        },
+        "per_seed": [
+          {
+            "seed": 20261103,
+            "n_unique_clips": 5,
+            "top1_correct": 4,
+            "top1_accuracy": 0.8,
+            "macro_f1_two_tested_labels": 0.9,
+            "top3_correct": 5,
+            "accepted": 3,
+            "accepted_correct": 3,
+            "accepted_wrong": 0,
+            "coverage": 0.6,
+            "accepted_accuracy": 1.0
+          },
+          {
+            "seed": 20261104,
+            "n_unique_clips": 5,
+            "top1_correct": 5,
+            "top1_accuracy": 1.0,
+            "macro_f1_two_tested_labels": 1.0,
+            "top3_correct": 5,
+            "accepted": 3,
+            "accepted_correct": 3,
+            "accepted_wrong": 0,
+            "coverage": 0.6,
+            "accepted_accuracy": 1.0
+          },
+          {
+            "seed": 20261105,
+            "n_unique_clips": 5,
+            "top1_correct": 4,
+            "top1_accuracy": 0.8,
+            "macro_f1_two_tested_labels": 0.8,
+            "top3_correct": 5,
+            "accepted": 4,
+            "accepted_correct": 3,
+            "accepted_wrong": 1,
+            "coverage": 0.8,
+            "accepted_accuracy": 0.75
+          }
+        ],
+        "mean_top1_accuracy_over_seeds": 0.8666666666666667,
+        "std_top1_accuracy_over_seeds_population": 0.09428090415820632,
+        "note": "Variability over three seeds on the same five clips; not independent samples or a confidence interval.",
+        "per_clip_stability": [
+          {
+            "id": "0330663f",
+            "provided": "ai cho",
+            "n_seeds": 3,
+            "predictions": [
+              "ai cho",
+              "ai cho",
+              "ai cho"
+            ],
+            "same_prediction_all_seeds": true,
+            "correct_seed_count": 3,
+            "accepted_seed_count": 2,
+            "accepted_correct_seed_count": 2,
+            "accepted_wrong_seed_count": 0,
+            "top_score_min": 0.4088326096534729,
+            "top_score_max": 0.939021646976471
+          },
+          {
+            "id": "3d328846",
+            "provided": "không cần",
+            "n_seeds": 3,
+            "predictions": [
+              "không cần",
+              "không cần",
+              "không cần"
+            ],
+            "same_prediction_all_seeds": true,
+            "correct_seed_count": 3,
+            "accepted_seed_count": 2,
+            "accepted_correct_seed_count": 2,
+            "accepted_wrong_seed_count": 0,
+            "top_score_min": 0.629477858543396,
+            "top_score_max": 0.9375705718994141
+          },
+          {
+            "id": "48f69b84",
+            "provided": "ai cho",
+            "n_seeds": 3,
+            "predictions": [
+              "ai cho",
+              "ai cho",
+              "không cần"
+            ],
+            "same_prediction_all_seeds": false,
+            "correct_seed_count": 2,
+            "accepted_seed_count": 3,
+            "accepted_correct_seed_count": 2,
+            "accepted_wrong_seed_count": 1,
+            "top_score_min": 0.8778349161148071,
+            "top_score_max": 0.9823893308639526
+          },
+          {
+            "id": "4c5f6aa4",
+            "provided": "không cần",
+            "n_seeds": 3,
+            "predictions": [
+              "không cần",
+              "không cần",
+              "không cần"
+            ],
+            "same_prediction_all_seeds": true,
+            "correct_seed_count": 3,
+            "accepted_seed_count": 1,
+            "accepted_correct_seed_count": 1,
+            "accepted_wrong_seed_count": 0,
+            "top_score_min": 0.4965779483318329,
+            "top_score_max": 0.7705217599868774
+          },
+          {
+            "id": "95907815",
+            "provided": "ai cho",
+            "n_seeds": 3,
+            "predictions": [
+              "bực mình",
+              "ai cho",
+              "ai cho"
+            ],
+            "same_prediction_all_seeds": false,
+            "correct_seed_count": 2,
+            "accepted_seed_count": 2,
+            "accepted_correct_seed_count": 2,
+            "accepted_wrong_seed_count": 0,
+            "top_score_min": 0.5789046883583069,
+            "top_score_max": 0.9645311236381531
+          }
+        ],
+        "correct_all_seeds_clips": 3,
+        "any_accepted_wrong_clips": 1
+      },
+      {
+        "id": "tcn_augmented",
+        "name": "TCN tăng cường",
+        "primary": {
+          "seed": 20261103,
+          "n_unique_clips": 5,
+          "top1_correct": 3,
+          "top1_accuracy": 0.6,
+          "macro_f1_two_tested_labels": 0.42857142857142855,
+          "top3_correct": 5,
+          "accepted": 3,
+          "accepted_correct": 2,
+          "accepted_wrong": 1,
+          "coverage": 0.6,
+          "accepted_accuracy": 0.6666666666666666
+        },
+        "per_seed": [
+          {
+            "seed": 20261103,
+            "n_unique_clips": 5,
+            "top1_correct": 3,
+            "top1_accuracy": 0.6,
+            "macro_f1_two_tested_labels": 0.42857142857142855,
+            "top3_correct": 5,
+            "accepted": 3,
+            "accepted_correct": 2,
+            "accepted_wrong": 1,
+            "coverage": 0.6,
+            "accepted_accuracy": 0.6666666666666666
+          },
+          {
+            "seed": 20261104,
+            "n_unique_clips": 5,
+            "top1_correct": 5,
+            "top1_accuracy": 1.0,
+            "macro_f1_two_tested_labels": 1.0,
+            "top3_correct": 5,
+            "accepted": 4,
+            "accepted_correct": 4,
+            "accepted_wrong": 0,
+            "coverage": 0.8,
+            "accepted_accuracy": 1.0
+          },
+          {
+            "seed": 20261105,
+            "n_unique_clips": 5,
+            "top1_correct": 3,
+            "top1_accuracy": 0.6,
+            "macro_f1_two_tested_labels": 0.7333333333333334,
+            "top3_correct": 5,
+            "accepted": 4,
+            "accepted_correct": 2,
+            "accepted_wrong": 2,
+            "coverage": 0.8,
+            "accepted_accuracy": 0.5
+          }
+        ],
+        "mean_top1_accuracy_over_seeds": 0.7333333333333334,
+        "std_top1_accuracy_over_seeds_population": 0.18856180831641267,
+        "note": "Variability over three seeds on the same five clips; not independent samples or a confidence interval.",
+        "per_clip_stability": [
+          {
+            "id": "0330663f",
+            "provided": "ai cho",
+            "n_seeds": 3,
+            "predictions": [
+              "ai cho",
+              "ai cho",
+              "ai cho"
+            ],
+            "same_prediction_all_seeds": true,
+            "correct_seed_count": 3,
+            "accepted_seed_count": 2,
+            "accepted_correct_seed_count": 2,
+            "accepted_wrong_seed_count": 0,
+            "top_score_min": 0.5984993577003479,
+            "top_score_max": 0.9338793754577637
+          },
+          {
+            "id": "3d328846",
+            "provided": "không cần",
+            "n_seeds": 3,
+            "predictions": [
+              "xin lỗi",
+              "không cần",
+              "không cần"
+            ],
+            "same_prediction_all_seeds": false,
+            "correct_seed_count": 2,
+            "accepted_seed_count": 2,
+            "accepted_correct_seed_count": 1,
+            "accepted_wrong_seed_count": 1,
+            "top_score_min": 0.6494266986846924,
+            "top_score_max": 0.8113182783126831
+          },
+          {
+            "id": "48f69b84",
+            "provided": "ai cho",
+            "n_seeds": 3,
+            "predictions": [
+              "ai cho",
+              "ai cho",
+              "ai cho"
+            ],
+            "same_prediction_all_seeds": true,
+            "correct_seed_count": 3,
+            "accepted_seed_count": 3,
+            "accepted_correct_seed_count": 3,
+            "accepted_wrong_seed_count": 0,
+            "top_score_min": 0.6880592703819275,
+            "top_score_max": 0.9159882068634033
+          },
+          {
+            "id": "4c5f6aa4",
+            "provided": "không cần",
+            "n_seeds": 3,
+            "predictions": [
+              "ai cho",
+              "không cần",
+              "xin lỗi"
+            ],
+            "same_prediction_all_seeds": false,
+            "correct_seed_count": 1,
+            "accepted_seed_count": 2,
+            "accepted_correct_seed_count": 1,
+            "accepted_wrong_seed_count": 1,
+            "top_score_min": 0.31549206376075745,
+            "top_score_max": 0.8844881057739258
+          },
+          {
+            "id": "95907815",
+            "provided": "ai cho",
+            "n_seeds": 3,
+            "predictions": [
+              "ai cho",
+              "ai cho",
+              "xin lỗi"
+            ],
+            "same_prediction_all_seeds": false,
+            "correct_seed_count": 2,
+            "accepted_seed_count": 2,
+            "accepted_correct_seed_count": 1,
+            "accepted_wrong_seed_count": 1,
+            "top_score_min": 0.4560602903366089,
+            "top_score_max": 0.849608838558197
+          }
+        ],
+        "correct_all_seeds_clips": 2,
+        "any_accepted_wrong_clips": 3
+      }
+    ],
+    "warning": "Three seeds reuse the same five known source videos; no fresh blind or new-signer test."
+  },
+  "outside_vocabulary": {
+    "kind": "retrospective_diagnostic",
+    "requested_n": 29,
+    "n": 29,
+    "signer_counts": {
+      "giahuy": 17,
+      "tp": 12
+    },
+    "models": [
+      {
+        "id": "mlp",
+        "name": "MLP",
+        "n": 29,
+        "false_accepts": 12,
+        "rejected": 17,
+        "false_accept_rate": 0.41379310344827586,
+        "missing_hands_rejections": 0,
+        "by_signer": {
+          "giahuy": {
+            "n": 17,
+            "false_accepts": 7
+          },
+          "tp": {
+            "n": 12,
+            "false_accepts": 5
+          }
+        }
+      },
+      {
+        "id": "tcn",
+        "name": "TCN gốc",
+        "n": 29,
+        "false_accepts": 14,
+        "rejected": 15,
+        "false_accept_rate": 0.4827586206896552,
+        "missing_hands_rejections": 0,
+        "by_signer": {
+          "giahuy": {
+            "n": 17,
+            "false_accepts": 10
+          },
+          "tp": {
+            "n": 12,
+            "false_accepts": 4
+          }
+        }
+      },
+      {
+        "id": "tcn_augmented",
+        "name": "TCN tăng cường",
+        "n": 29,
+        "false_accepts": 10,
+        "rejected": 19,
+        "false_accept_rate": 0.3448275862068966,
+        "missing_hands_rejections": 0,
+        "by_signer": {
+          "giahuy": {
+            "n": 17,
+            "false_accepts": 7
+          },
+          "tp": {
+            "n": 12,
+            "false_accepts": 3
+          }
+        }
+      }
+    ],
+    "errors": [],
+    "skipped": [],
+    "threshold": 0.65,
+    "threshold_calibrated": false,
+    "protocol_sha256": "74a215d6003d92e8045bfea1b24b7714373403913ed4db3aa33c7465999e81a5",
+    "source_review_status": "pending",
+    "source_training_eligible": false,
+    "warning": "Older convenience recordings with different submitted labels, not calibrated or representative open-set FAR."
+  },
+  "readiness": {
+    "course_demo": "conditional_supervised_proof_of_concept",
+    "all_five_labels_validated": false,
+    "unseen_signer_validated": false,
+    "public_use": false,
+    "threshold_calibrated": false
+  },
+  "limitations": [
+    "No new real recordings collected",
+    "Three supported labels remain singletons with no held-out evaluation",
+    "OOF uses one signer and only two repeated labels",
+    "OOF clips reused over seeds and earlier project iterations",
+    "Outside labels assumed from submitted metadata; records remain pending and unverified",
+    "OOV convenience probes are retrospective and not a representative open-set sample",
+    "No test-guided threshold or model promotion"
+  ],
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Linux",
+    "numpy": "1.26.4",
+    "mediapipe": "0.10.21",
+    "opencv": "4.11.0.86"
+  }
+}

@@ -1,0 +1,300 @@
+{
+  "date": "2026-11-04",
+  "kind": "retrospective_outside_vocabulary_diagnostic",
+  "source_collection": "KHL_NhanDien_v3",
+  "expected_n": 29,
+  "source_selection": "All experimental_include v3 rows whose exact label is outside the frozen v4 five-label vocabulary; two pending metadata-incomplete rows excluded.",
+  "normalization": [
+    "fps=12,scale=640:640:force_original_aspect_ratio=decrease:force_divisible_by=2,setsar=1",
+    "libx264",
+    "20",
+    "yuv420p",
+    "no_audio"
+  ],
+  "models": {
+    "mlp": {
+      "weights_sha256": "1e53e38beedfbde0699feed9e67c46798ee6764df676e8be49d513adfa883218",
+      "config_sha256": "09bd14945e9adb8e2ba65cf56d567f7eab3e48df45164c514defd717737c4f95",
+      "threshold": 0.65
+    },
+    "tcn": {
+      "weights_sha256": "c71291d107be067a76493da2fcf024f0c32facc5c2ce5b31b2b73bbd2a1bc12e",
+      "config_sha256": "bb057b847182f3e54649f784e721ba827ea205f50ccf37d4cc4a6abf219f051d",
+      "threshold": 0.65
+    },
+    "tcn_augmented": {
+      "weights_sha256": "917adfbd86dbb475342a57693888d5dd34b5eaf552d2cc49a81158f5bf111eda",
+      "config_sha256": "71023ac207e00d872ee24dfa3e2d8e015a18fde87cfc27e0d12971f414f00900",
+      "threshold": 0.65
+    }
+  },
+  "videos": [
+    {
+      "id": "c3b59369",
+      "label": "bối rối",
+      "signer": "giahuy",
+      "source_video_sha256": "6c984841c88685fa175212b37ac67dabbbc8c14d952ed35dfb46420e575548df",
+      "v3_mp4_sha256": "6c984841c88685fa175212b37ac67dabbbc8c14d952ed35dfb46420e575548df",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "52628dc4",
+      "label": "không cho",
+      "signer": "giahuy",
+      "source_video_sha256": "422156eb5bae3348daadbcc6098649c1db9ae7da38bbf000b7e699ec83efac65",
+      "v3_mp4_sha256": "422156eb5bae3348daadbcc6098649c1db9ae7da38bbf000b7e699ec83efac65",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "b93f88f2",
+      "label": "không nên",
+      "signer": "giahuy",
+      "source_video_sha256": "11217ec0ce856db62266e6fc040fc4b42808be611ace4c98a556d08a1634d571",
+      "v3_mp4_sha256": "11217ec0ce856db62266e6fc040fc4b42808be611ace4c98a556d08a1634d571",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "9ac3d669",
+      "label": "không nghe lời",
+      "signer": "giahuy",
+      "source_video_sha256": "f58308d2f2f3a10b528c9adb9e37a94aca2fb85010bfa9159464ec13a4e71998",
+      "v3_mp4_sha256": "f58308d2f2f3a10b528c9adb9e37a94aca2fb85010bfa9159464ec13a4e71998",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "c9b9c446",
+      "label": "khuyến khích",
+      "signer": "giahuy",
+      "source_video_sha256": "f025f63d56d2e65e2372069679ab93ea8461217f901ab259876c9113cd796565",
+      "v3_mp4_sha256": "f025f63d56d2e65e2372069679ab93ea8461217f901ab259876c9113cd796565",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "5d94d723",
+      "label": "kịp thời",
+      "signer": "giahuy",
+      "source_video_sha256": "bbc67a8de75d34a0dfac3fa6f3028070f07982d7c1d8fb368ed5a3a93a9e580a",
+      "v3_mp4_sha256": "bbc67a8de75d34a0dfac3fa6f3028070f07982d7c1d8fb368ed5a3a93a9e580a",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "568eb7a7",
+      "label": "lung tung",
+      "signer": "giahuy",
+      "source_video_sha256": "6f1f479be5dbb0ac42169c8df22ed875a0c8cd672f202fffba72f9bf2f56da07",
+      "v3_mp4_sha256": "6f1f479be5dbb0ac42169c8df22ed875a0c8cd672f202fffba72f9bf2f56da07",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "ef10a62f",
+      "label": "nhầm",
+      "signer": "giahuy",
+      "source_video_sha256": "d48755c4bd7833e3b77895266284cbb7dfa3dd985b3a6c1e67c5966de5b969fa",
+      "v3_mp4_sha256": "d48755c4bd7833e3b77895266284cbb7dfa3dd985b3a6c1e67c5966de5b969fa",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "199aa941",
+      "label": "nhân viên",
+      "signer": "giahuy",
+      "source_video_sha256": "054893ac8d72444e0dd4f12b49de11fa3c88c74091635fce881a5c755c9d374e",
+      "v3_mp4_sha256": "054893ac8d72444e0dd4f12b49de11fa3c88c74091635fce881a5c755c9d374e",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "83010ff2",
+      "label": "suỵt",
+      "signer": "giahuy",
+      "source_video_sha256": "701d60a523ade3c8f5eccf812ec0990585550e1404ada59ff21d662bb4269875",
+      "v3_mp4_sha256": "701d60a523ade3c8f5eccf812ec0990585550e1404ada59ff21d662bb4269875",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "4e86a031",
+      "label": "tham ăn",
+      "signer": "giahuy",
+      "source_video_sha256": "d2b75f10053d7440bc8ec64f1c6e3a887ef93e838375f84d2c5b8800acb3a916",
+      "v3_mp4_sha256": "d2b75f10053d7440bc8ec64f1c6e3a887ef93e838375f84d2c5b8800acb3a916",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "698cd9dd",
+      "label": "thèm",
+      "signer": "giahuy",
+      "source_video_sha256": "8ba9d34837ab364413b7c055f3a90e7a14fe0f53672fff5700d64b022ba6d336",
+      "v3_mp4_sha256": "8ba9d34837ab364413b7c055f3a90e7a14fe0f53672fff5700d64b022ba6d336",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "39ff9eb8",
+      "label": "thói quen",
+      "signer": "giahuy",
+      "source_video_sha256": "156e107d5329425670983aa1f65f43029e5d962c799977d7aff6f45144fb2f1b",
+      "v3_mp4_sha256": "156e107d5329425670983aa1f65f43029e5d962c799977d7aff6f45144fb2f1b",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "61445cbf",
+      "label": "tự giác",
+      "signer": "giahuy",
+      "source_video_sha256": "c474b35cb253f6e35ffa8d7533f1befc290c7cee21493795c4327fc713a0eecf",
+      "v3_mp4_sha256": "c474b35cb253f6e35ffa8d7533f1befc290c7cee21493795c4327fc713a0eecf",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "939eb38f",
+      "label": "vô duyên",
+      "signer": "giahuy",
+      "source_video_sha256": "b5d4be57afa6015243462815edce2108f8ff8e0a0938c361df09713482a50b77",
+      "v3_mp4_sha256": "b5d4be57afa6015243462815edce2108f8ff8e0a0938c361df09713482a50b77",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "eb07c74d",
+      "label": "vô tình",
+      "signer": "giahuy",
+      "source_video_sha256": "7bca2ec223ddd8bfcf7a4dd23ee991df6772e9338c7bb850f26d683a9b27e6e5",
+      "v3_mp4_sha256": "7bca2ec223ddd8bfcf7a4dd23ee991df6772e9338c7bb850f26d683a9b27e6e5",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "5d51bfa5",
+      "label": "xinh",
+      "signer": "giahuy",
+      "source_video_sha256": "8f8cffddb537c127c192fae39ca85b809053e15bd956f7d22a097d6c604ccc41",
+      "v3_mp4_sha256": "8f8cffddb537c127c192fae39ca85b809053e15bd956f7d22a097d6c604ccc41",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "d2fed4eb",
+      "label": "Cực khổ(nói khái quát)",
+      "signer": "tp",
+      "source_video_sha256": "9ddb22e28648a644e0b1e2d8de0add235071487aaa566c0b9d4e0dfe74e4dbfa",
+      "v3_mp4_sha256": "ebf09d45223c3ef036246129dbddc142fa0cbd7604afc9f30b6e04ced3560488",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "7033a8e3",
+      "label": "kỹ năng",
+      "signer": "tp",
+      "source_video_sha256": "470418e51281c0b5a170321112cb2251eb0b0c9a8af1e7a93628cc5e8f3f9c70",
+      "v3_mp4_sha256": "c699663bb855f853b883faf1f1eea37a13eabb0125e1af57919b48d92e4b853f",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "ab5af903",
+      "label": "nấu nướng",
+      "signer": "tp",
+      "source_video_sha256": "f5bd92dcbf12bed29b3e2bf806c3f5f703d35831bb7e0150dffbedee5434d6a5",
+      "v3_mp4_sha256": "5b88830dd7e9dc7d4c4ba28ea763486d6d4d20a93cc609890f491ef7a2703d0b",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "f17b73f6",
+      "label": "Từ chối cách 1",
+      "signer": "tp",
+      "source_video_sha256": "b7fe689e2b656d00291d7f3f91180642693af88592581851cebc1f155c8cb88a",
+      "v3_mp4_sha256": "f154f0aae660c4412274234e65acd1115de56a4cfb2d49b265ea28dcd168e550",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "5be762eb",
+      "label": "kia kìa",
+      "signer": "tp",
+      "source_video_sha256": "545e4883235e7a5938aa61b29a58ddfc4369ace33d6ea4ac42c5ca40feb2769f",
+      "v3_mp4_sha256": "81403b96fe11b7f6739cd1e0fda9f812ab39aca3dd6e53cd958a6743c1385174",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "3bc4425c",
+      "label": "may mắn",
+      "signer": "tp",
+      "source_video_sha256": "a7017b73d29a088476c0d36d8b61792c441c50a7017ec672f12ade89c3ff80c7",
+      "v3_mp4_sha256": "b1d6f4000003ee90de779829881702fb3e051d5a2bb0cdd401f69b6ed3d32f9b",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "ca4031d4",
+      "label": "ruộng đất",
+      "signer": "tp",
+      "source_video_sha256": "b43a8affcaa1ff484e315be7446af3dc3898da07aba7a19947224c9bfacc2bdd",
+      "v3_mp4_sha256": "f527fe6fbb82fc894113570464f7036fecb0550996d8cecbc7e755ba9f495f0f",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "0d914240",
+      "label": "tinh mắt cách 1",
+      "signer": "tp",
+      "source_video_sha256": "d0fa515f0b41d0e98f09ef60d10fed9b1057e8286fbaa963b4e295fd781ceb2f",
+      "v3_mp4_sha256": "d878d9593c58c37f8e089567724a94ce8f2a9e628954923537ffb06b740588fc",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "a2e97748",
+      "label": "tinh mắt cách 2",
+      "signer": "tp",
+      "source_video_sha256": "9219f62ea1d4bae1762c53e7103891b9215b95bb3e4fc839d4a1c7e3ebf782cd",
+      "v3_mp4_sha256": "e846e4198dcbc9e63dd1b478afac68446b20cf07f6de1308b7e7f8d7d68b044c",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "dd0d0645",
+      "label": "Từ chối cách 2",
+      "signer": "tp",
+      "source_video_sha256": "3c8ed45126989d71badc726adbc793fc091376d5712ecdefea244be88bd15809",
+      "v3_mp4_sha256": "ef1e90f00de26a0d6572f223e9ca338738abe72e5fd3ec3a2376c8fecf85b9b5",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "3542f6ce",
+      "label": "đẹp không cách 1",
+      "signer": "tp",
+      "source_video_sha256": "4cb2779029c16edad5d0f614da43c5f4199201cf16c2956e1bec3ad01222b61d",
+      "v3_mp4_sha256": "3c584b905654ab67cac86f624c456c0a4bf2e42a26d875c28bc70baa3a32dddb",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    },
+    {
+      "id": "9db6974b",
+      "label": "đẹp không cách 2",
+      "signer": "tp",
+      "source_video_sha256": "23f7723de8ac84aacfe9b62ae9417522d019878f45df41379cee31dcf6fc693f",
+      "v3_mp4_sha256": "fb1e4c5b1c0a91c8f735b94ab02e13322b2b486325aeb075134579a6c518b719",
+      "reviewStatus": "pending",
+      "trainingEligible": false
+    }
+  ],
+  "core_sha256": "123aea34423c5ffec9553af36600079225395804a6d459ca3376fdfeb7d63bbc",
+  "decisions_frozen_before_predictions": true,
+  "threshold_policy": "Inherited 0.65 for all three models; no threshold fitting or model selection from these outcomes.",
+  "labels_and_review": "Labels assumed as submitted by user; original pending review and trainingEligible flags remain unchanged.",
+  "claim_limit": "Convenience sample of older recordings, not a calibrated population open-set false acceptance rate or blind new-signer experiment.",
+  "frozen_at_utc": "2026-11-04T04:20:53.952218+00:00"
+}

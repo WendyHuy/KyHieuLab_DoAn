@@ -1,0 +1,38 @@
+{
+  "version": "5.0-course-poc",
+  "date": "2026-11-04",
+  "parallel_specialists": 3,
+  "coordinator_sessions": 1,
+  "scope_labels": 5,
+  "training_videos": 8,
+  "new_real_videos": 0,
+  "unique_heldout_clips": 5,
+  "heldout_labels": 2,
+  "oof_seeds": 3,
+  "provenance_checkpoints": 45,
+  "normalizer_max_abs_error": 0.0,
+  "additional_outside_vocabulary_clips": 29,
+  "outside_false_accept_counts": {
+    "mlp": 12,
+    "tcn": 14,
+    "tcn_augmented": 10
+  },
+  "threshold": 0.65,
+  "threshold_calibrated": false,
+  "weights_unchanged_from_v4": true,
+  "regression_tests_passed": 28,
+  "real_browser_checks_passed": 18,
+  "browser": {
+    "name": "Chromium",
+    "version": "153.0.8010.0",
+    "automation": "Playwright",
+    "headless": true
+  },
+  "camera_source": "injected_canvas_media_stream",
+  "physical_webcam_tested": false,
+  "report_pages": 11,
+  "report_visual_review": "All 11 pages inspected; clean layout",
+  "browser_screenshots_in_delivery": false,
+  "readiness": "supervised course demonstration; public recognition not validated",
+  "report_downloads_verified": true
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "step": 50,
+    "regularized_training_loss": 0.12700818479061127
+  },
+  {
+    "step": 100,
+    "regularized_training_loss": 0.11133302748203278
+  },
+  {
+    "step": 150,
+    "regularized_training_loss": 0.10915520787239075
+  },
+  {
+    "step": 200,
+    "regularized_training_loss": 0.10880990326404572
+  },
+  {
+    "step": 250,
+    "regularized_training_loss": 0.10861440747976303
+  },
+  {
+    "step": 300,
+    "regularized_training_loss": 0.10848532617092133
+  },
+  {
+    "step": 350,
+    "regularized_training_loss": 0.10833314806222916
+  },
+  {
+    "step": 400,
+    "regularized_training_loss": 0.1082029789686203
+  },
+  {
+    "step": 450,
+    "regularized_training_loss": 0.10823670774698257
+  },
+  {
+    "step": 500,
+    "regularized_training_loss": 0.10822649300098419
+  }
+]

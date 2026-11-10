@@ -1,0 +1,74 @@
+{
+  "passed": 10,
+  "checks": [
+    "UI serves candidate selector and trial form",
+    "37 supported clips; pending clips excluded from list",
+    "assessment has actual held-out counts",
+    "v2 and candidate infer actual video bytes through HTTP",
+    "end before start rejected",
+    "unsupported model rejected",
+    "invalid video rejected",
+    "static clip traversal rejected",
+    "unlisted trial label rejected",
+    "trial logging and UTF-8 CSV export round trip without model update"
+  ],
+  "inference_requests": [
+    {
+      "model": "tcn",
+      "answer": {
+        "recognized": true,
+        "message": "kỹ năng",
+        "top": [
+          {
+            "label": "kỹ năng",
+            "score": 0.9758298397064209
+          },
+          {
+            "label": "Cực khổ(nói khái quát)",
+            "score": 0.005637111142277718
+          },
+          {
+            "label": "nấu nướng",
+            "score": 0.00250982865691185
+          }
+        ],
+        "hand_fraction": 0.75,
+        "warning": "Mô hình thử nghiệm; điểm chưa hiệu chuẩn, chưa kiểm chứng trên người ký mới.",
+        "model": "tcn",
+        "sampled_frames": 44,
+        "phase": "experimental_only"
+      },
+      "elapsed_seconds": 2.314760109999952
+    },
+    {
+      "model": "candidate_tcn",
+      "answer": {
+        "recognized": true,
+        "message": "kỹ năng",
+        "top": [
+          {
+            "label": "kỹ năng",
+            "score": 0.9855360388755798
+          },
+          {
+            "label": "ghen tị",
+            "score": 0.001625942881219089
+          },
+          {
+            "label": "ruộng đất",
+            "score": 0.0015266528353095055
+          }
+        ],
+        "hand_fraction": 0.75,
+        "warning": "Mô hình thử nghiệm; điểm chưa hiệu chuẩn, chưa kiểm chứng trên người ký mới.",
+        "model": "candidate_tcn",
+        "sampled_frames": 44,
+        "phase": "experimental_only"
+      },
+      "elapsed_seconds": 1.8637394780000704
+    }
+  ],
+  "physical_webcam_tested": false,
+  "browser_render_tested": false,
+  "QA_trials_removed": true
+}

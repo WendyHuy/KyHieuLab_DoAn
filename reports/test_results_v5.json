@@ -1,0 +1,14 @@
+{
+  "tests_run": 28,
+  "failures": 0,
+  "errors": 0,
+  "passed": true,
+  "isolated_output_directory": true,
+  "physical_webcam_tested": false,
+  "regression_tests": 23,
+  "v5_summary_provenance_tests": 5,
+  "notes": [
+    "Synthetic annotations used only inside temporary directories.",
+    "No QA annotations or raw uploads remain in user outputs."
+  ]
+}

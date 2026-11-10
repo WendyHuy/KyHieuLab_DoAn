@@ -1,0 +1,3 @@
+﻿label,precision,recall,f1,support
+ai cho,0.75,1.0,0.8571428571428571,3
+không cần,0.0,0.0,0.0,2

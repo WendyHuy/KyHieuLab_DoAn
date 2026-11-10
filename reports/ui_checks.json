@@ -1,0 +1,20 @@
+{
+  "checks_passed": 12,
+  "checks": [
+    "loads five labels, outside option and actual evaluation",
+    "inference and trial disabled before video",
+    "sample selection enables video inference",
+    "selected video is submitted and result appears",
+    "annotation submits prediction ID only and disables duplicate",
+    "changing model invalidates previous prediction",
+    "changing crop invalidates previous prediction",
+    "invalid crop blocked before upload",
+    "stale in-flight response cannot enable trial recording",
+    "camera mode clears the previous clip",
+    "mock camera records a clip and stops tracks",
+    "camera denial leaves a readable error"
+  ],
+  "kind": "JSDOM emulation with mocked fetch and camera",
+  "browser_render_tested": false,
+  "physical_webcam_tested": false
+}

@@ -1,0 +1,4 @@
+﻿model,true_group,ai cho,bực mình,ghen tị,không cần,xin lỗi,CHUA_CHAC
+mlp,NGOAI_BO_TU,3,0,1,8,0,17
+tcn,NGOAI_BO_TU,0,7,2,5,0,15
+tcn_augmented,NGOAI_BO_TU,2,3,2,1,2,19

@@ -1,0 +1,149 @@
+{
+  "passed": true,
+  "checks_passed": 18,
+  "checks": [
+    {
+      "name": "Desktop page loads five labels and the recognition workspace",
+      "passed": true
+    },
+    {
+      "name": "All four tabs expose the matching labelled panel",
+      "passed": true
+    },
+    {
+      "name": "Tab list supports ArrowRight and Home keyboard navigation",
+      "passed": true
+    },
+    {
+      "name": "MP4 sample preview decodes in the real browser",
+      "passed": true,
+      "detail": {
+        "duration": 4.833333,
+        "width": 640,
+        "height": 360
+      }
+    },
+    {
+      "name": "Invalid crop is explained before a video request is sent",
+      "passed": true
+    },
+    {
+      "name": "Actual sample bytes are processed by MediaPipe and the TCN; result is shown",
+      "passed": true
+    },
+    {
+      "name": "Native HTML validation rejects invalid signer and session codes",
+      "passed": true
+    },
+    {
+      "name": "A prediction-backed annotation is saved once and its training replay is identified",
+      "passed": true
+    },
+    {
+      "name": "CSV download preserves the server prediction and Unicode label",
+      "passed": true
+    },
+    {
+      "name": "Changing the model invalidates the previous result for annotation",
+      "passed": true
+    },
+    {
+      "name": "File upload uses actual video and crop changes invalidate the result",
+      "passed": true
+    },
+    {
+      "name": "An older in-flight response cannot enable annotation after configuration changes",
+      "passed": true
+    },
+    {
+      "name": "Synthetic browser media records real WebM, stops tracks and processes a rejection",
+      "passed": true,
+      "detail": {
+        "physical_camera": false,
+        "source": "injected_canvas_media_stream",
+        "sampled_frames": 60
+      }
+    },
+    {
+      "name": "Rejected no-hand capture can be annotated and counted in outside denominators",
+      "passed": true
+    },
+    {
+      "name": "All four views fit a 390px mobile viewport without horizontal page overflow",
+      "passed": true,
+      "detail": {
+        "recognize": {
+          "viewport": 390,
+          "scroll": 390,
+          "body": 390
+        },
+        "experiment": {
+          "viewport": 390,
+          "scroll": 390,
+          "body": 390
+        },
+        "evaluation": {
+          "viewport": 390,
+          "scroll": 390,
+          "body": 390
+        },
+        "guide": {
+          "viewport": 390,
+          "scroll": 390,
+          "body": 390
+        }
+      }
+    },
+    {
+      "name": "Injected camera permission denial is explained and recording remains disabled",
+      "passed": true,
+      "detail": {
+        "permission_failure_injected": true
+      }
+    },
+    {
+      "name": "Real page has no uncaught JavaScript, CSP or invalid HTML pattern errors",
+      "passed": true
+    },
+    {
+      "name": "Only an isolated annotation log remains; raw uploads are not retained",
+      "passed": true
+    }
+  ],
+  "browser": {
+    "name": "Chromium",
+    "version": "153.0.8010.0",
+    "automation": "Playwright",
+    "headless": true
+  },
+  "desktop_mobile_viewports": [
+    {
+      "width": 1440,
+      "height": 1100
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "real_video_inference": true,
+  "synthetic_camera_capture_tested": true,
+  "physical_webcam_tested": false,
+  "dom_mock_only": false,
+  "isolated_outputs": true,
+  "environment": {
+    "platform": "Linux",
+    "python": "3.12.14"
+  },
+  "console_page_errors": [],
+  "csp_errors": [],
+  "validation_errors": [],
+  "limitations": [
+    "Headless Linux browser; this does not test the user's physical webcam, Windows installation or mobile device hardware.",
+    "A prerecorded training video verifies software flow, not independent recognition accuracy.",
+    "Camera capture uses a synthetic source (native fake device when supported, otherwise an injected canvas MediaStream); permission denial is injected explicitly."
+  ],
+  "native_camera_emulation_supported": false,
+  "native_camera_emulation_error": "Không mở được camera: Not supported",
+  "synthetic_camera_source": "injected_canvas_media_stream"
+}

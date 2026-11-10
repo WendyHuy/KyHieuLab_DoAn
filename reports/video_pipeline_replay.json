@@ -1,0 +1,136 @@
+{
+  "kind": "training_replay_not_independent_test",
+  "model": "tcn",
+  "n": 8,
+  "top1_correct": 8,
+  "accepted": 8,
+  "median_seconds": 3.7438916134999545,
+  "p95_seconds": 5.509257918049979,
+  "environment": {
+    "platform": "Linux",
+    "python": "3.12.14",
+    "device": "shared CPU, not user hardware"
+  },
+  "rows": [
+    {
+      "id": "0330663f",
+      "provided": "ai cho",
+      "predicted": "ai cho",
+      "accepted": true,
+      "top1_correct": true,
+      "elapsed_seconds": 3.395090780999908,
+      "quality": {
+        "decoded_frames": 38,
+        "sampled_frames": 38,
+        "hand_fraction": 0.5263157894736842,
+        "body_fraction": 1.0,
+        "duration_observed": 3.083333333333333
+      }
+    },
+    {
+      "id": "48f69b84",
+      "provided": "ai cho",
+      "predicted": "ai cho",
+      "accepted": true,
+      "top1_correct": true,
+      "elapsed_seconds": 6.049807521000048,
+      "quality": {
+        "decoded_frames": 65,
+        "sampled_frames": 65,
+        "hand_fraction": 0.8923076923076924,
+        "body_fraction": 1.0,
+        "duration_observed": 5.333333333333333
+      }
+    },
+    {
+      "id": "95907815",
+      "provided": "ai cho",
+      "predicted": "ai cho",
+      "accepted": true,
+      "top1_correct": true,
+      "elapsed_seconds": 4.4364306820000365,
+      "quality": {
+        "decoded_frames": 54,
+        "sampled_frames": 54,
+        "hand_fraction": 0.7777777777777778,
+        "body_fraction": 1.0,
+        "duration_observed": 4.416666666666666
+      }
+    },
+    {
+      "id": "59693627",
+      "provided": "bực mình",
+      "predicted": "bực mình",
+      "accepted": true,
+      "top1_correct": true,
+      "elapsed_seconds": 4.092692446000001,
+      "quality": {
+        "decoded_frames": 55,
+        "sampled_frames": 55,
+        "hand_fraction": 0.9454545454545454,
+        "body_fraction": 1.0,
+        "duration_observed": 4.5
+      }
+    },
+    {
+      "id": "b4e5538f",
+      "provided": "ghen tị",
+      "predicted": "ghen tị",
+      "accepted": true,
+      "top1_correct": true,
+      "elapsed_seconds": 3.377363929000012,
+      "quality": {
+        "decoded_frames": 56,
+        "sampled_frames": 56,
+        "hand_fraction": 0.9285714285714286,
+        "body_fraction": 1.0,
+        "duration_observed": 4.583333333333333
+      }
+    },
+    {
+      "id": "3d328846",
+      "provided": "không cần",
+      "predicted": "không cần",
+      "accepted": true,
+      "top1_correct": true,
+      "elapsed_seconds": 2.8739611519999926,
+      "quality": {
+        "decoded_frames": 58,
+        "sampled_frames": 58,
+        "hand_fraction": 1.0,
+        "body_fraction": 1.0,
+        "duration_observed": 4.75
+      }
+    },
+    {
+      "id": "4c5f6aa4",
+      "provided": "không cần",
+      "predicted": "không cần",
+      "accepted": true,
+      "top1_correct": true,
+      "elapsed_seconds": 3.2312859380001555,
+      "quality": {
+        "decoded_frames": 66,
+        "sampled_frames": 66,
+        "hand_fraction": 1.0,
+        "body_fraction": 1.0,
+        "duration_observed": 5.416666666666666
+      }
+    },
+    {
+      "id": "65b0edec",
+      "provided": "xin lỗi",
+      "predicted": "xin lỗi",
+      "accepted": true,
+      "top1_correct": true,
+      "elapsed_seconds": 4.505380083999853,
+      "quality": {
+        "decoded_frames": 73,
+        "sampled_frames": 73,
+        "hand_fraction": 1.0,
+        "body_fraction": 1.0,
+        "duration_observed": 6.0
+      }
+    }
+  ]
+}

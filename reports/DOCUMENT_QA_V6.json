@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-07",
+  "report": "Bao_cao_DoAn_KyHieuLab_v6",
+  "pages": 11,
+  "all_pages_visually_reviewed": true,
+  "rendered_with": "documents/render_docx.py and LibreOffice; PDF matches final rendered DOCX",
+  "checks": [
+    "All11final page PNGs reviewed",
+    "No clipped text, overlaps, broken tables or missing Vietnamese glyphs",
+    "PrimaryCV matrices separate5known and29outside source counts",
+    "40APIchecks and22realbrowser scenarios agree with JSONreports"
+  ],
+  "sha256": {
+    "md": "7bfbba799ed08c1af8abfd62b9fdb0d558a064223bfe817d66462923168b7f36",
+    "docx": "4e4e07bd8524391e7ceb464b4bf2b85e7eb511323ecef770ef53185e4acdf2e2",
+    "pdf": "e8b05841195ba572d016df805e0b178c42fc08c845ffdad349f3b013b28d7c10"
+  },
+  "completed_at_utc": "2026-11-07T03:05:46.086120+00:00"
+}

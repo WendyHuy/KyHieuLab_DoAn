@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-01",
+  "frozen_before_evaluation": true,
+  "data": "37 included clips, 34 source labels; 2 pending excluded",
+  "originals_only": true,
+  "eligible_holdout_labels": [
+    "ai cho",
+    "không cần"
+  ],
+  "fold_scheme": "Leave one original clip out, only labels with at least two independent source clips; all augmentations and normalization fit only on fold training data",
+  "models": [
+    "v2_mlp",
+    "v2_tcn",
+    "candidate_robust_tcn"
+  ],
+  "steps_each_fit": 500,
+  "batch_size": 64,
+  "seeds": "20261101 + fold_index, identical across architecture comparisons",
+  "score_threshold": 0.65,
+  "threshold_selection": "unchanged from v2, no held-out calibration",
+  "candidate_change": "same TCN architecture; balanced label batches; monotonic tempo/crop jitter and small synthetic landmark dropout only in train",
+  "model_promotion": "exploratory comparison on same small historical data; no deployment quality claim; retain v2 tcn unless candidate improves correct accepted predictions without more accepted errors, then still label provisional",
+  "no_new_signer_evaluation": true,
+  "unknown_probes": "2 unsupported pending clips and non-person synthetic scenes, not a calibrated open-set benchmark"
+}

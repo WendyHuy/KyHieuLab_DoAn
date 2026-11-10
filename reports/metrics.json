@@ -1,0 +1,230 @@
+{
+  "date": "2026-11-03",
+  "primary_seed": 20261103,
+  "default_model": "tcn",
+  "data": {
+    "labels": [
+      "ai cho",
+      "bực mình",
+      "ghen tị",
+      "không cần",
+      "xin lỗi"
+    ],
+    "original_videos": 8,
+    "people": [
+      "giahuy"
+    ],
+    "unique_heldout_clips": 5,
+    "tested_labels": [
+      "ai cho",
+      "không cần"
+    ],
+    "untested_labels": [
+      "bực mình",
+      "ghen tị",
+      "xin lỗi"
+    ],
+    "new_real_videos": 0
+  },
+  "models": [
+    {
+      "id": "mlp",
+      "name": "MLP",
+      "primary": {
+        "seed": 20261103,
+        "n_unique_clips": 5,
+        "top1_correct": 4,
+        "top1_accuracy": 0.8,
+        "macro_f1_two_tested_labels": 0.8,
+        "top3_correct": 5,
+        "accepted": 2,
+        "accepted_correct": 2,
+        "accepted_wrong": 0,
+        "coverage": 0.4,
+        "accepted_accuracy": 1.0
+      },
+      "per_seed": [
+        {
+          "seed": 20261103,
+          "n_unique_clips": 5,
+          "top1_correct": 4,
+          "top1_accuracy": 0.8,
+          "macro_f1_two_tested_labels": 0.8,
+          "top3_correct": 5,
+          "accepted": 2,
+          "accepted_correct": 2,
+          "accepted_wrong": 0,
+          "coverage": 0.4,
+          "accepted_accuracy": 1.0
+        },
+        {
+          "seed": 20261104,
+          "n_unique_clips": 5,
+          "top1_correct": 5,
+          "top1_accuracy": 1.0,
+          "macro_f1_two_tested_labels": 1.0,
+          "top3_correct": 5,
+          "accepted": 3,
+          "accepted_correct": 3,
+          "accepted_wrong": 0,
+          "coverage": 0.6,
+          "accepted_accuracy": 1.0
+        },
+        {
+          "seed": 20261105,
+          "n_unique_clips": 5,
+          "top1_correct": 3,
+          "top1_accuracy": 0.6,
+          "macro_f1_two_tested_labels": 0.65,
+          "top3_correct": 5,
+          "accepted": 4,
+          "accepted_correct": 2,
+          "accepted_wrong": 2,
+          "coverage": 0.8,
+          "accepted_accuracy": 0.5
+        }
+      ],
+      "mean_top1_accuracy_over_seeds": 0.7999999999999999,
+      "std_top1_accuracy_over_seeds_population": 0.16329931618554522,
+      "note": "Variability over three seeds on the same five clips; not independent samples or a confidence interval."
+    },
+    {
+      "id": "tcn",
+      "name": "TCN gốc",
+      "primary": {
+        "seed": 20261103,
+        "n_unique_clips": 5,
+        "top1_correct": 4,
+        "top1_accuracy": 0.8,
+        "macro_f1_two_tested_labels": 0.9,
+        "top3_correct": 5,
+        "accepted": 3,
+        "accepted_correct": 3,
+        "accepted_wrong": 0,
+        "coverage": 0.6,
+        "accepted_accuracy": 1.0
+      },
+      "per_seed": [
+        {
+          "seed": 20261103,
+          "n_unique_clips": 5,
+          "top1_correct": 4,
+          "top1_accuracy": 0.8,
+          "macro_f1_two_tested_labels": 0.9,
+          "top3_correct": 5,
+          "accepted": 3,
+          "accepted_correct": 3,
+          "accepted_wrong": 0,
+          "coverage": 0.6,
+          "accepted_accuracy": 1.0
+        },
+        {
+          "seed": 20261104,
+          "n_unique_clips": 5,
+          "top1_correct": 5,
+          "top1_accuracy": 1.0,
+          "macro_f1_two_tested_labels": 1.0,
+          "top3_correct": 5,
+          "accepted": 3,
+          "accepted_correct": 3,
+          "accepted_wrong": 0,
+          "coverage": 0.6,
+          "accepted_accuracy": 1.0
+        },
+        {
+          "seed": 20261105,
+          "n_unique_clips": 5,
+          "top1_correct": 4,
+          "top1_accuracy": 0.8,
+          "macro_f1_two_tested_labels": 0.8,
+          "top3_correct": 5,
+          "accepted": 4,
+          "accepted_correct": 3,
+          "accepted_wrong": 1,
+          "coverage": 0.8,
+          "accepted_accuracy": 0.75
+        }
+      ],
+      "mean_top1_accuracy_over_seeds": 0.8666666666666667,
+      "std_top1_accuracy_over_seeds_population": 0.09428090415820632,
+      "note": "Variability over three seeds on the same five clips; not independent samples or a confidence interval."
+    },
+    {
+      "id": "tcn_augmented",
+      "name": "TCN tăng cường",
+      "primary": {
+        "seed": 20261103,
+        "n_unique_clips": 5,
+        "top1_correct": 3,
+        "top1_accuracy": 0.6,
+        "macro_f1_two_tested_labels": 0.42857142857142855,
+        "top3_correct": 5,
+        "accepted": 3,
+        "accepted_correct": 2,
+        "accepted_wrong": 1,
+        "coverage": 0.6,
+        "accepted_accuracy": 0.6666666666666666
+      },
+      "per_seed": [
+        {
+          "seed": 20261103,
+          "n_unique_clips": 5,
+          "top1_correct": 3,
+          "top1_accuracy": 0.6,
+          "macro_f1_two_tested_labels": 0.42857142857142855,
+          "top3_correct": 5,
+          "accepted": 3,
+          "accepted_correct": 2,
+          "accepted_wrong": 1,
+          "coverage": 0.6,
+          "accepted_accuracy": 0.6666666666666666
+        },
+        {
+          "seed": 20261104,
+          "n_unique_clips": 5,
+          "top1_correct": 5,
+          "top1_accuracy": 1.0,
+          "macro_f1_two_tested_labels": 1.0,
+          "top3_correct": 5,
+          "accepted": 4,
+          "accepted_correct": 4,
+          "accepted_wrong": 0,
+          "coverage": 0.8,
+          "accepted_accuracy": 1.0
+        },
+        {
+          "seed": 20261105,
+          "n_unique_clips": 5,
+          "top1_correct": 3,
+          "top1_accuracy": 0.6,
+          "macro_f1_two_tested_labels": 0.7333333333333334,
+          "top3_correct": 5,
+          "accepted": 4,
+          "accepted_correct": 2,
+          "accepted_wrong": 2,
+          "coverage": 0.8,
+          "accepted_accuracy": 0.5
+        }
+      ],
+      "mean_top1_accuracy_over_seeds": 0.7333333333333334,
+      "std_top1_accuracy_over_seeds_population": 0.18856180831641267,
+      "note": "Variability over three seeds on the same five clips; not independent samples or a confidence interval."
+    }
+  ],
+  "threshold": 0.65,
+  "threshold_calibrated": false,
+  "decision": "TCN baseline remains the preselected default; augmented candidate is comparison only.",
+  "readiness": {
+    "course_proof_of_concept": "implemented with explicit data limitations",
+    "independent_five_label_validation": false,
+    "public_translation": false
+  },
+  "limitations": [
+    "No fresh video collected",
+    "No independent signer test",
+    "No blind test; retrospective existing videos",
+    "Five held-out source clips reused over three seeds; not fifteen independent clips",
+    "Reported macro F1 restricted to the two actually tested labels",
+    "Three singleton labels have no held-out test"
+  ]
+}

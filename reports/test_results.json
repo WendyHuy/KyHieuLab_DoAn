@@ -1,0 +1,9 @@
+{
+  "tests_run": 23,
+  "failures": 0,
+  "errors": 0,
+  "passed": true,
+  "isolated_output_directory": true,
+  "physical_webcam_tested": false,
+  "ffmpeg_required_for_synthetic_probe": true
+}

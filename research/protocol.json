@@ -1,0 +1,55 @@
+{
+  "created_at_utc": "2026-11-03T06:32:55.530798+00:00",
+  "date": "2026-11-03",
+  "version": "v4-course-poc",
+  "labels": [
+    "ai cho",
+    "bực mình",
+    "ghen tị",
+    "không cần",
+    "xin lỗi"
+  ],
+  "scope_selection": "Before fitting v4 models; two repeated labels plus three illustrative existing labels with high hand visibility. No label chosen by v4 held-out metrics.",
+  "original_video_count": 8,
+  "people": [
+    "giahuy"
+  ],
+  "heldout_labels": [
+    "ai cho",
+    "không cần"
+  ],
+  "heldout_clip_count": 5,
+  "unmeasured_labels": [
+    "bực mình",
+    "ghen tị",
+    "xin lỗi"
+  ],
+  "models": [
+    "mlp",
+    "tcn",
+    "tcn_augmented"
+  ],
+  "seeds": [
+    20261103,
+    20261104,
+    20261105
+  ],
+  "steps": 500,
+  "batch_size": 64,
+  "threshold": 0.65,
+  "threshold_calibrated": false,
+  "normalization": "fit on training originals per fold only; no held-out augmentation",
+  "fold_unit": "original source video, leave one original out only where that class remains in training",
+  "augmentation": "20 training-only variants per original",
+  "candidate": "same TCN plus balanced-label batches, mild crop/time jitter and short synthetic hand dropout",
+  "default_model": "tcn fixed before v4 metrics; candidates comparison only",
+  "comparison_to_v3": "Different vocabulary and training set, not a direct claim of improvement over 34-label v3.",
+  "limitations": [
+    "No fresh video collected",
+    "No independent signer test",
+    "No blind test; retrospective existing videos",
+    "Five held-out source clips reused over three seeds; not fifteen independent clips",
+    "Reported macro F1 restricted to the two actually tested labels",
+    "Three singleton labels have no held-out test"
+  ]
+}

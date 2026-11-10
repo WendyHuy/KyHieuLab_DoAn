@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ký Hiệu Lab - Trợ Lý Thu Video Tự Động (250 Clips)</title>
+  <style>
+    :root {
+      --primary: #17654f;
+      --primary-light: #23896c;
+      --primary-bg: #eaf5f1;
+      --accent: #d9480f;
+      --bg: #f8faf9;
+      --card-bg: #ffffff;
+      --text: #212529;
+      --text-muted: #6c757d;
+      --border: #dee2e6;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background: var(--bg); color: var(--text); padding: 1.5rem; line-height: 1.5; }
+    header { max-width: 1200px; margin: 0 auto 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+    h1 { font-size: 1.5rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+    .badge { background: var(--primary-bg); color: var(--primary); padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; }
+    .layout { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
+    .card { background: var(--card-bg); border-radius: var(--radius); padding: 1.25rem; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+    .video-container { position: relative; width: 100%; aspect-ratio: 4/3; background: #000; border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    video { width: 100%; height: 100%; object-fit: cover; }
+    #camera-preview { transform: scaleX(-1); } /* Mirror selfie view */
+    .overlay-countdown { position: absolute; font-size: 5rem; font-weight: 800; color: #fff; text-shadow: 0 4px 16px rgba(0,0,0,0.8); z-index: 10; pointer-events: none; }
+    .recording-badge { position: absolute; top: 12px; right: 12px; background: rgba(220, 53, 69, 0.9); color: #fff; padding: 0.35rem 0.75rem; border-radius: 20px; font-weight: bold; font-size: 0.85rem; display: flex; align-items: center; gap: 0.5rem; z-index: 5; }
+    .rec-dot { width: 10px; height: 10px; background: #fff; border-radius: 50%; animation: blink 1s infinite; }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+    .guideline-box { position: absolute; width: 65%; height: 75%; border: 2px dashed rgba(255,255,255,0.4); border-radius: 12px; pointer-events: none; }
+    .controls-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin-top: 1rem; }
+    label { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.25rem; }
+    select, input { width: 100%; padding: 0.6rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.95rem; background: #fff; }
+    select:focus, input:focus { outline: none; border-color: var(--primary); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem 1.25rem; font-size: 1rem; font-weight: 600; border: none; border-radius: 8px; cursor: pointer; transition: 0.2s; }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-light); }
+    .btn-danger { background: var(--accent); color: #fff; }
+    .btn-danger:hover { opacity: 0.9; }
+    .btn-secondary { background: #e9ecef; color: var(--text); }
+    .btn-secondary:hover { background: #dee2e6; }
+    .btn-large { width: 100%; padding: 1rem; font-size: 1.15rem; margin-top: 1rem; }
+    .action-row { display: flex; gap: 0.75rem; margin-top: 1rem; }
+    .progress-bar-wrap { width: 100%; background: #e9ecef; border-radius: 10px; height: 10px; overflow: hidden; margin: 0.5rem 0; }
+    .progress-bar { height: 100%; background: var(--primary); width: 0%; transition: width 0.3s; }
+    .ref-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+    .checklist { margin-top: 1rem; max-height: 220px; overflow-y: auto; font-size: 0.85rem; }
+    .checklist-item { display: flex; justify-content: space-between; padding: 0.35rem 0.5rem; border-bottom: 1px solid #f1f3f5; }
+    .checklist-item.done { color: var(--primary); font-weight: 600; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>🎥 Ký Hiệu Lab · Trợ Lý Thu Video Tự Động</h1>
+    <p style="color: var(--text-muted); font-size: 0.9rem;">Hỗ trợ quay chuẩn 250 clip (5 người × 5 ký hiệu × 10 lượt), tự động đếm ngược, cắt chuẩn và tải tên file chuẩn hóa.</p>
+  </div>
+  <div>
+    <span class="badge" id="overall-badge">Đã quay: 0 / 250 clip</span>
+  </div>
+</header>
+
+<main class="layout">
+  <!-- Cột bên trái: Camera của bạn -->
+  <section class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+      <h2 style="font-size: 1.1rem; color: var(--primary);">1. Khung quay Camera của bạn</h2>
+      <button class="btn btn-secondary" id="btn-toggle-cam" style="padding: 0.35rem 0.75rem; font-size: 0.85rem;">Bật Camera</button>
+    </div>
+
+    <div class="video-container">
+      <video id="camera-preview" autoplay playsinline muted></video>
+      <div class="guideline-box" title="Căn chỉnh đầu và thân trên nằm trong khung này"></div>
+      <div id="countdown-overlay" class="overlay-countdown" style="display: none;">3</div>
+      <div id="recording-indicator" class="recording-badge" style="display: none;">
+        <span class="rec-dot"></span> ĐANG QUAY (<span id="timer-text">4.5s</span>)
+      </div>
+      <div id="no-cam-hint" style="position: absolute; color: #adb5bd; text-align: center; padding: 1rem;">
+        Bấm nút <strong>"Bật Camera"</strong> phía trên để bắt đầu.<br><small>(Cho phép trình duyệt truy cập Webcam)</small>
+      </div>
+    </div>
+
+    <div class="controls-grid">
+      <div>
+        <label for="sel-signer">Người ký (Signer)</label>
+        <select id="sel-signer">
+          <option value="S01">S01 (Học - Train)</option>
+          <option value="S02">S02 (Học - Train)</option>
+          <option value="S03">S03 (Học - Train)</option>
+          <option value="S04">S04 (Kiểm định - Val)</option>
+          <option value="S05">S05 (Kiểm thử - Test)</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="sel-session">Phiên quay</label>
+        <select id="sel-session">
+          <option value="B01">Phiên B01 (Lần 1)</option>
+          <option value="B02">Phiên B02 (Lần 2)</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="sel-label">Ký hiệu</label>
+        <select id="sel-label">
+          <option value="ai_cho">ai cho</option>
+          <option value="buc_minh">bực mình</option>
+          <option value="ghen_ti">ghen tị</option>
+          <option value="khong_can">không cần</option>
+          <option value="xin_loi">xin lỗi</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="sel-rep">Lượt lặp lại</label>
+        <select id="sel-rep">
+          <option value="R01">Lượt R01 (1/5)</option>
+          <option value="R02">Lượt R02 (2/5)</option>
+          <option value="R03">Lượt R03 (3/5)</option>
+          <option value="R04">Lượt R04 (4/5)</option>
+          <option value="R05">Lượt R05 (5/5)</option>
+        </select>
+      </div>
+    </div>
+
+    <div style="margin-top: 0.75rem; background: var(--primary-bg); padding: 0.5rem 0.75rem; border-radius: 6px; font-size: 0.85rem; color: var(--primary);">
+      📁 Tên file sẽ tự động lưu: <strong id="preview-filename">S01_B01_ai_cho_R01.webm</strong>
+    </div>
+
+    <button id="btn-record" class="btn btn-primary btn-large" disabled>
+      🔴 BẮT ĐẦU QUAY (Phím cách Space)
+    </button>
+  </section>
+
+  <!-- Cột bên phải: Video mẫu đối chiếu & Tiến độ -->
+  <section class="card">
+    <div class="ref-header">
+      <h2 style="font-size: 1.1rem; color: var(--primary);">2. Clip mẫu đối chiếu động tác chuẩn</h2>
+      <span class="badge" id="ref-label-badge">ai cho</span>
+    </div>
+
+    <div class="video-container" style="aspect-ratio: 4/3;">
+      <video id="ref-video" autoplay loop muted playsinline controls src="../data/clips/0330663f.mp4"></video>
+    </div>
+    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; text-align: center;">
+      Xem clip mẫu của người ký mẫu để làm theo đúng hình dạng bàn tay và chuyển động.
+    </p>
+
+    <div style="margin-top: 1.25rem;">
+      <div style="display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 600;">
+        <span>Tiến độ người hiện tại (<span id="cur-signer-name">S01</span>)</span>
+        <span id="cur-signer-progress">0 / 50</span>
+      </div>
+      <div class="progress-bar-wrap">
+        <div id="signer-progress-bar" class="progress-bar"></div>
+      </div>
+    </div>
+
+    <div class="checklist">
+      <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-muted);">Danh sách đã quay trong phiên:</div>
+      <div id="checklist-items">
+        <div style="color: #adb5bd; text-align: center; padding: 1rem;">Chưa có clip nào được quay.</div>
+      </div>
+    </div>
+
+    <div class="action-row">
+      <button class="btn btn-secondary" id="btn-export-log" style="flex: 1; font-size: 0.85rem;">📥 Tải bảng nhật ký quay (CSV)</button>
+      <button class="btn btn-secondary" id="btn-reset-cache" style="font-size: 0.85rem; color: #dc3545;">Xóa lịch sử</button>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Mapping reference clip path
+  const REF_CLIPS = {
+    "ai_cho": "../data/clips/0330663f.mp4",
+    "buc_minh": "../data/clips/59693627.mp4",
+    "ghen_ti": "../data/clips/b4e5538f.mp4",
+    "khong_can": "../data/clips/3d328846.mp4",
+    "xin_loi": "../data/clips/65b0edec.mp4"
+  };
+
+  const LABELS = ["ai_cho", "buc_minh", "ghen_ti", "khong_can", "xin_loi"];
+  const REPS = ["R01", "R02", "R03", "R04", "R05"];
+
+  let stream = null;
+  let recorder = null;
+  let recordedChunks = [];
+  let isRecording = false;
+
+  const videoElem = document.getElementById("camera-preview");
+  const refVideo = document.getElementById("ref-video");
+  const btnToggleCam = document.getElementById("btn-toggle-cam");
+  const btnRecord = document.getElementById("btn-record");
+  const selSigner = document.getElementById("sel-signer");
+  const selSession = document.getElementById("sel-session");
+  const selLabel = document.getElementById("sel-label");
+  const selRep = document.getElementById("sel-rep");
+  const previewFilename = document.getElementById("preview-filename");
+  const countdownOverlay = document.getElementById("countdown-overlay");
+  const recordingIndicator = document.getElementById("recording-indicator");
+  const timerText = document.getElementById("timer-text");
+  const noCamHint = document.getElementById("no-cam-hint");
+  const refLabelBadge = document.getElementById("ref-label-badge");
+  const checklistItems = document.getElementById("checklist-items");
+  const overallBadge = document.getElementById("overall-badge");
+  const curSignerName = document.getElementById("cur-signer-name");
+  const curSignerProgress = document.getElementById("cur-signer-progress");
+  const signerProgressBar = document.getElementById("signer-progress-bar");
+
+  // Audio beeper for countdown
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  function beep(freq, duration) {
+    try {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.frequency.value = freq;
+      osc.start();
+      gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + duration);
+      osc.stop(audioCtx.currentTime + duration);
+    } catch(e) {}
+  }
+
+  // Update filename preview
+  function updateFilename() {
+    const fn = `${selSigner.value}_${selSession.value}_${selLabel.value}_${selRep.value}.webm`;
+    previewFilename.textContent = fn;
+    refLabelBadge.textContent = selLabel.options[selLabel.selectedIndex].text;
+    refVideo.src = REF_CLIPS[selLabel.value];
+    refVideo.play().catch(()=>{});
+    updateProgressUI();
+  }
+
+  selSigner.addEventListener("change", updateFilename);
+  selSession.addEventListener("change", updateFilename);
+  selLabel.addEventListener("change", updateFilename);
+  selRep.addEventListener("change", updateFilename);
+
+  // Toggle Camera
+  btnToggleCam.addEventListener("click", async () => {
+    if (stream) {
+      stream.getTracks().forEach(t => t.stop());
+      stream = null;
+      videoElem.srcObject = null;
+      btnToggleCam.textContent = "Bật Camera";
+      btnRecord.disabled = true;
+      noCamHint.style.display = "block";
+    } else {
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({
+          video: { width: { ideal: 640 }, height: { ideal: 480 }, frameRate: { ideal: 25 } },
+          audio: false
+        });
+        videoElem.srcObject = stream;
+        btnToggleCam.textContent = "Tắt Camera";
+        btnRecord.disabled = false;
+        noCamHint.style.display = "none";
+      } catch (err) {
+        alert("Không mở được camera: " + err.message + "\nHãy đảm bảo quyền truy cập camera đã được bật.");
+      }
+    }
+  });
+
+  // Record Flow
+  async function startCountdownAndRecord() {
+    if (isRecording || !stream) return;
+    btnRecord.disabled = true;
+
+    // 3, 2, 1 Countdown
+    countdownOverlay.style.display = "block";
+    for (let c = 3; c > 0; c--) {
+      countdownOverlay.textContent = c;
+      beep(440, 0.15); // standard beep
+      await new Promise(r => setTimeout(r, 1000));
+    }
+    countdownOverlay.textContent = "KÝ!";
+    beep(880, 0.3); // higher start beep
+    await new Promise(r => setTimeout(r, 400));
+    countdownOverlay.style.display = "none";
+
+    // Start Recording
+    isRecording = true;
+    recordingIndicator.style.display = "flex";
+    recordedChunks = [];
+
+    const mime = ["video/webm;codecs=vp9", "video/webm;codecs=vp8", "video/webm"].find(m => MediaRecorder.isTypeSupported(m)) || "video/webm";
+    recorder = new MediaRecorder(stream, { mimeType: mime });
+    recorder.ondataavailable = e => { if (e.data.size) recordedChunks.push(e.data); };
+    
+    const DURATION = 4.5; // 4.5 seconds per sign
+    let remaining = DURATION;
+    timerText.textContent = remaining.toFixed(1) + "s";
+    
+    recorder.onstop = () => {
+      recordingIndicator.style.display = "none";
+      isRecording = false;
+      beep(660, 0.2); // end beep
+      saveVideoFile();
+      advanceToNextRepetition();
+    };
+
+    recorder.start();
+
+    const interval = setInterval(() => {
+      remaining -= 0.1;
+      if (remaining <= 0) {
+        clearInterval(interval);
+        recorder.stop();
+      } else {
+        timerText.textContent = remaining.toFixed(1) + "s";
+      }
+    }, 100);
+  }
+
+  btnRecord.addEventListener("click", startCountdownAndRecord);
+
+  // Keyboard shortcut: Spacebar
+  window.addEventListener("keydown", e => {
+    if (e.code === "Space" && !btnRecord.disabled && !isRecording && document.activeElement.tagName !== "SELECT") {
+      e.preventDefault();
+      startCountdownAndRecord();
+    }
+  });
+
+  // Save video file
+  function saveVideoFile() {
+    const blob = new Blob(recordedChunks, { type: recorder.mimeType });
+    const fn = previewFilename.textContent;
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = fn;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    // Save to local storage log
+    logRecordedClip(fn, selSigner.value, selSession.value, selLabel.value, selRep.value);
+  }
+
+  // Automatic increment to next repetition
+  function advanceToNextRepetition() {
+    const curRepIdx = REPS.indexOf(selRep.value);
+    if (curRepIdx < REPS.length - 1) {
+      selRep.selectedIndex = curRepIdx + 1;
+      updateFilename();
+      btnRecord.disabled = false;
+    } else {
+      // Reached R05 -> advance to next label
+      const curLabelIdx = LABELS.indexOf(selLabel.value);
+      if (curLabelIdx < LABELS.length - 1) {
+        selLabel.selectedIndex = curLabelIdx + 1;
+        selRep.selectedIndex = 0;
+        updateFilename();
+        alert(`🎉 Đã quay xong 5 lượt của nhãn trước!\nTự động chuyển sang ký hiệu tiếp theo: "${selLabel.options[selLabel.selectedIndex].text}". Hãy quan sát clip mẫu bên phải.`);
+        btnRecord.disabled = false;
+      } else {
+        alert("🎉 Chúc mừng! Đã hoàn thành toàn bộ 5 ký hiệu của phiên này!");
+        btnRecord.disabled = false;
+      }
+    }
+  }
+
+  // Local storage history
+  function getHistory() {
+    try {
+      return JSON.parse(localStorage.getItem("khl_recording_log") || "[]");
+    } catch(e) { return []; }
+  }
+
+  function logRecordedClip(filename, signer, session, label, rep) {
+    const hist = getHistory();
+    hist.push({ filename, signer, session, label, rep, timestamp: new Date().toISOString() });
+    localStorage.setItem("khl_recording_log", JSON.stringify(hist));
+    updateProgressUI();
+  }
+
+  function updateProgressUI() {
+    const hist = getHistory();
+    const curSigner = selSigner.value;
+    const signerClips = hist.filter(h => h.signer === curSigner);
+    
+    curSignerName.textContent = curSigner;
+    curSignerProgress.textContent = `${signerClips.length} / 50`;
+    signerProgressBar.style.width = `${Math.min(100, (signerClips.length / 50) * 100)}%`;
+    overallBadge.textContent = `Đã quay: ${hist.length} / 250 clip`;
+
+    if (hist.length === 0) {
+      checklistItems.innerHTML = '<div style="color: #adb5bd; text-align: center; padding: 1rem;">Chưa có clip nào được quay.</div>';
+    } else {
+      checklistItems.innerHTML = hist.slice(-8).reverse().map(item => `
+        <div class="checklist-item done">
+          <span>✅ ${item.filename}</span>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">${item.timestamp.split('T')[1].slice(0, 8)}</span>
+        </div>
+      `).join("");
+    }
+  }
+
+  // Export CSV
+  document.getElementById("btn-export-log").addEventListener("click", () => {
+    const hist = getHistory();
+    if (!hist.length) return alert("Chưa có clip nào được lưu!");
+    let csv = "filename,signer,session,label,rep,timestamp\n";
+    hist.forEach(r => {
+      csv += `${r.filename},${r.signer},${r.session},${r.label},${r.rep},${r.timestamp}\n`;
+    });
+    const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `nhat_ky_thu_video_${new Date().toISOString().slice(0,10)}.csv`;
+    a.click();
+  });
+
+  // Reset cache
+  document.getElementById("btn-reset-cache").addEventListener("click", () => {
+    if (confirm("Bạn có chắc muốn xóa lịch sử tiến độ quay trên trình duyệt này?")) {
+      localStorage.removeItem("khl_recording_log");
+      updateProgressUI();
+    }
+  });
+
+  // Init
+  updateFilename();
+</script>
+</body>
+</html>

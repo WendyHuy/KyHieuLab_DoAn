@@ -1,0 +1,130 @@
+[
+  {
+    "id": "0330663f",
+    "source_sha256": "80df8698f940e8d3a37e17801eb3eded9c3abbe22c25d3872970286af7de4254",
+    "provided": "ai cho",
+    "predicted": "ai cho",
+    "top_score": 0.9835482239723206,
+    "top3": [
+      "ai cho",
+      "xin lỗi",
+      "bực mình"
+    ],
+    "top1_correct": true,
+    "top3_correct": true,
+    "accepted": true,
+    "hand_fraction": 0.5625
+  },
+  {
+    "id": "48f69b84",
+    "source_sha256": "0d6acbe4840f3e5fe167a4ee25edf9afb7462c995583efbe5e178c143d4ddbf6",
+    "provided": "ai cho",
+    "predicted": "ai cho",
+    "top_score": 0.9830167889595032,
+    "top3": [
+      "ai cho",
+      "ghen tị",
+      "không cần"
+    ],
+    "top1_correct": true,
+    "top3_correct": true,
+    "accepted": true,
+    "hand_fraction": 0.90625
+  },
+  {
+    "id": "95907815",
+    "source_sha256": "55bed854caa998cffaf8b8e96c5f00e8c9772ef6c65e1be168897ae3d4d510ab",
+    "provided": "ai cho",
+    "predicted": "ai cho",
+    "top_score": 0.9833973050117493,
+    "top3": [
+      "ai cho",
+      "bực mình",
+      "xin lỗi"
+    ],
+    "top1_correct": true,
+    "top3_correct": true,
+    "accepted": true,
+    "hand_fraction": 0.71875
+  },
+  {
+    "id": "59693627",
+    "source_sha256": "ddaeca44eb1205a14003d2584f61d8e4c6e3d6c31b7a30af4679d4ddc82623ea",
+    "provided": "bực mình",
+    "predicted": "bực mình",
+    "top_score": 0.9838297963142395,
+    "top3": [
+      "bực mình",
+      "không cần",
+      "xin lỗi"
+    ],
+    "top1_correct": true,
+    "top3_correct": true,
+    "accepted": true,
+    "hand_fraction": 0.9375
+  },
+  {
+    "id": "b4e5538f",
+    "source_sha256": "61687206e233722d1d75db3e6397ff01fcabab3e452b7d8891cf6c616dc02e4d",
+    "provided": "ghen tị",
+    "predicted": "ghen tị",
+    "top_score": 0.984336256980896,
+    "top3": [
+      "ghen tị",
+      "ai cho",
+      "không cần"
+    ],
+    "top1_correct": true,
+    "top3_correct": true,
+    "accepted": true,
+    "hand_fraction": 0.875
+  },
+  {
+    "id": "3d328846",
+    "source_sha256": "586c2532bcbefa618f854f2bf283d09c3c57db75b0f7eccbbaab7a232683bd6a",
+    "provided": "không cần",
+    "predicted": "không cần",
+    "top_score": 0.985749363899231,
+    "top3": [
+      "không cần",
+      "xin lỗi",
+      "ghen tị"
+    ],
+    "top1_correct": true,
+    "top3_correct": true,
+    "accepted": true,
+    "hand_fraction": 1.0
+  },
+  {
+    "id": "4c5f6aa4",
+    "source_sha256": "3ce2e51312406686f690d5782dfb40e9abf7617bb3a373b63783dfdff617338d",
+    "provided": "không cần",
+    "predicted": "không cần",
+    "top_score": 0.9848189353942871,
+    "top3": [
+      "không cần",
+      "ai cho",
+      "bực mình"
+    ],
+    "top1_correct": true,
+    "top3_correct": true,
+    "accepted": true,
+    "hand_fraction": 1.0
+  },
+  {
+    "id": "65b0edec",
+    "source_sha256": "02c569af9dd2d06f10a70a940a927e3edfa55899f34028ff71f9a616077800b3",
+    "provided": "xin lỗi",
+    "predicted": "xin lỗi",
+    "top_score": 0.9842721223831177,
+    "top3": [
+      "xin lỗi",
+      "ghen tị",
+      "ai cho"
+    ],
+    "top1_correct": true,
+    "top3_correct": true,
+    "accepted": true,
+    "hand_fraction": 1.0
+  }
+]

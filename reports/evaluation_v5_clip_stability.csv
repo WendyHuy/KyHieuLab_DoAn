@@ -1,0 +1,16 @@
+﻿method,id,provided,n_seeds,predictions,same_prediction_all_seeds,correct_seed_count,accepted_seed_count,accepted_correct_seed_count,accepted_wrong_seed_count,top_score_min,top_score_max
+mlp,0330663f,ai cho,3,ai cho | ai cho | ai cho,True,3,2,2,0,0.4975123107433319,0.9387303590774536
+mlp,3d328846,không cần,3,không cần | không cần | không cần,True,3,1,1,0,0.37787166237831116,0.8030672669410706
+mlp,48f69b84,ai cho,3,không cần | ai cho | không cần,False,1,2,1,1,0.5934491753578186,0.9969933032989502
+mlp,4c5f6aa4,không cần,3,không cần | không cần | không cần,True,3,1,1,0,0.5831072926521301,0.8674193620681763
+mlp,95907815,ai cho,3,ai cho | ai cho | xin lỗi,False,2,3,2,1,0.767683207988739,0.9585849046707153
+tcn,0330663f,ai cho,3,ai cho | ai cho | ai cho,True,3,2,2,0,0.4088326096534729,0.939021646976471
+tcn,3d328846,không cần,3,không cần | không cần | không cần,True,3,2,2,0,0.629477858543396,0.9375705718994141
+tcn,48f69b84,ai cho,3,ai cho | ai cho | không cần,False,2,3,2,1,0.8778349161148071,0.9823893308639526
+tcn,4c5f6aa4,không cần,3,không cần | không cần | không cần,True,3,1,1,0,0.4965779483318329,0.7705217599868774
+tcn,95907815,ai cho,3,bực mình | ai cho | ai cho,False,2,2,2,0,0.5789046883583069,0.9645311236381531
+tcn_augmented,0330663f,ai cho,3,ai cho | ai cho | ai cho,True,3,2,2,0,0.5984993577003479,0.9338793754577637
+tcn_augmented,3d328846,không cần,3,xin lỗi | không cần | không cần,False,2,2,1,1,0.6494266986846924,0.8113182783126831
+tcn_augmented,48f69b84,ai cho,3,ai cho | ai cho | ai cho,True,3,3,3,0,0.6880592703819275,0.9159882068634033
+tcn_augmented,4c5f6aa4,không cần,3,ai cho | không cần | xin lỗi,False,1,2,1,1,0.31549206376075745,0.8844881057739258
+tcn_augmented,95907815,ai cho,3,ai cho | ai cho | xin lỗi,False,2,2,1,1,0.4560602903366089,0.849608838558197

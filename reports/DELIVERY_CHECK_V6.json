@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "date": "2026-11-07",
+  "checks": {
+    "/reports/report.md": {
+      "status": 200,
+      "bytes": 25177
+    },
+    "/reports/report.pdf": {
+      "status": 200,
+      "bytes": 580453
+    },
+    "models_default_and_vocabulary": true,
+    "outside_demo_video_routes_and_hashes": true,
+    "all29_recovered_video_hashes": true,
+    "all45_legacy_fingerprints_unchanged": true,
+    "final_software_checks_passed": true
+  }
+}

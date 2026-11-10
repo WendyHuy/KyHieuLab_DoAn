@@ -1,0 +1,103 @@
+{
+  "date": "2026-11-01",
+  "data": {
+    "included": 37,
+    "labels": 34,
+    "singleton_labels": 32,
+    "eligible_test_labels": [
+      "ai cho",
+      "không cần"
+    ],
+    "eligible_test_clips": 5,
+    "signer_codes": [
+      "giahuy",
+      "tp"
+    ],
+    "pending": 2
+  },
+  "models": [
+    {
+      "id": "v2_mlp",
+      "name": "MLP v2",
+      "n": 5,
+      "top1_correct": 0,
+      "top3_correct": 0,
+      "macro_f1_over_two_tested_labels": 0.0,
+      "accepted": 1,
+      "accepted_correct": 0,
+      "accepted_wrong": 1,
+      "coverage": 0.2,
+      "accepted_accuracy": 0.0
+    },
+    {
+      "id": "v2_tcn",
+      "name": "TCN v2",
+      "n": 5,
+      "top1_correct": 3,
+      "top3_correct": 4,
+      "macro_f1_over_two_tested_labels": 0.7333333333333334,
+      "accepted": 1,
+      "accepted_correct": 1,
+      "accepted_wrong": 0,
+      "coverage": 0.2,
+      "accepted_accuracy": 1.0
+    },
+    {
+      "id": "candidate_robust_tcn",
+      "name": "TCN ứng viên",
+      "n": 5,
+      "top1_correct": 4,
+      "top3_correct": 5,
+      "macro_f1_over_two_tested_labels": 0.9,
+      "accepted": 1,
+      "accepted_correct": 1,
+      "accepted_wrong": 0,
+      "coverage": 0.2,
+      "accepted_accuracy": 1.0
+    }
+  ],
+  "video_pipeline_training_replay": {
+    "mlp": {
+      "decoded_videos": 37,
+      "top1_correct": 37,
+      "accepted": 37,
+      "n": 37
+    },
+    "tcn": {
+      "decoded_videos": 37,
+      "top1_correct": 37,
+      "accepted": 37,
+      "n": 37
+    }
+  },
+  "extract_latency_seconds": {
+    "n": 37,
+    "median": 2.844406788000015,
+    "p95": 8.075087357200026,
+    "min": 1.1527684409998074,
+    "max": 9.16561929999989
+  },
+  "unknown_probe_results": {
+    "n": 5,
+    "unsupported_pending_clips": 2,
+    "synthetic_nonperson": 3,
+    "accepted": 0,
+    "warning": "Diagnostic convenience probes, not an independently sampled or calibrated open-set test"
+  },
+  "decision": {
+    "controlled_technical_pilot": "ready with supervision and per-trial recording",
+    "public_recognition_or_translation": "not_ready",
+    "full_34_label_accuracy": "not_established",
+    "default_model": "v2_tcn_retained",
+    "candidate": "trained, available for exploratory comparison; not promoted because correct accepted coverage is unchanged",
+    "new_scorer_threshold": 0.65
+  },
+  "limitations": [
+    "Only five held-out clips from two labels, all repeated labels belong to giahuy",
+    "No label is shared across giahuy and tp in the available collection",
+    "Retrospective reuse of already known videos; no new blind test",
+    "No physical webcam, mobile, or production-browser test",
+    "Threshold unchanged and not calibrated",
+    "No new real data added in this evaluation"
+  ]
+}
