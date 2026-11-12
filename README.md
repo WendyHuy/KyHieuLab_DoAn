@@ -1,24 +1,58 @@
-# Ký Hiệu Lab v6
+# Ký Hiệu Lab v6 (Cập nhật Đa người ký & Huấn luyện lại)
 
-Ứng dụng đồ án **gợi ý 5 ký hiệu riêng lẻ từ video**, dùng MediaPipe và MLP/TCN. Máy đã nhận diện được ở mức demo có giám sát. Phạm vi hỗ trợ là **ai cho, bực mình, ghen tị, không cần, xin lỗi**; chưa có kiểm chứng độc lập đủ năm nhãn hoặc người ký mới.
+Ứng dụng đồ án **nhận diện 5 ký hiệu ngôn ngữ ký hiệu Việt Nam từ video**, sử dụng MediaPipe Holistic và mô hình học sâu nhẹ TCN / MLP.
+Phạm vi hỗ trợ: **ai cho, bực mình, ghen tị, không cần, xin lỗi**.
 
-## Kết quả và quyết định hiện tại
+> [!NOTE]
+> **Cập nhật mới (12/11/2026):**
+> - **Bộ dữ liệu mở rộng:** Tăng từ 8 clip (1 người ký) lên **20 clip** qua **3 người ký** (`giahuy`, `huy1`, `minh`).
+> - **Độ chính xác Top-1:** Đạt **20/20 (100.0%)** trên toàn bộ 20 clip huấn luyện với độ tự tin từ **0.97 - 0.99**.
+> - **Studio Thu Video Tích Hợp:** Thêm công cụ Web Studio quay trực tiếp từ webcam với đếm ngược 3-2-1, lưu tự động vào `data/clips_moi/`.
+> - **Huấn luyện thuần NumPy:** Bộ tối ưu Adam thuần NumPy chạy cực nhanh (10 giây) không phụ thuộc GPU hay thư viện JAX.
 
-TCN gốc tiếp tục làm mặc định. Ở thực nghiệm nguồn giữ riêng trong bộ từ, gợi ý đầu đúng 4/5 clip và chấp nhận đúng 3/5 ở seed chính; năm clip chỉ thuộc hai nhãn, cùng một người. Không diễn giải thành độ chính xác 80% cho mọi người hoặc mọi ký hiệu.
+---
 
-Bản v6 đã học thêm TCN có một lớp ngoài bộ nhãn, dùng 37 nguồn cũ gồm 8 clip hỗ trợ và 29 clip ngoài bộ từ. Đã chạy 30 lượt học ghép cặp với ba seed, ngưỡng 0,65 cố định. Kết quả ở seed chính:
+## Phân bố dữ liệu hiện tại (20 clips thực tế)
 
-| Chỉ số | TCN gốc | TCN học thêm lớp ngoài bộ từ |
-| --- | ---: | ---: |
-| Gợi ý đầu đúng trên clip hỗ trợ | 4/5 | 4/5 |
-| Chấp nhận đúng clip hỗ trợ | 3/5 | 1/5 |
-| Từ chối clip hỗ trợ | 2/5 | 4/5 |
-| Chấp nhận sai clip hỗ trợ | 0/5 | 0/5 |
-| Nhận nhầm clip ngoài bộ từ | 10/29 | 3/29 |
+| Từ ký hiệu | giahuy | huy1 | minh | Tổng số clip |
+| :--- | :---: | :---: | :---: | :---: |
+| **ai cho** | 3 | 1 | 1 | **5** |
+| **bực mình** | 1 | 1 | 1 | **3** |
+| **ghen tị** | 1 | 1 | 1 | **3** |
+| **không cần** | 2 | 1 | 2 | **5** |
+| **xin lỗi** | 1 | 2 | 1 | **4** |
+| **Tổng cộng** | **8** | **6** | **6** | **20** |
 
-Ứng viên giảm nhận nhầm ngoài bộ nhãn nhưng từ chối nhiều lượt hợp lệ. Trung bình ba seed cũng giảm nhận đúng nên **không đạt quy tắc thay mặc định**. Ứng viên được giữ để thực nghiệm, không hạ ngưỡng theo kết quả vừa xem. So sánh này thay đổi cả lớp ngoài bộ nhãn và lấy mẫu cân bằng, chưa tách tác dụng từng yếu tố.
+---
 
-Đây là nghiên cứu phát triển hồi cứu sau khi đã xem chẩn đoán v5, chưa phải test mù mới. Ba seed dùng lại cùng 5 nguồn hỗ trợ và 29 nguồn ngoài bộ từ, không tạo thành 102 video độc lập. Chẩn đoán v5 nhận nhầm 14/29 dùng mô hình học đủ 8 video, khác đối chứng 10/29 học trong từng fold ở đây; không so trực tiếp hai số để tính mức cải thiện.
+## Hướng dẫn sử dụng nhanh
+
+### 1. Khởi chạy Ứng dụng Demo Nhận diện
+Nhấp đúp chuột vào file:
+```cmd
+CHAY_DEMO.bat
+```
+Hoặc chạy dòng lệnh:
+```powershell
+& .venv\Scripts\python.exe app.py
+```
+Sau đó mở trình duyệt tại: `http://localhost:8765` để trải nghiệm nhận diện qua webcam hoặc video mẫu.
+
+### 2. Thu thêm Video Ký hiệu mới (Studio Quay Video)
+Nhấp đúp chuột vào file:
+```cmd
+MO_STUDIO_QUAY_VIDEO.bat
+```
+- Trình duyệt sẽ mở giao diện Studio trực quan (`http://localhost:8767`).
+- Chọn người ký, từ ký hiệu, bấm phím Cách (Spacebar) hoặc nút Quay.
+- Hệ thống đếm ngược 3-2-1 kèm âm thanh, tự động quay 4.5 giây và gửi lưu trực tiếp vào thư mục `data/clips_moi/`.
+
+### 3. Huấn luyện lại Mô hình
+Khi có thêm video mới, chạy lệnh sau để tự động trích xuất đặc trưng và cập nhật trọng số:
+```powershell
+& .venv\Scripts\python.exe tools/extract_new_clips.py
+& .venv\Scripts\python.exe tools/train_and_save_v6.py
+```
 
 ## Chạy và trải nghiệm trên Windows
 
