@@ -52,9 +52,11 @@
     .checklist { margin-top: 1rem; max-height: 220px; overflow-y: auto; font-size: 0.85rem; }
     .checklist-item { display: flex; justify-content: space-between; padding: 0.35rem 0.5rem; border-bottom: 1px solid #f1f3f5; }
     .checklist-item.done { color: var(--primary); font-weight: 600; }
+    .toast { position: fixed; bottom: 24px; right: 24px; background: #17654f; color: #fff; padding: 0.85rem 1.25rem; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.25); font-size: 0.95rem; font-weight: 600; z-index: 1000; display: none; }
   </style>
 </head>
 <body>
+<div id="toast" class="toast"></div>
 
 <header>
   <div>
@@ -330,16 +332,45 @@
     }
   });
 
+  function showToast(msg) {
+    const t = document.getElementById("toast");
+    t.textContent = msg;
+    t.style.display = "block";
+    setTimeout(() => { t.style.display = "none"; }, 3500);
+  }
+
   // Save video file
-  function saveVideoFile() {
+  async function saveVideoFile() {
     const blob = new Blob(recordedChunks, { type: recorder.mimeType });
     const fn = previewFilename.textContent;
+
+    // Direct save if running on Studio Server
+    if (window.location.protocol.startsWith("http")) {
+      try {
+        const res = await fetch(`/api/save-clip?filename=${encodeURIComponent(fn)}`, {
+          method: "POST",
+          body: blob
+        });
+        const data = await res.json();
+        if (data.ok) {
+          showToast(`🎉 Đã lưu trực tiếp: data/clips_moi/${fn}`);
+          logRecordedClip(fn, selSigner.value, selSession.value, selLabel.value, selRep.value);
+          await checkServerSync();
+          return;
+        }
+      } catch (e) {
+        console.warn("Không kết nối được server lưu trực tiếp, chuyển sang tải file:", e);
+      }
+    }
+
+    // Fallback: download via browser
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
     a.download = fn;
     document.body.appendChild(a);
     a.click();
     a.remove();
+    showToast(`📥 Đã tải file: ${fn}`);
 
     // Save to local storage log
     logRecordedClip(fn, selSigner.value, selSession.value, selLabel.value, selRep.value);
@@ -427,8 +458,39 @@
     }
   });
 
+  async function checkServerSync() {
+    if (!window.location.protocol.startsWith("http")) return;
+    try {
+      const res = await fetch("/api/studio-status");
+      const data = await res.json();
+      if (data && Array.isArray(data.files)) {
+        // Sync local storage with server files
+        const hist = getHistory();
+        const existingNames = new Set(hist.map(h => h.filename));
+        for (const fn of data.files) {
+          if (!existingNames.has(fn)) {
+            const parts = fn.replace(".webm", "").replace(".mp4", "").split("_");
+            if (parts.length >= 4) {
+              hist.push({
+                filename: fn,
+                signer: parts[0],
+                session: parts[1],
+                label: parts[2],
+                rep: parts[3],
+                timestamp: new Date().toISOString()
+              });
+            }
+          }
+        }
+        localStorage.setItem("khl_recording_log", JSON.stringify(hist));
+        updateProgressUI();
+      }
+    } catch (e) {}
+  }
+
   // Init
   updateFilename();
+  checkServerSync();
 </script>
 </body>
 </html>
