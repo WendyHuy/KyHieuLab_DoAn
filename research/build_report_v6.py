@@ -34,8 +34,10 @@ def main():
 
     page("Nhận diện ký hiệu tiếng Việt từ video")
     p("Báo cáo đồ án Ký Hiệu Lab phiên bản 6")
-    p("Sinh viên Huỳnh Gia Huy | MSSV 2474802010135 | Trường Đại học Văn Lang")
-    p("Ngày cập nhật 07/11/2026")
+    p("Nhóm sinh viên thực hiện:")
+    p("- Huỳnh Gia Huy | MSSV: 2474802010135 | Trường Đại học Văn Lang")
+    p("- Nguyễn Thành Phát | MSSV: 2474802016639 | Trường Đại học Văn Lang")
+    p("Ngày cập nhật 14/11/2026")
     h("Tóm tắt kết quả")
     p("Dự án đã có ứng dụng cục bộ để nhận diện thử năm ký hiệu riêng lẻ từ video, chọn đoạn cần xử lý, quay clip bằng camera và ghi phiếu thực nghiệm. Bản v6 bổ sung một mô hình học nhóm ngoài bộ nhãn, so sánh với TCN gốc trên các nguồn giữ riêng, đồng thời hoàn thiện phần hiển thị và ghi nhận quyết định từ chối.")
     p(f"Trong so sánh v6 ở seed chính, TCN gốc chấp nhận đúng {baseline['known']['accepted_correct']}/5 clip hợp lệ và nhận nhầm {baseline['outside']['false_accepts']}/29 clip ngoài bộ từ; ứng viên tương ứng là {candidate['known']['accepted_correct']}/5 và {candidate['outside']['false_accepts']}/29. {decision}")

@@ -3,6 +3,10 @@
 Ứng dụng đồ án **nhận diện 5 ký hiệu ngôn ngữ ký hiệu Việt Nam từ video**, sử dụng MediaPipe Holistic và mô hình học sâu nhẹ TCN / MLP.
 Phạm vi hỗ trợ: **ai cho, bực mình, ghen tị, không cần, xin lỗi**.
 
+### Nhóm sinh viên thực hiện (Trường Đại học Văn Lang)
+- **Huỳnh Gia Huy** — MSSV: `2474802010135`
+- **Nguyễn Thành Phát** — MSSV: `2474802016639`
+
 > [!NOTE]
 > **Cập nhật mới (12/11/2026):**
 > - **Bộ dữ liệu mở rộng:** Tăng từ 8 clip (1 người ký) lên **20 clip** qua **3 người ký** (`giahuy`, `huy1`, `minh`).

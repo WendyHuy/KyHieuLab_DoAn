@@ -30,7 +30,7 @@ def fig(name, caption): blocks.append(("fig", (name, caption)))
 
 page("Nhận diện ký hiệu tiếng Việt từ video")
 p("Báo cáo đồ án thử nghiệm Ký Hiệu Lab phiên bản 4")
-p("Sinh viên Huỳnh Gia Huy | MSSV 2474802010135 | Trường Đại học Văn Lang")
+p("Nhóm sinh viên: Huỳnh Gia Huy (MSSV: 2474802010135) & Nguyễn Thành Phát (MSSV: 2474802016639) | Trường Đại học Văn Lang")
 p("Ngày hoàn thiện bản kỹ thuật 03/11/2026")
 h("Tóm tắt dự án")
 p("Dự án xây dựng ứng dụng nhận diện một ký hiệu riêng lẻ từ đoạn video đã quay. Bản v4 giới hạn ở năm nhãn để tổ chức lại dữ liệu, huấn luyện ba cấu hình, đối chiếu kết quả và cung cấp demo có ghi phiếu thực nghiệm. Hệ thống đã có mã nguồn, trọng số học xong, video mẫu, ma trận nhầm lẫn và quy trình chạy lại.")
@@ -238,7 +238,7 @@ def build(output_name="Bao_cao_DoAn_KyHieuLab_v5", footer_date="04/11/2026"):
     field = OxmlElement("w:fldSimple")
     field.set(qn("w:instr"), "PAGE")
     footer._p.append(field)
-    doc.core_properties.author = "Huỳnh Gia Huy"
+    doc.core_properties.author = "Huỳnh Gia Huy, Nguyễn Thành Phát"
     doc.core_properties.title = "Nhận diện ký hiệu tiếng Việt từ video"
     md = []
     first = True

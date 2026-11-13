@@ -223,7 +223,7 @@ def make_handler(state):
         def do_GET(self):
             route = urlparse(self.path).path
             if route == "/api/health":
-                return self.send(200, {"ready": True, "version": 6, "models": list(state.models)})
+                return self.send(200, {"ready": True, "version": 6, "models": list(state.models), "team": [{"name": "Huỳnh Gia Huy", "mssv": "2474802010135"}, {"name": "Nguyễn Thành Phát", "mssv": "2474802016639"}], "university": "Trường Đại học Văn Lang"})
             if route == "/api/config":
                 return self.send(200, {"labels": state.labels, "default_model": state.default_model, "models": {key: MODEL_NAMES[key] for key in state.models}, "samples": [{"id": r["id"], "label": r["label"]} for r in state.rows], "outside_samples": [{"id": r["id"], "label": r["label"], "url": "/outside-samples/" + r["id"], "training_sample": True} for r in state.outside_samples.values()], "original_videos": 8, "heldout_unique_clips": 5, "heldout_labels": ["ai cho", "không cần"], "outside_label": OUTSIDE})
             if route == "/api/trials.csv":

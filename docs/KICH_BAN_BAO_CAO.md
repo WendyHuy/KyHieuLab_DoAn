@@ -15,7 +15,8 @@
 - Chạy `tools/doctor.py`, thử MP4 mẫu, kiểm tra camera và quyền truy cập trình duyệt trên máy trình bày.
 - Lưu báo cáo PDF và video mẫu trên máy. Mạng nơ-ron đã có trọng số, không cần huấn luyện trước lớp.
 - Dùng thư mục đầu ra riêng cho tập chạy thử; không trộn phiếu luyện demo với phiếu dùng đánh giá mô hình.
-- Điền tên môn, lớp, giảng viên, thành viên theo biểu mẫu thật của môn; không tự thêm thông tin chưa xác nhận.
+- Nhóm sinh viên thực hiện: Huỳnh Gia Huy (MSSV: 2474802010135) và Nguyễn Thành Phát (MSSV: 2474802016639), Trường Đại học Văn Lang.
+- Điền tên môn, lớp, giảng viên theo biểu mẫu thật của môn.
 
 ## Câu hỏi thường gặp khi bảo vệ
 

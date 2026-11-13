@@ -2,7 +2,9 @@
 
 Báo cáo đồ án Ký Hiệu Lab phiên bản 6
 
-Sinh viên Huỳnh Gia Huy | MSSV 2474802010135 | Trường Đại học Văn Lang
+Nhóm sinh viên thực hiện:
+- Huỳnh Gia Huy | MSSV: 2474802010135 | Trường Đại học Văn Lang
+- Nguyễn Thành Phát | MSSV: 2474802016639 | Trường Đại học Văn Lang
 
 Ngày cập nhật 07/11/2026
 
