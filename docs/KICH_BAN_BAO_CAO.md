@@ -2,40 +2,61 @@
 
 ## Trình bày trong khoảng 8 đến 10 phút
 
-1. **Bài toán và phạm vi** khoảng 1 phút: nhận diện một clip ký hiệu riêng lẻ trong 5 nhãn; nêu đây là bản minh chứng kỹ thuật.
-2. **Dữ liệu** khoảng 1 phút: 8 video thực, một người ký; hai nhãn có nhiều lượt, ba nhãn đơn mẫu. Không gọi các bản tăng cường là video thực mới.
-3. **Phương pháp** khoảng 2 phút: trích điểm tay/thân bằng MediaPipe, tạo chuỗi 32 × 159, so sánh MLP, TCN gốc, TCN tăng cường và TCN học thêm nhóm ngoài bộ nhãn.
-4. **Thực nghiệm** khoảng 2 phút: giải thích giữ nguồn riêng và ba seed. Nêu kết quả nền TCN gợi ý đúng 4/5 clip; khảo sát v5 nhận nhầm 14/29 clip ngoài bộ từ. Nghiên cứu phát triển v6 ghép cặp mới cho kết quả nhận nhầm 10/29 ở đối chứng và 3/29 ở ứng viên, nhưng ứng viên chỉ chấp nhận đúng 1/5 clip hợp lệ thay vì 3/5. TCN gốc tiếp tục mặc định. Hai số 14/29 và 10/29 dùng trọng số khác nhau, không so trực tiếp để tính mức cải thiện. Không cộng seed thành số video độc lập.
-5. **Demo** khoảng 2 phút: mở một clip mẫu ở mục Nhận diện, xem nhãn gợi ý; đổi đoạn cắt hoặc mô hình rồi nhận diện lại. Qua mục Thực nghiệm ghi phiếu có mã người/phiên, xem thống kê và tải CSV. Mở mục Đánh giá để giải thích mẫu số của các kết quả. Ghi rõ clip mẫu đã được học. Nếu thử video mới, giữ nguyên cả trường hợp sai hoặc chưa chắc chắn.
-6. **Kết luận** khoảng 1 phút: hệ thống chạy được ở phạm vi thăm dò; ưu tiên quay đủ nhiều người và phiên để đo khả năng áp dụng cho người mới.
+1. **Bài toán và phạm vi** (khoảng 1 phút):
+   - Nhận diện 5 từ ký hiệu tiếng Việt độc lập từ video: *ai cho, bực mình, ghen tị, không cần, xin lỗi*.
+   - Khẳng định đây là bản minh chứng kỹ thuật (Proof-of-Concept), xử lý clip sau khi quay xong, chưa phân đoạn câu hay dịch liên tục luồng mở.
+
+2. **Dữ liệu thực tế** (khoảng 1.5 phút):
+   - Tổng cộng **20 video clips thực tế** từ **3 người ký** (*giahuy*: 8 clips, *huy1*: 6 clips, *minh*: 6 clips), bao phủ cả 5 nhãn mục tiêu (mỗi nhãn có từ 3 đến 5 clips).
+   - Dữ liệu thử thách ngoài bộ từ: **29 clips OOV** từ 2 người ký (*giahuy*: 17, *tp*: 12) đóng vai trò bộ kiểm thử âm tính.
+   - Tuyệt đối trung thực: Không gọi các mẫu biến thể tăng cường (augmentation) là video thực mới.
+
+3. **Phương pháp và Kiến trúc mô hình** (khoảng 2 phút):
+   - Trích xuất đặc trưng tư thế và 2 bàn tay bằng MediaPipe Holistic, chuẩn hóa thời gian thành ma trận 32 × 159 (132 đặc trưng tay + 27 đặc trưng thân).
+   - So sánh 4 cấu hình mô hình: MLP đối chiếu (493.445 tham số), TCN gốc (26.501 tham số), TCN tăng cường (26.501 tham số) và TCN có cơ chế từ chối (26.550 tham số, 6 đầu ra).
+   - Toàn bộ pipeline suy luận và huấn luyện chạy thuần NumPy, tốc độ dưới 15ms/clip trên CPU.
+
+4. **Kết quả thực nghiệm trung thực & Bài học khoa học** (khoảng 2.5 phút):
+   - **Trên 20 clips thực tế:** TCN gốc và MLP đạt 20/20 (100.0%) Top-1 và nhận đúng ở ngưỡng 0.65. Trình bày rõ ràng: đây là độ chính xác trên tập học (*training set fit*).
+   - **Kiểm chứng mù liên người ký (LOSO):** Khi huấn luyện trên 2 người ký và kiểm thử mù trên người thứ 3, TCN duy trì 20/20 (100.0%) nhờ tích chập thời gian giãn nở (dilated convolutions); trong khi MLP giảm xuống 14/20 (70.0%) do cấu trúc mạng phẳng nhạy cảm với sai lệch nhịp độ.
+   - **Thử thách 29 clips OOV:** TCN gốc có tỷ lệ báo động giả 21/29 (72.4%), MLP là 9/29 (31.0%). TCN có từ chối (`tcn_reject`) chặn đứng 100% (0/29 nhận nhầm), nhưng do chưa được học trên 12 clips mới của *huy1* và *minh*, mô hình này từ chối nhầm 11/20 clips hợp lệ (55.0%).
+   - **Kết luận:** TCN gốc được chọn làm mặc định cho ứng dụng demo; TCN Reject được cung cấp như tùy chọn nghiên cứu mở.
+
+5. **Demo trực quan** (khoảng 2 phút):
+   - Mở giao diện `http://localhost:8765`, chọn một clip mẫu hoặc video tải lên, xem nhãn gợi ý và điểm tự tin.
+   - Thử nghiệm chức năng ghi phiếu thực nghiệm tại mục Thực nghiệm, đối chiếu mã SHA256 và tải file CSV.
+   - Trình diễn công cụ Web Studio quay video tại `http://localhost:8767`, giới thiệu tính năng đếm ngược 3-2-1 và lưu tự động.
+   - Nếu thử nghiệm webcam hoặc video mới, giữ nguyên tính khách quan cho cả các trường hợp nhận sai hoặc bị từ chối.
+
+6. **Kết luận và hướng phát triển** (khoảng 1 phút):
+   - Hệ thống vận hành ổn định, mã nguồn sạch sẽ, không phụ thuộc thư viện nặng.
+   - Hướng phát triển: Thu thập thêm dữ liệu theo kế hoạch 250 clips, huấn luyện lại nhánh từ chối với đa người ký, và tích hợp đặc trưng nét mặt.
+
+---
 
 ## Chuẩn bị trước buổi báo cáo
 
-- Giải nén gói và chạy `CHAY_DEMO.bat` khi có mạng để cài thư viện và chạy nhận diện ít nhất một clip trước; MediaPipe có thể tải mô hình ở lần trích điểm đầu.
-- Chạy `tools/doctor.py`, thử MP4 mẫu, kiểm tra camera và quyền truy cập trình duyệt trên máy trình bày.
-- Lưu báo cáo PDF và video mẫu trên máy. Mạng nơ-ron đã có trọng số, không cần huấn luyện trước lớp.
-- Dùng thư mục đầu ra riêng cho tập chạy thử; không trộn phiếu luyện demo với phiếu dùng đánh giá mô hình.
-- Nhóm sinh viên thực hiện: Huỳnh Gia Huy (MSSV: 2474802010135) và Nguyễn Thành Phát (MSSV: 2474802016639), Trường Đại học Văn Lang.
-- Điền tên môn, lớp, giảng viên theo biểu mẫu thật của môn.
+- Mở sẵn ứng dụng demo bằng `CHAY_DEMO.bat` hoặc dòng lệnh `python app.py`.
+- Chạy `python tools/doctor.py` để kiểm tra toàn bộ môi trường và dữ liệu.
+- Chạy `python tools/danh_gia_thuc_nghiem.py` để hiển thị bảng số liệu thực nghiệm ngay trên màn hình terminal khi thầy cô yêu cầu đối chứng.
+- Mở sẵn báo cáo Word `reports/Bao_cao_DoAn_KyHieuLab_v6.docx` và Markdown tương ứng.
+- **Nhóm sinh viên thực hiện:** Huỳnh Gia Huy (MSSV: 2474802010135) và Nguyễn Thành Phát (MSSV: 2474802016639), Trường Đại học Văn Lang.
 
-## Câu hỏi thường gặp khi bảo vệ
+---
 
-**Đây có phải thuật toán mới không?** Phần đóng góp là bộ dữ liệu tự thu, cách ghép đặc trưng, ứng dụng và thực nghiệm đối chiếu. MediaPipe, MLP, tích chập thời gian và tăng cường dữ liệu là phương pháp đã có.
+## Câu hỏi thường gặp khi bảo vệ đồ án
 
-**Tại sao chỉ 5 nhãn?** Chốt phạm vi nhỏ để kiểm soát demo và trình bày đủ quy trình. Bộ 34 nhãn v3 thiếu mẫu lặp; bản v4 cũng còn ba nhãn chưa có mẫu kiểm tra độc lập.
+**1. Đây có phải là một thuật toán học sâu hoàn toàn mới không?**
+> *Trả lời:* Không. Đồ án không tuyên bố phát minh thuật toán mới. Đóng góp cốt lõi của nhóm là: (1) Tự xây dựng quy trình thu thập và tiền xử lý dữ liệu video ký hiệu chuẩn mực; (2) Thiết kế biểu diễn vector đặc trưng 159 chiều tối ưu cho MediaPipe Holistic; (3) Ứng dụng thành công mạng TCN thuần NumPy siêu nhẹ; và (4) Thực hiện quy trình đánh giá thực nghiệm trung thực, có cơ chế đối chứng OOV và kiểm tra chéo liên người ký LOSO.
 
-**Có phải đạt 80 phần trăm cho cả hệ thống không?** Con số 4/5 của TCN ở seed chính là trên 5 clip thuộc hai nhãn, cùng người ký, giữ từng clip ngoài phần học. Không suy rộng cho cả 5 nhãn hoặc người mới. Trọng số demo học đủ 8 mẫu khác với các trọng số dùng từng lượt kiểm tra.
+**2. Tại sao đồ án giới hạn ở 5 từ ký hiệu?**
+> *Trả lời:* Việc chốt phạm vi 5 ký hiệu mục tiêu nhằm kiểm soát chất lượng dữ liệu ở mức độ phòng thí nghiệm (PoC), đảm bảo mỗi nhãn đều có mẫu thực tế từ nhiều người ký khác nhau (tổng 20 clips từ 3 người ký), thay vì dàn trải 34 nhãn nhưng mỗi nhãn chỉ có 1 video duy nhất.
 
-**Tại sao tăng cường dữ liệu không tốt hơn?** Đợt thử này chưa chứng minh lợi ích ổn định. Bộ gốc quá nhỏ; biến thể không tạo thêm người ký hoặc động tác thực mới. Giữ TCN gốc làm mặc định và báo cáo cả kết quả ứng viên thấp hơn.
+**3. Tại sao TCN đạt 100% trên 20 clips nhưng lại nhận nhầm 21/29 clips OOV?**
+> *Trả lời:* Con số 100% là trên tập học (training set fit). Do mô hình TCN 5 lớp hoạt động theo giả định thế giới đóng (closed-world assumption) với hàm softmax ép tổng xác suất bằng 1, khi gặp các động tác OOV lạ hoàn toàn, mạng vẫn buộc phải gán vào 1 trong 5 nhãn có sẵn với điểm tự tin cao. Đây chính là động lực để nhóm phát triển thêm mô hình TCN Reject có lớp `__OTHER__`.
 
-**Máy có được học sâu thêm không?** Có. Bản v6 học TCN sáu đầu ra từ 37 nguồn cũ, gồm nhóm ngoài năm nhãn. Nghiên cứu phát triển có 30 lượt học theo nguồn giữ riêng và ba seed. Ứng viên giảm nhận nhầm ngoài bộ từ nhưng từ chối mẫu hợp lệ nhiều hơn nên chưa được chọn mặc định. Đây là thay đổi kết hợp lớp ngoài bộ từ và lấy mẫu cân bằng, chưa tách tác dụng từng phần.
+**4. Tại sao TCN Reject chặn được OOV 100% nhưng chưa được chọn làm mặc định?**
+> *Trả lời:* Mô hình TCN Reject có hiện tượng từ chối quá mức (over-rejection): Nó từ chối 11/20 clips hợp lệ (55.0%), đặc biệt là toàn bộ clips của hai người ký mới *huy1* và *minh*. Lý do là checkpoint này được học trên tập dữ liệu lịch sử trước khi 12 clips mới được thu thập. Nhóm quyết định giữ TCN gốc làm mặc định cho ứng dụng demo để đảm bảo trải nghiệm người dùng, đồng thời công bố rõ ràng kết quả TCN Reject trong báo cáo như một bài học khoa học về sự đánh đổi.
 
-**Tại sao ứng viên nhận lại đúng tất cả mẫu trong demo mà vẫn không chọn?** Nhận lại nguồn đã học chỉ là phát lại phần học. Quyết định dựa trên nguồn giữ ngoài phần học; kết quả ở đó cho thấy ứng viên giảm nhận đúng. Hai ví dụ ngoài bộ nhãn trong giao diện cũng là nguồn ứng viên đã học.
-
-**Tại sao không học tăng cường?** Bài toán hiện có nhãn ký hiệu và được giải bằng học có giám sát. Phản hồi giao diện được lưu để xem lại; chưa có môi trường và hàm thưởng được kiểm chứng để dùng học tăng cường.
-
-**Có dùng mặt không?** Holistic có thể trích điểm mặt nhưng vector của dự án chỉ dùng tay và 13 điểm thân trên. Đây là giới hạn đáng chú ý với các ký hiệu hoặc sắc thái cần nét mặt.
-
-**Bước tiếp theo là gì?** Quay bộ 250 clip theo kế hoạch; chia riêng người/phiên cho học, chọn cấu hình và kiểm tra; bổ sung hoạt động ngoài bộ từ, hiệu chỉnh ngưỡng trên validation rồi kiểm tra cuối.
-
-**Hệ thống đã hoàn thiện chưa?** Đã có phần mềm và hồ sơ nghiên cứu ở mức minh chứng đồ án. Nhận diện chưa được kiểm chứng đủ năm nhãn hoặc người mới; khả năng từ chối còn đánh đổi với nhận đúng. Bản v6 kiểm tra trình duyệt thật và luồng ghi phiếu, không dùng các kiểm tra phần mềm để thay phép đo mô hình trên dữ liệu thực mới.
+**5. Điểm khác biệt giữa TCN và MLP trong bài toán này là gì?**
+> *Trả lời:* Mạng TCN sử dụng tích chập thời gian 1D có độ giãn nở (dilation), giúp nhận thức được sự biến thiên của động tác qua thời gian. Trong kiểm thử mù LOSO, TCN đạt độ chính xác 100% trên người ký lạ. Ngược lại, MLP làm phẳng chuỗi thời gian thành vector tĩnh, khiến độ chính xác giảm sút xuống 70% khi gặp người ký có tốc độ và nhịp điệu khác.

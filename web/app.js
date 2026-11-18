@@ -3,6 +3,7 @@ const $ = id => document.getElementById(id);
 const state = {
   config:null, blob:null, objectUrl:null, blobId:null, videoName:"", source:"",
   stream:null, recorder:null, timer:null, recording:false, cameraPending:false,
+  countdown:false, countdownTimer:null,
   cameraToken:0, sourceToken:0, revision:0, busy:false, loadingSample:false,
   prediction:null, trialSaved:false, savingTrial:false, activeTab:"recognize",
 };
@@ -15,7 +16,7 @@ const status = (text, isError=false) => {$("status").textContent=text;$("status"
 
 function setTab(name, focus=false) {
   if (!Object.hasOwn(TAB_NAMES,name)) return;
-  if (state.recording) {status("Đợi đoạn quay kết thúc rồi chuyển phần nhé.");return;}
+  if (state.recording || state.countdown) {status("Đợi đoạn quay kết thúc rồi chuyển phần nhé.");return;}
   if (name !== "recognize" && (state.stream || state.cameraPending)) stopCamera();
   state.activeTab=name;
   for (const key of Object.keys(TAB_NAMES)) {
@@ -71,10 +72,13 @@ function invalidate() {
   $("actual-label").value="";
   $("actual-label-note").textContent=state.source==="outside-sample"?"Mẫu đang chọn nằm ngoài 5 nhãn. Bạn có thể chọn Ngoài bộ 5 ký hiệu sau khi đối chiếu; đây vẫn là phản hồi chưa được duyệt.":"Dùng Ngoài bộ 5 ký hiệu khi video không thuộc các nhãn đang hỗ trợ.";
   $("result").textContent=state.blob ? "Sẵn sàng nhận diện" : "Chờ video";
-  $("result").classList.remove("uncertain","outside");
+  $("result").className="result";
   $("result-state").textContent="Chờ đầu vào";
   $("result-state").className="result-state";
   $("result-detail").textContent=state.blob ? "Chọn trọn đoạn ký và bấm nhận diện để xem gợi ý." : "Kết quả sẽ xuất hiện sau khi bạn bấm nhận diện.";
+  if ($("result-symbol")) {
+    $("result-symbol").innerHTML='<svg viewBox="0 0 32 32" fill="none"><path d="M7 6h18v20H7V6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 12h8m-8 5h8m-8 5h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+  }
   $("top").replaceChildren();
   $("go-experiment").disabled=true;
   $("step-video").classList.add("active");$("step-video").classList.remove("complete");
@@ -84,26 +88,34 @@ function invalidate() {
 }
 
 function controls() {
-  const locked=state.busy||state.recording||state.loadingSample||state.cameraPending||!state.config;
+  const locked=state.busy||state.recording||state.countdown||state.loadingSample||state.cameraPending||!state.config;
   for (const id of ["file","examples","start","end","model","camera"]) $(id).disabled=locked;
   $("upload-label").classList.toggle("disabled",locked);
   $("upload-label").setAttribute("aria-disabled",String(locked));
   $("camera").disabled=locked||Boolean(state.stream);
   $("camera-label").textContent=state.cameraPending ? "Đang mở camera…" : state.stream ? "Camera đã bật" : "Bật camera";
   $("record").disabled=locked||!state.stream;
-  $("stop-camera").disabled=state.recording||(!state.stream&&!state.cameraPending);
+  $("stop-camera").disabled=state.recording||state.countdown||(!state.stream&&!state.cameraPending);
   $("predict").disabled=locked||!state.blob;
   $("download-video").disabled=locked||!state.blob;
   $("reset-crop").disabled=locked||!state.blob;
   $("predict-label").textContent=state.busy?"Đang nhận diện…":"Nhận diện đoạn ký";
   $("panel-recognize").classList.toggle("is-busy",state.busy);
   $("video-title").setAttribute("aria-busy",String(state.busy));
-  for(const name of Object.keys(TAB_NAMES)) $("tab-"+name).disabled=state.recording;
+  for(const name of Object.keys(TAB_NAMES)) $("tab-"+name).disabled=state.recording||state.countdown;
   renderTrialCurrent();
 }
 
 function stopCamera() {
   state.cameraToken++;
+  if (state.countdownTimer) {
+    clearInterval(state.countdownTimer);
+    state.countdownTimer=null;
+  }
+  state.countdown=false;
+  if ($("countdown-overlay")) $("countdown-overlay").hidden=true;
+  if ($("guideline-box")) $("guideline-box").hidden=true;
+  $("video").classList.remove("camera-mode");
   state.stream?.getTracks().forEach(track=>track.stop());
   state.stream=null;state.cameraPending=false;
   if ($("video").srcObject) $("video").srcObject=null;
@@ -192,6 +204,8 @@ $("camera").addEventListener("click",async()=>{
     if(token!==state.cameraToken){stream.getTracks().forEach(track=>track.stop());return;}
     state.stream=stream;state.cameraPending=false;
     $("video").srcObject=stream;$("video").muted=true;$("video-empty").hidden=true;
+    $("video").classList.add("camera-mode");
+    if($("guideline-box")) $("guideline-box").hidden=false;
     $("source-badge").textContent="Camera trực tiếp";
     controls();await $("video").play();
     if(token!==state.cameraToken)return;
@@ -204,12 +218,9 @@ $("camera").addEventListener("click",async()=>{
   }
 });
 
-$("record").addEventListener("click",()=>{
-  if(!state.stream||state.recording)return;
-  const stream=state.stream;
+function startRecording(stream, mime) {
+  if(!state.stream) return;
   try {
-    if(typeof MediaRecorder==="undefined")throw Error("Trình duyệt chưa hỗ trợ quay. Hãy dùng chức năng tải video.");
-    const mime=["video/webm;codecs=vp9","video/webm;codecs=vp8","video/webm","video/mp4"].find(type=>MediaRecorder.isTypeSupported(type));
     const recorder=new MediaRecorder(stream,mime?{mimeType:mime}:{});
     const chunks=[];let failed=false;
     state.recorder=recorder;
@@ -227,7 +238,7 @@ $("record").addEventListener("click",()=>{
       $("camera-status").textContent="Đã quay xong. Camera đã tắt; xem lại trước khi nhận diện.";
       controls();
     };
-    state.recording=true;invalidate();controls();recorder.start();
+    state.recording=true;controls();recorder.start();
     let remaining=5;$("recording-pill").hidden=false;$("recording-time").textContent="Đang quay · 5 giây";
     $("camera-status").textContent="Đang quay. Giữ tay trong khung và thực hiện một ký hiệu.";
     status("Đang quay đoạn ký…");
@@ -239,26 +250,129 @@ $("record").addEventListener("click",()=>{
     clearInterval(state.timer);state.recording=false;state.recorder=null;$("recording-pill").hidden=true;
     stopCamera();controls();status(error.message,true);
   }
+}
+
+$("record").addEventListener("click",()=>{
+  if(!state.stream||state.recording||state.countdown)return;
+  const stream=state.stream;
+  try {
+    if(typeof MediaRecorder==="undefined")throw Error("Trình duyệt chưa hỗ trợ quay. Hãy dùng chức năng tải video.");
+    const mime=["video/webm;codecs=vp9","video/webm;codecs=vp8","video/webm","video/mp4"].find(type=>MediaRecorder.isTypeSupported(type));
+
+    // 3-second countdown before starting 5-second recording
+    state.countdown=true;
+    invalidate();
+    controls();
+    if($("countdown-overlay")) {
+      $("countdown-overlay").hidden=false;
+      $("countdown-number").textContent="3";
+    }
+    let count=3;
+    $("camera-status").textContent="Chuẩn bị vị trí: 3 giây để đặt tay vào khung hình…";
+    status("Chuẩn bị quay: 3…");
+
+    state.countdownTimer=setInterval(()=>{
+      count--;
+      if(count>0) {
+        if($("countdown-number")) $("countdown-number").textContent=String(count);
+        $("camera-status").textContent=`Chuẩn bị vị trí: ${count} giây…`;
+        status(`Chuẩn bị quay: ${count}…`);
+      } else {
+        clearInterval(state.countdownTimer);
+        state.countdownTimer=null;
+        state.countdown=false;
+        if($("countdown-overlay")) $("countdown-overlay").hidden=true;
+        startRecording(stream,mime);
+      }
+    },1000);
+  } catch(error) {
+    if(state.countdownTimer) {
+      clearInterval(state.countdownTimer);
+      state.countdownTimer=null;
+    }
+    state.countdown=false;
+    if($("countdown-overlay")) $("countdown-overlay").hidden=true;
+    stopCamera();controls();status(error.message,true);
+  }
 });
 
 function renderPrediction(answer) {
   const outside=Boolean(answer.rejected_as_outside);
-  $("result").textContent=predictionMessage(answer);
-  $("result").classList.toggle("uncertain",!answer.recognized);
-  $("result").classList.toggle("outside",outside);
-  $("result-state").textContent=outside?"Ngoài bộ ký hiệu":answer.recognized?"Qua ngưỡng gợi ý":"Cần xác nhận";
-  $("result-state").className="result-state "+(outside?"outside":answer.recognized?"accepted":"uncertain");
-  $("result-detail").textContent="Xử lý "+displayNumber(answer.elapsed_seconds,2)+" giây · thấy tay ở "+displayNumber((answer.hand_fraction||0)*100)+"% bước lấy mẫu."+(outside?" Chưa có gợi ý được chấp nhận; hãy xem lại hoặc ghi phiếu theo nhãn thực tế.":"");
-  $("top").replaceChildren();
-  for(const item of answer.top||[]) {
-    if(!state.config?.labels?.includes(item.label))continue;
-    const row=document.createElement("div");row.className="score";
-    const caption=document.createElement("div");caption.className="score-caption";
-    const label=document.createElement("span");label.textContent=item.label;
-    const score=document.createElement("span");score.textContent="điểm "+displayNumber(item.score,3);
-    const progress=document.createElement("progress");progress.max=1;progress.value=Number(item.score)||0;progress.setAttribute("aria-label",item.label+" điểm mô hình");
-    caption.append(label,score);row.append(caption,progress);$("top").append(row);
+  const accepted=!outside && Boolean(answer.recognized);
+  const uncertain=!outside && !answer.recognized;
+
+  const resultSymbol=$("result-symbol");
+  if(outside) {
+    $("result").textContent="Ngoài bộ 5 ký hiệu";
+    $("result").className="result outside";
+    $("result-state").textContent="Ngoài bộ ký hiệu";
+    $("result-state").className="result-state outside";
+    if(resultSymbol) resultSymbol.innerHTML='<svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="11" stroke="currentColor" stroke-width="2"/><path d="M12 12l8 8m0-8l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+  } else if(accepted) {
+    $("result").textContent=answer.label || predictionMessage(answer);
+    $("result").className="result accepted";
+    $("result-state").textContent="Chấp nhận";
+    $("result-state").className="result-state accepted";
+    if(resultSymbol) resultSymbol.innerHTML='<svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="11" stroke="currentColor" stroke-width="2"/><path d="M10 16.5l4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  } else {
+    $("result").textContent=predictionMessage(answer);
+    $("result").className="result uncertain";
+    $("result-state").textContent="Chưa chắc chắn";
+    $("result-state").className="result-state uncertain";
+    if(resultSymbol) resultSymbol.innerHTML='<svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="11" stroke="currentColor" stroke-width="2"/><path d="M16 11v6m0 4h.01" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>';
   }
+
+  const elapsed=displayNumber(answer.elapsed_seconds,2);
+  const handPct=displayNumber((answer.hand_fraction||0)*100);
+  $("result-detail").textContent="Xử lý "+elapsed+" giây · thấy tay ở "+handPct+"% bước lấy mẫu."+
+    (outside ? " Cử động không nằm trong 5 ký hiệu; đề xuất kiểm tra hoặc ghi phiếu thực nghiệm." :
+     accepted ? " Đạt ngưỡng tin cậy chấp nhận (0,65)." :
+     " Điểm số dưới ngưỡng an toàn (0,65); cần người giám sát xác nhận.");
+
+  $("top").replaceChildren();
+  const labels=state.config?.labels || ["ai cho","bực mình","ghen tị","không cần","xin lỗi"];
+  const scoreMap=new Map((answer.top||[]).map(item=>[item.label,Number(item.score)||0]));
+  const threshold=Number(answer.threshold)||0.65;
+  const top1Label=answer.top?.[0]?.label;
+
+  for(const labelText of labels) {
+    const score=scoreMap.get(labelText) ?? 0;
+    const pct=Math.min(100,Math.max(0,score*100));
+    const isTop=(labelText===top1Label);
+
+    const row=document.createElement("div");
+    row.className="score" + (isTop?" is-top":"");
+
+    const caption=document.createElement("div");
+    caption.className="score-caption";
+    const label=document.createElement("span");
+    label.textContent=labelText;
+    const scoreSpan=document.createElement("span");
+    scoreSpan.textContent=displayPercent(score)+" (điểm "+displayNumber(score,3)+")";
+    caption.append(label,scoreSpan);
+
+    const barWrap=document.createElement("div");
+    barWrap.className="progress-bar-wrap";
+
+    const progress=document.createElement("progress");
+    progress.max=1;
+    progress.value=score;
+    progress.setAttribute("aria-label",labelText+" điểm mô hình");
+
+    const customFill=document.createElement("div");
+    customFill.className="custom-bar-fill" + (isTop?" top-bar":"");
+    customFill.style.width=pct.toFixed(1)+"%";
+
+    const threshMarker=document.createElement("div");
+    threshMarker.className="threshold-marker";
+    threshMarker.style.left=(threshold*100)+"%";
+    threshMarker.title=`Ngưỡng chấp nhận: ${(threshold*100).toFixed(0)}%`;
+
+    barWrap.append(progress,customFill,threshMarker);
+    row.append(caption,barWrap);
+    $("top").append(row);
+  }
+
   $("go-experiment").disabled=false;
   $("step-video").classList.remove("active");$("step-video").classList.add("complete");
   $("step-infer").classList.remove("active");$("step-infer").classList.add("complete");$("step-record").classList.add("active");
@@ -451,6 +565,7 @@ const initialTab=Object.entries(TAB_HASHES).find(([,hash])=>hash===location.hash
 setTab(initialTab);
 window.addEventListener("beforeunload",()=>{
   state.cameraToken++;state.sourceToken++;clearInterval(state.timer);
+  if(state.countdownTimer) clearInterval(state.countdownTimer);
   if(state.recorder?.state==="recording")try{state.recorder.stop();}catch{}
   state.stream?.getTracks().forEach(track=>track.stop());if(state.objectUrl)URL.revokeObjectURL(state.objectUrl);
 });

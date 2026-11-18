@@ -214,7 +214,7 @@ def make_handler(state):
             self.send_header("Content-Length", str(len(body)))
             self.send_header("Cache-Control", "no-store")
             self.send_header("X-Content-Type-Options", "nosniff")
-            self.send_header("Content-Security-Policy", "default-src 'self'; script-src 'self'; style-src 'self'; media-src 'self' blob:; img-src 'self' data:; connect-src 'self'")
+            self.send_header("Content-Security-Policy", "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; media-src 'self' blob:; img-src 'self' data:; connect-src 'self'")
             if attachment:
                 self.send_header("Content-Disposition", 'attachment; filename="' + attachment + '"')
             self.end_headers()
@@ -246,6 +246,7 @@ def make_handler(state):
                     return self.send(200, (state.root / row["video"]).read_bytes(), "video/mp4")
             static = {
                 "/": ("web/index.html", "text/html; charset=utf-8"),
+                "/tools/studio_quay_video.html": ("tools/studio_quay_video.html", "text/html; charset=utf-8"),
                 "/app.js": ("web/app.js", "text/javascript; charset=utf-8"),
                 "/style.css": ("web/style.css", "text/css; charset=utf-8"),
                 "/api/evaluation": ("reports/metrics.json", "application/json; charset=utf-8"),

@@ -3,8 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#17654f">
+  <meta name="theme-color" content="#059669">
   <title>Ký Hiệu Lab · Không gian thực nghiệm</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
   <script src="/app.js" defer></script>
 </head>
@@ -34,7 +37,25 @@
         <div class="recognition-grid">
           <section class="card video-card" aria-labelledby="video-title">
             <div class="card-heading"><div><p class="overline">ĐẦU VÀO</p><h2 id="video-title">Video của bạn</h2></div><span id="source-badge" class="small-badge">Chưa chọn video</span></div>
-            <div class="video-wrap"><video id="video" controls playsinline aria-label="Xem trước video nhận diện"></video><div id="video-empty" class="video-empty"><span class="empty-mark" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="7" stroke="currentColor" stroke-width="1.5"/><path d="m21 18 10 6-10 6V18Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span><strong>Mỗi chuyển động là một lời nói</strong><p>Tải video, mở clip mẫu hoặc bắt đầu với camera.</p></div><span id="recording-pill" class="recording-pill" hidden><span aria-hidden="true"></span><span id="recording-time">Đang quay · 5 giây</span></span></div>
+            <div class="video-wrap">
+              <video id="video" controls playsinline aria-label="Xem trước video nhận diện"></video>
+              <div id="video-empty" class="video-empty"><span class="empty-mark" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="7" stroke="currentColor" stroke-width="1.5"/><path d="m21 18 10 6-10 6V18Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span><strong>Mỗi chuyển động là một lời nói</strong><p>Tải video, mở clip mẫu hoặc bắt đầu với camera.</p></div>
+              <div id="guideline-box" class="guideline-box" hidden aria-hidden="true">
+                <div class="guide-box-inner">
+                  <div class="guide-head-oval"></div>
+                  <div class="guide-hands-row">
+                    <div class="guide-hand left-hand"></div>
+                    <div class="guide-hand right-hand"></div>
+                  </div>
+                  <span class="guide-text">Đặt phần thân trên và hai bàn tay vào khung</span>
+                </div>
+              </div>
+              <div id="countdown-overlay" class="countdown-overlay" hidden aria-hidden="true">
+                <span id="countdown-number">3</span>
+                <span class="countdown-sub">Chuẩn bị ký hiệu…</span>
+              </div>
+              <span id="recording-pill" class="recording-pill" hidden><span aria-hidden="true"></span><span id="recording-time">Đang quay · 5 giây</span></span>
+            </div>
             <div class="video-actions"><label id="upload-label" class="button secondary file-button"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 16V3m0 0L7 8m5-5 5 5M4 15v5h16v-5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Tải video<input id="file" type="file" accept="video/*" aria-label="Tải video từ thiết bị"></label><button id="camera" class="button secondary" type="button"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="3" stroke="currentColor" stroke-width="1.7"/><path d="m16 10 5-3v10l-5-3" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span id="camera-label">Bật camera</span></button><button id="record" class="button" type="button" disabled><span class="record-dot" aria-hidden="true"></span>Quay 5 giây</button><button id="stop-camera" class="button text-button" type="button" disabled>Tắt camera</button></div>
             <p id="camera-status" class="hint" role="status">MP4 / WebM dưới 64 MB. Quay rõ bàn tay và phần thân trên.</p>
             <div class="sample-row"><label for="examples">Thử bằng clip mẫu</label><select id="examples"><option value="">Chọn một video để thử…</option></select></div><p id="source-note" class="caption">Clip mẫu thuộc tập học; dùng để kiểm tra demo.</p>

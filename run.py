@@ -15,7 +15,7 @@ def main():
     except OSError:
         raise SystemExit("Cổng đang được dùng. Thử: python run.py --port 8766")
     url = f"http://localhost:{server.server_port}"
-    print("Ký Hiệu Lab v5 sẵn sàng tại " + url, flush=True)
+    print("Ký Hiệu Lab v6 sẵn sàng tại " + url, flush=True)
     print("Chỉ chạy trên máy này. Nhấn Ctrl+C để dừng.", flush=True)
     if not args.no_browser:
         timer = threading.Timer(0.5, lambda: webbrowser.open(url))
