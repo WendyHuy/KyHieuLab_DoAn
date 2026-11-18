@@ -1,4 +1,4 @@
-# Kịch bản trình bày đồ án Ký Hiệu Lab v6
+# Kịch bản trình bày đồ án ViSign-Hub v6
 
 ## Trình bày trong khoảng 8 đến 10 phút
 

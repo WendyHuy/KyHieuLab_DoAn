@@ -1,6 +1,6 @@
 # Nhận diện ký hiệu tiếng Việt từ video
 
-Báo cáo đồ án Ký Hiệu Lab phiên bản 6
+Báo cáo đồ án ViSign-Hub phiên bản 6
 
 Mở rộng Đa người ký và Đánh giá Thực nghiệm Toàn diện
 
@@ -14,7 +14,7 @@ Ngày cập nhật: 18/11/2026
 
 ### Tóm tắt kết quả đồ án
 
-Đồ án Ký Hiệu Lab phiên bản 6 phát triển hệ thống hoàn chỉnh nhận diện 5 từ ký hiệu tiếng Việt độc lập từ video: 'ai cho', 'bực mình', 'ghen tị', 'không cần', 'xin lỗi'. Hệ thống kết hợp trích xuất đặc trưng tư thế và bàn tay qua MediaPipe Holistic với các mô hình mạng nơ-ron học sâu nhẹ (TCN, MLP), đồng thời tích hợp cơ chế nhận biết và từ chối các cử chỉ nằm ngoài bộ từ vựng mục tiêu (Out-of-Vocabulary / OOV).
+Đồ án ViSign-Hub phiên bản 6 phát triển hệ thống hoàn chỉnh nhận diện 5 từ ký hiệu tiếng Việt độc lập từ video: 'ai cho', 'bực mình', 'ghen tị', 'không cần', 'xin lỗi'. Hệ thống kết hợp trích xuất đặc trưng tư thế và bàn tay qua MediaPipe Holistic với các mô hình mạng nơ-ron học sâu nhẹ (TCN, MLP), đồng thời tích hợp cơ chế nhận biết và từ chối các cử chỉ nằm ngoài bộ từ vựng mục tiêu (Out-of-Vocabulary / OOV).
 
 Bộ dữ liệu thực nghiệm được mở rộng vượt bậc từ 8 clips ban đầu lên 20 clips thực tế quay từ 3 người ký khác nhau ('giahuy': 8 clips, 'huy1': 6 clips, 'minh': 6 clips), cùng tập thử thách gồm 29 clips ngoài bộ từ từ 2 người ký ('giahuy': 17 clips, 'tp': 12 clips).
 
@@ -234,7 +234,7 @@ Lệnh sẽ tự động xuất đồng thời reports/Bao_cao_DoAn_KyHieuLab_v6
 
 ## 9 Kết luận và kế hoạch phát triển
 
-Đồ án Ký Hiệu Lab v6 đã hoàn thành xuất sắc các mục tiêu nghiên cứu và ứng dụng kỹ thuật đặt ra: xây dựng đường ống xử lý hoàn chỉnh từ video đến nhận diện ký hiệu tiếng Việt, mở rộng bộ dữ liệu thực tế lên 20 clips qua 3 người ký, phân tích và chứng minh thực nghiệm năng lực vượt trội của mạng TCN trong bài toán mô hình hóa chuỗi thời gian cử chỉ, đồng thời giải quyết và công bố trung thực sự đánh đổi giữa độ nhạy nhận diện và khả năng từ chối ngoài bộ từ.
+Đồ án ViSign-Hub v6 đã hoàn thành xuất sắc các mục tiêu nghiên cứu và ứng dụng kỹ thuật đặt ra: xây dựng đường ống xử lý hoàn chỉnh từ video đến nhận diện ký hiệu tiếng Việt, mở rộng bộ dữ liệu thực tế lên 20 clips qua 3 người ký, phân tích và chứng minh thực nghiệm năng lực vượt trội của mạng TCN trong bài toán mô hình hóa chuỗi thời gian cử chỉ, đồng thời giải quyết và công bố trung thực sự đánh đổi giữa độ nhạy nhận diện và khả năng từ chối ngoài bộ từ.
 
 ### Kế hoạch phát triển tiếp theo
 

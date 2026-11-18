@@ -1,4 +1,4 @@
-# Tiến độ Ký Hiệu Lab ngày 07 11 2026
+# Tiến độ ViSign-Hub ngày 07 11 2026
 
 ## Đã bàn giao bản v6 cho phạm vi đồ án
 

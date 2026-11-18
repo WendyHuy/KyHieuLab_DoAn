@@ -15,7 +15,7 @@ def main():
     parser.add_argument("--warmup", action="store_true", help="Run one actual sample to prepare MediaPipe assets before the demonstration.")
     args = parser.parse_args()
     failures = []
-    print("Ký Hiệu Lab v6 - Kiểm tra cài đặt", flush=True)
+    print("ViSign-Hub v6 - Kiểm tra cài đặt", flush=True)
     print("Python:", sys.version.split()[0])
     for module, distribution, expected in [("numpy", "numpy", "1.26.4"), ("cv2", "opencv-contrib-python", "4.11.0.86"), ("mediapipe", "mediapipe", "0.10.21")]:
         try:

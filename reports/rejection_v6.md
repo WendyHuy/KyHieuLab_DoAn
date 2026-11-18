@@ -1,4 +1,4 @@
-# Thử nghiệm lớp ngoài bộ từ Ký Hiệu Lab v6
+# Thử nghiệm lớp ngoài bộ từ ViSign-Hub v6
 
 Ngày 07/11/2026
 

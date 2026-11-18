@@ -1,6 +1,6 @@
 # Nhận diện ký hiệu tiếng Việt từ video
 
-Báo cáo đồ án thử nghiệm Ký Hiệu Lab phiên bản 5
+Báo cáo đồ án thử nghiệm ViSign-Hub phiên bản 5
 
 Nhóm sinh viên thực hiện:
 - Huỳnh Gia Huy | MSSV: 2474802010135 | Trường Đại học Văn Lang

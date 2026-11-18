@@ -1,4 +1,4 @@
-# Kiểm tra phần mềm Ký Hiệu Lab v6
+# Kiểm tra phần mềm ViSign-Hub v6
 
 Ngày kiểm tra 07/11/2026. Phạm vi kiểm tra gồm API, giao diện, quyết định từ chối và tính đúng của phiếu thực nghiệm. Kết quả này đo hoạt động phần mềm; số đo chất lượng nhận diện nằm trong báo cáo thực nghiệm riêng.
 

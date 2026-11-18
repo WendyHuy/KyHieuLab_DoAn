@@ -1,4 +1,4 @@
-# Kiểm tra phần mềm Ký Hiệu Lab v5
+# Kiểm tra phần mềm ViSign-Hub v5
 
 Ngày kiểm tra 04/11/2026. Phạm vi là độ đúng của luồng phần mềm, dữ liệu, nhật ký thực nghiệm và tương tác giao diện. Kiểm tra này không thay thế thực nghiệm nhận diện trên người ký mới.
 

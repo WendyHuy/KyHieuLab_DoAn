@@ -1,7 +1,7 @@
 """
 research/build_report_v6.py
 
-Dựng báo cáo đồ án Ký Hiệu Lab v6 đồng bộ giữa định dạng Word (.docx) và Markdown (.md).
+Dựng báo cáo đồ án ViSign-Hub v6 đồng bộ giữa định dạng Word (.docx) và Markdown (.md).
 Báo cáo thể hiện số liệu thực nghiệm trung thực, khách quan từ:
 - 20 clips thực tế trong bộ từ (In-Vocabulary) từ 3 người ký (giahuy: 8, huy1: 6, minh: 6).
 - 29 clips ngoài bộ từ (Out-of-Vocabulary / OOV) từ 2 người ký (giahuy: 17, tp: 12).
@@ -81,13 +81,13 @@ def build_v6(output_name="Bao_cao_DoAn_KyHieuLab_v6", footer_date="18/11/2026"):
 
     footer = section.footer.paragraphs[0]
     footer.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    footer.add_run("Ký Hiệu Lab v6 | " + footer_date + " | Trang ").font.size = Pt(9)
+    footer.add_run("ViSign-Hub v6 | " + footer_date + " | Trang ").font.size = Pt(9)
     field = OxmlElement("w:fldSimple")
     field.set(qn("w:instr"), "PAGE")
     footer._p.append(field)
 
     doc.core_properties.author = "Huỳnh Gia Huy, Nguyễn Thành Phát"
-    doc.core_properties.title = "Nhận diện ký hiệu tiếng Việt từ video - Báo cáo đồ án Ký Hiệu Lab v6"
+    doc.core_properties.title = "Nhận diện ký hiệu tiếng Việt từ video - Báo cáo đồ án ViSign-Hub v6"
 
     md = []
     first = True
@@ -201,7 +201,7 @@ def main():
 
     # TRANG TIÊU ĐỀ & TỔNG QUAN
     page("Nhận diện ký hiệu tiếng Việt từ video")
-    p("Báo cáo đồ án Ký Hiệu Lab phiên bản 6")
+    p("Báo cáo đồ án ViSign-Hub phiên bản 6")
     p("Mở rộng Đa người ký và Đánh giá Thực nghiệm Toàn diện")
     p("Nhóm sinh viên thực hiện:")
     p("- Huỳnh Gia Huy | MSSV: 2474802010135 | Trường Đại học Văn Lang")
@@ -209,7 +209,7 @@ def main():
     p("Ngày cập nhật: 18/11/2026")
 
     h("Tóm tắt kết quả đồ án")
-    p("Đồ án Ký Hiệu Lab phiên bản 6 phát triển hệ thống hoàn chỉnh nhận diện 5 từ ký hiệu tiếng Việt độc lập từ video: 'ai cho', 'bực mình', 'ghen tị', 'không cần', 'xin lỗi'. Hệ thống kết hợp trích xuất đặc trưng tư thế và bàn tay qua MediaPipe Holistic với các mô hình mạng nơ-ron học sâu nhẹ (TCN, MLP), đồng thời tích hợp cơ chế nhận biết và từ chối các cử chỉ nằm ngoài bộ từ vựng mục tiêu (Out-of-Vocabulary / OOV).")
+    p("Đồ án ViSign-Hub phiên bản 6 phát triển hệ thống hoàn chỉnh nhận diện 5 từ ký hiệu tiếng Việt độc lập từ video: 'ai cho', 'bực mình', 'ghen tị', 'không cần', 'xin lỗi'. Hệ thống kết hợp trích xuất đặc trưng tư thế và bàn tay qua MediaPipe Holistic với các mô hình mạng nơ-ron học sâu nhẹ (TCN, MLP), đồng thời tích hợp cơ chế nhận biết và từ chối các cử chỉ nằm ngoài bộ từ vựng mục tiêu (Out-of-Vocabulary / OOV).")
     p("Bộ dữ liệu thực nghiệm được mở rộng vượt bậc từ 8 clips ban đầu lên 20 clips thực tế quay từ 3 người ký khác nhau ('giahuy': 8 clips, 'huy1': 6 clips, 'minh': 6 clips), cùng tập thử thách gồm 29 clips ngoài bộ từ từ 2 người ký ('giahuy': 17 clips, 'tp': 12 clips).")
     p("Kết quả đánh giá thực nghiệm trung thực ghi nhận: Trên 20 clips thực tế trong bộ từ, mô hình TCN gốc và MLP đạt độ chính xác Top-1 20/20 (100.0%) và tỷ lệ chấp nhận đúng 20/20 (100.0%) ở ngưỡng tự tin 0.65. Đây là độ chính xác trên tập học (training set replay / empirical fitting) do toàn bộ 20 clips đã tham gia tối ưu trọng số. Khi đối mặt với 29 clips ngoài bộ từ (OOV), TCN gốc có tỷ lệ báo động giả 21/29 (72.4%), MLP có tỷ lệ báo động giả 9/29 (31.0%). Ngược lại, mô hình TCN có từ chối (tcn_reject) chặn đứng 100% clips OOV (0/29 nhận nhầm), nhưng do checkpoint chưa được học trên 12 clips mới của 'huy1' và 'minh', mô hình này từ chối nhầm 11/20 clips hợp lệ (55.0%).")
 
@@ -393,7 +393,7 @@ def main():
 
     # PHẦN 9: KẾT LUẬN VÀ KẾ HOẠCH PHÁT TRIỂN
     page("9 Kết luận và kế hoạch phát triển")
-    p("Đồ án Ký Hiệu Lab v6 đã hoàn thành xuất sắc các mục tiêu nghiên cứu và ứng dụng kỹ thuật đặt ra: xây dựng đường ống xử lý hoàn chỉnh từ video đến nhận diện ký hiệu tiếng Việt, mở rộng bộ dữ liệu thực tế lên 20 clips qua 3 người ký, phân tích và chứng minh thực nghiệm năng lực vượt trội của mạng TCN trong bài toán mô hình hóa chuỗi thời gian cử chỉ, đồng thời giải quyết và công bố trung thực sự đánh đổi giữa độ nhạy nhận diện và khả năng từ chối ngoài bộ từ.")
+    p("Đồ án ViSign-Hub v6 đã hoàn thành xuất sắc các mục tiêu nghiên cứu và ứng dụng kỹ thuật đặt ra: xây dựng đường ống xử lý hoàn chỉnh từ video đến nhận diện ký hiệu tiếng Việt, mở rộng bộ dữ liệu thực tế lên 20 clips qua 3 người ký, phân tích và chứng minh thực nghiệm năng lực vượt trội của mạng TCN trong bài toán mô hình hóa chuỗi thời gian cử chỉ, đồng thời giải quyết và công bố trung thực sự đánh đổi giữa độ nhạy nhận diện và khả năng từ chối ngoài bộ từ.")
 
     h("Kế hoạch phát triển tiếp theo")
     p("1. Mở rộng quy mô thu thập theo kế hoạch collection_plan_250.csv: Mục tiêu đạt 250 clips bao phủ 5 người ký x 5 ký hiệu x 10 lượt lặp, thu thập theo các phiên thời gian độc lập.")

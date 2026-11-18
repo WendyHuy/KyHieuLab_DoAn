@@ -29,7 +29,7 @@ def fig(name, caption): blocks.append(("fig", (name, caption)))
 
 
 page("Nhận diện ký hiệu tiếng Việt từ video")
-p("Báo cáo đồ án thử nghiệm Ký Hiệu Lab phiên bản 4")
+p("Báo cáo đồ án thử nghiệm ViSign-Hub phiên bản 4")
 p("Nhóm sinh viên: Huỳnh Gia Huy (MSSV: 2474802010135) & Nguyễn Thành Phát (MSSV: 2474802016639) | Trường Đại học Văn Lang")
 p("Ngày hoàn thiện bản kỹ thuật 03/11/2026")
 h("Tóm tắt dự án")
@@ -146,7 +146,7 @@ def upgrade_v5():
         raise ValueError("Không tìm thấy đoạn báo cáo: " + prefix)
 
     cover = groups[0]
-    replace_paragraph(cover, "Báo cáo đồ án thử nghiệm", "Báo cáo đồ án thử nghiệm Ký Hiệu Lab phiên bản 5")
+    replace_paragraph(cover, "Báo cáo đồ án thử nghiệm", "Báo cáo đồ án thử nghiệm ViSign-Hub phiên bản 5")
     replace_paragraph(cover, "Ngày hoàn thiện", "Ngày cập nhật và kiểm tra 04/11/2026")
     replace_paragraph(cover, "Dự án xây dựng", "Dự án xây dựng ứng dụng gợi ý một ký hiệu riêng lẻ từ đoạn video đã quay. Bản v5 kế thừa ba cấu hình học trên tám video của v4, thiết kế lại trải nghiệm nhận diện và ghi phiếu, chạy kiểm tra trình duyệt thật, đồng thời bổ sung khảo sát 29 video có nhãn ngoài bộ năm ký hiệu. Mã nguồn, trọng số, ma trận và hồ sơ kiểm tra được bàn giao cùng quy trình tái lập.")
     replace_paragraph(cover, "Kết quả cho phép", "Bản này có thể dùng trình bày quy trình kỹ thuật và thực nghiệm có giám sát. Dữ liệu học vẫn chỉ có một người ký và ba nhãn đơn mẫu; phép giữ riêng chỉ bao phủ năm clip của hai nhãn. Khảo sát ngoài bộ từ phát hiện TCN gốc vẫn chấp nhận nhầm 14/29 clip. Vì vậy kết quả cần được đọc là gợi ý trong năm nhãn, chưa đủ để xác nhận đầu vào thật sự thuộc bộ từ hoặc mở nhận diện công khai.")
@@ -234,7 +234,7 @@ def build(output_name="Bao_cao_DoAn_KyHieuLab_v5", footer_date="04/11/2026"):
         style.paragraph_format.space_after = Pt(8)
     footer = section.footer.paragraphs[0]
     footer.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    footer.add_run("Ký Hiệu Lab | " + footer_date + " | Trang ").font.size = Pt(9)
+    footer.add_run("ViSign-Hub | " + footer_date + " | Trang ").font.size = Pt(9)
     field = OxmlElement("w:fldSimple")
     field.set(qn("w:instr"), "PAGE")
     footer._p.append(field)

@@ -1,4 +1,4 @@
-# Ký Hiệu Lab v6 (Cập nhật Đa người ký & Huấn luyện lại)
+# ViSign-Hub v6 (Cập nhật Đa người ký & Huấn luyện lại)
 
 Ứng dụng đồ án **nhận diện 5 ký hiệu ngôn ngữ ký hiệu Việt Nam từ video**, sử dụng MediaPipe Holistic và mô hình học sâu nhẹ TCN / MLP.
 Phạm vi hỗ trợ: **ai cho, bực mình, ghen tị, không cần, xin lỗi**.

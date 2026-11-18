@@ -1,4 +1,4 @@
-# Phối hợp hoàn thiện Ký Hiệu Lab v6
+# Phối hợp hoàn thiện ViSign-Hub v6
 
 Ngày 07/11/2026, ba phiên chuyên trách và một phiên tích hợp cùng xử lý bản đồ án. Đây là các tác vụ trợ lý phối hợp, không phải danh sách sinh viên hoặc nguồn dữ liệu mới.
 
