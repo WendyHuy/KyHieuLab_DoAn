@@ -16,9 +16,9 @@
    - So sánh 4 cấu hình mô hình: MLP đối chiếu (493.445 tham số), TCN gốc (26.501 tham số), TCN tăng cường (26.501 tham số) và TCN có cơ chế từ chối (26.550 tham số, 6 đầu ra).
    - Toàn bộ pipeline suy luận và huấn luyện chạy thuần NumPy, tốc độ dưới 15ms/clip trên CPU.
 
-4. **Kết quả thực nghiệm trung thực & Bài học khoa học** (khoảng 2.5 phút):
+4. **Kết quả thực nghiệm & Bài học khoa học** (khoảng 2.5 phút):
    - **Trên 20 clips thực tế:** TCN gốc và MLP đạt 20/20 (100.0%) Top-1 và nhận đúng ở ngưỡng 0.65. Trình bày rõ ràng: đây là độ chính xác trên tập học (*training set fit*).
-   - **Kiểm chứng mù liên người ký (LOSO):** Khi huấn luyện trên 2 người ký và kiểm thử mù trên người thứ 3, TCN duy trì 20/20 (100.0%) nhờ tích chập thời gian giãn nở (dilated convolutions); trong khi MLP giảm xuống 14/20 (70.0%) do cấu trúc mạng phẳng nhạy cảm với sai lệch nhịp độ.
+   - **Kiểm chứng mù liên người ký (LOSO):** Khi kiểm thử mù độc lập trên người ký chưa từng học (`research/loso_check.py`), kết quả thực tế đạt TCN 63.3% và MLP 66.7% Top-1, phản ánh sự suy giảm tự nhiên khi mô hình đối mặt với người ký mới có dáng người và nhịp điệu khác nhau.
    - **Thử thách 29 clips OOV:** TCN gốc có tỷ lệ báo động giả 21/29 (72.4%), MLP là 9/29 (31.0%). TCN có từ chối (`tcn_reject`) chặn đứng 100% (0/29 nhận nhầm), nhưng do chưa được học trên 12 clips mới của *huy1* và *minh*, mô hình này từ chối nhầm 11/20 clips hợp lệ (55.0%).
    - **Kết luận:** TCN gốc được chọn làm mặc định cho ứng dụng demo; TCN Reject được cung cấp như tùy chọn nghiên cứu mở.
 
