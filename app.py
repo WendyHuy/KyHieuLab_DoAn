@@ -100,8 +100,9 @@ class State:
         started = time.perf_counter()
         weights, config, model_hash = self.models[model]
         with self.inference_lock:
-            with tempfile.TemporaryDirectory(prefix="khl_video_") as directory:
-                path = Path(directory) / "input_video"
+            with tempfile.TemporaryDirectory(prefix="khl_video_", ignore_cleanup_errors=True) as directory:
+                suffix = ".webm" if video_bytes.startswith(b"\x1a\x45\xdf\xa3") else ".mp4"
+                path = Path(directory) / f"input_video{suffix}"
                 path.write_bytes(video_bytes)
                 x, t, quality = extract_video(path, start=start, end=end)
             answer = apply_decision_policy(predict(x, t, weights, config), config)
@@ -294,8 +295,11 @@ def make_handler(state):
             except (ValueError, TypeError, UnicodeDecodeError) as error:
                 return self.send(400, {"error": str(error)})
             except Exception as error:
-                print(type(error).__name__, str(error), flush=True)
-                return self.send(500, {"error": "Không xử lý được video. Thử clip MP4 ngắn và chạy tools/doctor.py để kiểm tra cài đặt."})
+                import traceback
+                traceback.print_exc()
+                err_text = str(error).strip()
+                message = f"Không xử lý được video ({type(error).__name__}: {err_text})" if err_text else f"Không xử lý được video ({type(error).__name__})"
+                return self.send(500, {"error": message})
     return Handler
 
 

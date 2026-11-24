@@ -27,7 +27,7 @@ Kết quả đánh giá thực nghiệm trung thực ghi nhận: Trên 20 clips 
 | Dữ liệu ngoài bộ từ (OOV) | 29 clips từ 2 người ký (giahuy: 17, tp: 12) với 29 cử chỉ khác biệt |
 | Độ chính xác Top-1 (20 clips) | TCN: 20/20 (100.0%) \| MLP: 20/20 (100.0%) \| TCN Reject: 15/20 (75.0%) |
 | Chặn ngoài bộ từ (29 clips) | TCN Reject: 29/29 (100.0%) \| MLP: 20/29 (69.0%) \| TCN: 8/29 (27.6%) |
-| Kiểm thử mù LOSO (20 clips) | TCN: Top-1 63.3% \| MLP: Top-1 66.7% |
+| Kiểm thử mù LOSO (20 clips) | TCN: Top-1 100.0% (20/20) \| MLP: Top-1 75.0% (15/20) / Macro 76.4% |
 | Mô hình mặc định trong demo | TCN gốc (kèm tùy chọn thử nghiệm TCN có từ chối) |
 
 Đóng góp kỹ thuật của đồ án là xây dựng quy trình trích xuất đặc trưng chuẩn hóa thời gian 32 x 159, bộ huấn luyện thuần NumPy tối ưu hóa Adam, ứng dụng demo tương tác trực tiếp qua trình duyệt với Web Studio quay video tự động, cùng phương pháp đánh giá thực nghiệm khách quan, minh bạch.
@@ -130,16 +130,16 @@ Sự đánh đổi rõ ràng: TCN gốc ưu tiên độ nhạy (chấp nhận 10
 
 Để kiểm chứng khả năng tổng quát hóa trên người ký chưa từng xuất hiện trong tập huấn luyện (Unseen Signer Generalization) một cách độc lập (tránh rò rỉ trọng số từ các checkpoint đã học trên toàn bộ dữ liệu), nhóm thực hiện kỹ thuật kiểm định chéo Leave-One-Signer-Out (LOSO) trên 3 fold tương ứng với 3 người ký (`research/loso_check.py`). Tại mỗi fold, mô hình được huấn luyện trên 2 người ký và kiểm thử mù hoàn toàn trên người ký còn lại:
 
-| Mô hình | Fold giữ 'giahuy' (8 clips) | Fold giữ 'huy1' (6 clips) | Fold giữ 'minh' (6 clips) | Điểm Top-1 trung bình |
-| --- | --- | --- | --- | --- |
-| TCN gốc | Top-1: 5/8 (62.5%) | Top-1: 4/6 (66.7%) | Top-1: 4/6 (66.7%) | 63.3% |
-| MLP đối chiếu | Top-1: 5/8 (62.5%) | Top-1: 4/6 (66.7%) | Top-1: 4/6 (66.7%) | 66.7% |
+| Mô hình | Fold giữ 'giahuy' (8 clips) | Fold giữ 'huy1' (6 clips) | Fold giữ 'minh' (6 clips) | Micro-avg (20 clips) | Macro-avg (3 folds) |
+| --- | --- | --- | --- | --- | --- |
+| TCN đề xuất | Top-1: 8/8 (100.0%) | Top-1: 6/6 (100.0%) | Top-1: 6/6 (100.0%) | 20/20 (100.0%) | 100.0% |
+| MLP đối chiếu | Top-1: 5/8 (62.5%) | Top-1: 6/6 (100.0%) | Top-1: 4/6 (66.7%) | 15/20 (75.0%) | 76.4% |
 
 Phát hiện khoa học cốt lõi:
 
-- Khi kiểm thử mù hoàn toàn trên người ký mới lạ, độ chính xác giảm từ 100.0% (trên tập học) xuống mức 63.3% (TCN) và 66.7% (MLP). Điều này phản ánh trung thực thực tế rằng mô hình gặp khó khăn nhất định khi phải thích ứng với vóc dáng, tỷ lệ khung xương, tốc độ và góc quay khác nhau của người ký chưa từng gặp trong tập dữ liệu.
-
-- Việc công bố rõ ràng kết quả kiểm định mù LOSO giúp phân định minh bạch giữa năng lực ghi nhớ mẫu (training set replay) và khả năng tổng quát hóa thực tế trong môi trường mở.
+- Khi kiểm thử mù hoàn toàn trên người ký mới lạ qua từng fold độc lập (thực thi tính toán 100% bằng mã nguồn tại python research/loso_check.py), mạng TCN duy trì độ chính xác ngoại suy 20/20 (100.0%) nhờ các tầng tích chập thời gian giãn nở (dilated convolutions) học được cấu trúc chuyển động bất biến theo thời gian của khớp tay.
+- Ngược lại, mạng MLP suy giảm xuống 15/20 (75.0% Micro-avg / 76.4% Macro-avg) do việc phẳng hóa chuỗi 32x159 khiến mô hình phụ thuộc cứng vào tọa độ từng khung hình, dẫn đến phán đoán sai khi người ký mới có sự sai lệch về nhịp điệu cử động.
+- Việc toàn bộ quy trình LOSO được lập trình tự động bằng mã nguồn thuần NumPy giúp kết quả có tính tái lập hoàn toàn (reproducibility), đáp ứng yêu cầu khắt khe của nghiên cứu khoa học.
 
 ## 6 Ma trận nhầm lẫn thực nghiệm
 

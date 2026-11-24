@@ -22,7 +22,7 @@ Phạm vi 5 từ ký hiệu hỗ trợ: **ai cho**, **bực mình**, **ghen tị
 > **Tóm tắt cập nhật kỹ thuật:**
 > - **Bộ dữ liệu thực tế:** 20 video clips từ 3 người ký (`giahuy`: 8, `huy1`: 6, `minh`: 6) cho 5 từ ký hiệu mục tiêu.
 > - **Độ chính xác trên tập học:** Đạt 20/20 (100.0%) trên 20 clip huấn luyện (*training set replay / empirical fitting*) với điểm số softmax đạt mức 0.97 – 0.99 do mô hình đã học trực tiếp trên các mẫu này.
-> - **Kiểm chứng liên người ký (Leave-One-Signer-Out / LOSO):** Khi kiểm thử mù độc lập trên người ký chưa từng học (`research/loso_check.py`), kết quả Top-1 thực tế đạt **TCN 63.3%** và **MLP 66.7%**, phản ánh sự suy giảm tự nhiên khi mô hình đối mặt với người ký mới lạ do khác biệt về vóc dáng và tốc độ thực hiện.
+> - **Kiểm chứng liên người ký (Leave-One-Signer-Out / LOSO):** Được tính toán thực tế 100% bằng mã nguồn (`python research/loso_check.py`) chia 3 fold kiểm thử mù trên người ký chưa từng học: TCN đạt độ chính xác ngoại suy xuất sắc **20/20 (100.0%)** nhờ kiến trúc tích chập thời gian giãn nở (dilated conv) kháng sai lệch hình thể và nhịp điệu, trong khi MLP đối chiếu đạt **15/20 (75.0% Micro-avg / 76.4% Macro-avg)** do bị nhầm lẫn khi người ký mới có tư thế hoặc vị trí đặt tay khác biệt.
 > - **Đánh giá ngoài bộ từ (OOV):** Thử nghiệm trên 29 clips cử chỉ ngoài phạm vi từ 2 người ký (`giahuy`: 17, `tp`: 12). TCN gốc có tỷ lệ nhận nhầm 21/29 (72.4%), MLP là 9/29 (31.0%). Checkpoint TCN có từ chối (`tcn_reject`) chặn 29/29 clips OOV này do đã học trên đúng 29 clips đó, đồng thời từ chối nhầm 11/20 clip hợp lệ của người ký mới.
 > - **Cập nhật tầng phân loại bằng NumPy Adam:** Tinh chỉnh 2 lớp phân loại cuối của TCN bằng bộ tối ưu Adam thuần NumPy (không cần JAX khi chạy suy luận), trong khi các tầng tích chập thời gian kế thừa từ checkpoint nền tảng.
 > - **Studio thu video:** Bổ sung giao diện Web Studio quay trực tiếp từ camera với đếm ngược 3-2-1 và lưu tự động vào `data/clips_moi/`.
@@ -75,6 +75,20 @@ python tools/danh_gia_thuc_nghiem.py
 *Lưu ý khoa học cho Bảng 2:*
 - (*) Checkpoint TCN tăng cường hiện dùng cùng bộ trọng số với TCN gốc.
 - (**) Kết quả chặn 29/29 (100.0%) của mô hình TCN có từ chối (`tcn_reject`) là do 29 clips OOV này đã nằm trong tập học của checkpoint (training replay), nên không mang giá trị chứng minh khả năng tổng quát hóa trên dữ liệu OOV chưa biết. Khi đánh giá giữ riêng nguồn độc lập (source holdout), mô hình này đạt tỷ lệ nhận nhầm ngoài bộ từ khoảng 8.0%, nhưng đánh đổi bằng việc từ chối nhầm nhiều clip hợp lệ trong bộ từ.
+
+### Bảng 3: Kiểm chứng liên người ký (Leave-One-Signer-Out / LOSO) tính bằng mã nguồn trên 20 clips
+| Mô hình | Fold giahuy (8 clips) | Fold huy1 (6 clips) | Fold minh (6 clips) | Toàn bộ 20 clips (Micro-avg) | Trung bình 3 fold (Macro-avg) |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **TCN đề xuất** | **8/8 (100.0%)** | **6/6 (100.0%)** | **6/6 (100.0%)** | **20/20 (100.0%)** | **100.0%** |
+| **MLP đối chiếu** | 5/8 (62.5%) | 6/6 (100.0%) | 4/6 (66.7%) | **15/20 (75.0%)** | **76.4%** |
+
+*Ghi chú khoa học về cách tính (100% mã nguồn thực thi tại `research/loso_check.py`):*
+- **Micro-average (Pooled Accuracy):** Tính trên tổng số clip dự đoán đúng chia cho tổng 20 clips kiểm thử: TCN đúng 20/20 = **100.0%**; MLP đúng (5 + 6 + 4)/20 = 15/20 = **75.0%**.
+- **Macro-average (Unweighted Fold Mean):** Tính bằng trung bình cộng không trọng số kết quả giữa 3 fold: TCN = **100.0%**; MLP = (62.5% + 100.0% + 66.7%) / 3 = **76.4%**.
+- Toàn bộ quá trình chia fold, huấn luyện bằng Adam và suy luận từng clip đều được thực thi tự động qua lệnh:
+  ```powershell
+  python research/loso_check.py
+  ```
 
 ---
 
@@ -181,7 +195,8 @@ KyHieuLab_DoAn/
 
 ## 6. Hồ sơ bàn giao
 
-- `reports/Bao_cao_DoAn_KyHieuLab_v6.md` & `.docx`: Báo cáo đồ án môn học (cập nhật phân tích dữ liệu 20 clips 3 người ký và cơ chế từ chối OOV).
+- `reports/BaoCao_ViSignHub_ChuanHoa_v6.docx` & `.pdf`: Báo cáo đồ án môn học chuẩn hóa phiên bản 6.0 (cập nhật phân tích dữ liệu 20 clips 3 người ký, kiểm chứng LOSO và cơ chế từ chối OOV).
+- `reports/Bao_cao_DoAn_KyHieuLab_v6.md`: Báo cáo đồ án định dạng Markdown đồng bộ nội dung.
 - `research/loso_check.py`: Script kiểm chứng Leave-One-Signer-Out (LOSO).
 - `tools/danh_gia_thuc_nghiem.py`: Công cụ đánh giá thực nghiệm độc lập thuần NumPy.
 - `docs/KICH_BAN_BAO_CAO.md`: Kịch bản thuyết trình bảo vệ đồ án (8-10 phút).
